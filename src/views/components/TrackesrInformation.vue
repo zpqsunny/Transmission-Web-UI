@@ -91,11 +91,12 @@ export default {
       this.$axios.post('', {
         method: 'torrent-set',
         arguments: {
-          ids: this.id,
+          ids: [this.id],
           trackerRemove: d
         }
       }).then(r => {
         if (r.data.result === 'success') {
+          this.trackerSelected = []
           this.getTrackers()
         }
       })
