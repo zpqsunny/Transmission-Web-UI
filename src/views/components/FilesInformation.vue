@@ -32,7 +32,7 @@
         {{ item.length | unitFormat }}
       </template>
       <template v-slot:item.progress="{ item }">
-        <v-progress-linear :value="(item.bytesCompleted / item.length * 100).toFixed(2)" striped rounded color="#67C23A" height="25">
+        <v-progress-linear v-if="item.length > 0" :value="(item.bytesCompleted / item.length * 100).toFixed(2)" striped rounded color="#67C23A" height="25">
           <template v-slot:default="{ value }">
             <strong>{{ value }}%</strong>
           </template>
@@ -100,10 +100,7 @@ export default {
           fields: ['files', 'fileStats']
         }
       }).then(r => {
-        if (r.data.result !== 'success') {
-          return
-        }
-        if (r.data.arguments.torrents.length < 1) {
+        if (r.data.result !== 'success' || r.data.arguments.torrents.length < 1) {
           return
         }
         let torrent = r.data.arguments.torrents[0]
