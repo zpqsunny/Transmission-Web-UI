@@ -28,8 +28,8 @@ export default {
       api: {
         url: 'http://127.0.0.1:9091/transmission/rpc',
         auth: false,
-        username: 'admin',
-        password: 'admin'
+        username: '',
+        password: ''
       }
     }
   },
