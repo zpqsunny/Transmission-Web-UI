@@ -6,7 +6,7 @@
           <font-awesome-icon size="2x" :icon="['fa','redo-alt']"/>
         </v-btn>
         <v-divider style="margin: 0 2px" vertical/>
-        <v-menu offset-y>
+        <v-menu offset-y transition="scroll-x-transition">
           <template v-slot:activator="{ on, attrs }">
             <v-btn text small v-bind="attrs" v-on="on">
               <font-awesome-icon size="2x" :icon="['fa','plus']"/>
@@ -53,7 +53,7 @@
           <font-awesome-icon size="2x" :icon="['fa','cog']"/>
         </v-btn>
         <v-divider style="margin: 0 2px" vertical/>
-        <v-menu offset-y>
+        <v-menu offset-y transition="scroll-x-transition">
           <template v-slot:activator="{ on, attrs }">
             <v-btn text small v-bind="attrs" v-on="on" :disabled="!selectedTorrents.length > 0">
               <font-awesome-icon size="2x" :icon="['fa','list-ol']"/>
@@ -102,26 +102,32 @@
                   <v-list-item @click="search = 'all'">
                     <v-list-item-avatar><font-awesome-icon size="2x" :icon="['fa','folder']"/></v-list-item-avatar>
                     <v-list-item-content><v-list-item-title>全部</v-list-item-title></v-list-item-content>
+                    <v-list-item-action>{{ torrentTotal }}</v-list-item-action>
                   </v-list-item>
                   <v-list-item @click="search = '0'">
                     <v-list-item-avatar><font-awesome-icon size="2x" :icon="['fa','pause']"/></v-list-item-avatar>
                     <v-list-item-content><v-list-item-title>暂停</v-list-item-title></v-list-item-content>
+                    <v-list-item-action>{{ torrentPause }}</v-list-item-action>
                   </v-list-item>
                   <v-list-item @click="search = '2'">
                     <v-list-item-avatar><font-awesome-icon size="2x" :icon="['fa','database']"/></v-list-item-avatar>
                     <v-list-item-content><v-list-item-title>校验中</v-list-item-title></v-list-item-content>
+                    <v-list-item-action>{{ torrentDatabase }}</v-list-item-action>
                   </v-list-item>
                   <v-list-item @click="search = '3'">
                     <v-list-item-avatar><font-awesome-icon size="2x" :icon="['fa','clock']"/></v-list-item-avatar>
                     <v-list-item-content><v-list-item-title>待下载</v-list-item-title></v-list-item-content>
+                    <v-list-item-action>{{ torrentWaitDownload }}</v-list-item-action>
                   </v-list-item>
                   <v-list-item @click="search = '4'">
                     <v-list-item-avatar><font-awesome-icon size="2x" :icon="['fa','cloud-download-alt']"/></v-list-item-avatar>
                     <v-list-item-content><v-list-item-title>下载中</v-list-item-title></v-list-item-content>
+                    <v-list-item-action>{{ torrentDownloading }}</v-list-item-action>
                   </v-list-item>
                   <v-list-item @click="search = '6'">
                     <v-list-item-avatar><font-awesome-icon size="2x" :icon="['fa','cloud-upload-alt']"/></v-list-item-avatar>
                     <v-list-item-content><v-list-item-title>做种中</v-list-item-title></v-list-item-content>
+                    <v-list-item-action>{{ torrentUploading }}</v-list-item-action>
                   </v-list-item>
                 </v-list-item-group>
               </v-list>
@@ -233,6 +239,26 @@ export default {
     Torrents,
     AddTorrentFromUrl,
     AddTorrentFromFile
+  },
+  computed: {
+    torrentTotal: function () {
+      return this.$store.state.torrents.length
+    },
+    torrentPause: function () {
+      return this.$store.state.torrents.filter(v => {return v.status === 0}).length
+    },
+    torrentDatabase: function () {
+      return this.$store.state.torrents.filter(v => {return v.status === 2}).length
+    },
+    torrentWaitDownload: function () {
+      return this.$store.state.torrents.filter(v => {return v.status === 3}).length
+    },
+    torrentDownloading: function () {
+      return this.$store.state.torrents.filter(v => {return v.status === 4}).length
+    },
+    torrentUploading: function () {
+      return this.$store.state.torrents.filter(v => {return v.status === 6}).length
+    }
   },
   data: () => ({
     search: 'all',

@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-data-table v-model="selectedTorrents" :options="{sortBy: ['queuePosition']}" no-data-text="暂无内容" no-results-text="未找到匹配项"
-                  :headers="headers" :items="torrentsList" item-key="id" show-select show-expand fixed-header
+                  :headers="headers" :items="$store.state.torrents" item-key="id" show-select show-expand fixed-header
                   :items-per-page="-1" @contextmenu:row="showMenu" hide-default-footer :search="searchStatus" :custom-filter="filterOnlyStatus">
       <template v-slot:expanded-item="{ headers, item }">
         <td :colspan="headers.length" style="padding: 0">
@@ -112,7 +112,7 @@
         {{ item.activityDate | timestampFormat }}
       </template>
     </v-data-table>
-    <v-menu v-model="menu.show" :position-x="menu.x" :position-y="menu.y" absolute offset-y>
+    <v-menu v-model="menu.show" :position-x="menu.x" :position-y="menu.y" absolute offset-y transition="slide-x-transition">
       <v-list>
         <v-list-item @click="torrentRenamePathDialog = true">
           <v-list-item-avatar><font-awesome-icon :icon="['far', 'save']"/></v-list-item-avatar>
@@ -209,21 +209,7 @@ export default {
   },
   methods: {
     getTorrentList() {
-      this.$axios.post('',
-          {
-            method: 'torrent-get',
-            arguments: {
-              fields: ['id', 'name', 'status', 'hashString', 'totalSize', 'percentDone', 'addedDate', 'leftUntilDone',
-                'rateDownload', 'rateUpload', 'recheckProgress', 'peersGettingFromUs', 'peersSendingToUs', 'eta', 'metadataPercentComplete',
-                'uploadRatio', 'uploadedEver', 'downloadedEver', 'downloadDir', 'error', 'errorString', 'doneDate', 'queuePosition',
-                'activityDate'
-              ]
-            }
-          }).then(r => {
-        if (r.data.result) {
-          this.torrentsList = r.data.arguments.torrents
-        }
-      })
+      this.$store.commit('getTorrents')
     },
     showMenu(e, {item}) {
       e.preventDefault()

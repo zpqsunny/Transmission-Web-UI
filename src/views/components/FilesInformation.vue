@@ -4,7 +4,7 @@
       <v-btn @click="getFiles"><font-awesome-icon :icon="['fa', 'redo']"/></v-btn>
       <v-btn @click="setFilesWantedAndUnwanted('files-wanted')">下载已选择的文件</v-btn>
       <v-btn @click="setFilesWantedAndUnwanted('files-unwanted')">忽略已选择的文件</v-btn>
-      <v-menu offset-y>
+      <v-menu offset-y transition="slide-x-transition">
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-bind="attrs" v-on="on">设置优先级别</v-btn>
         </template>

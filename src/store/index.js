@@ -6,6 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    torrents: [],
     itemsPerPage: 10,
     sessionInfo: {
       "alt-speed-down": 50,
@@ -66,8 +67,25 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    getTorrents(state) {
+      axios.post('',
+        {
+          method: 'torrent-get',
+          arguments: {
+            fields: ['id', 'name', 'status', 'hashString', 'totalSize', 'percentDone', 'addedDate', 'leftUntilDone',
+              'rateDownload', 'rateUpload', 'recheckProgress', 'peersGettingFromUs', 'peersSendingToUs', 'eta', 'metadataPercentComplete',
+              'uploadRatio', 'uploadedEver', 'downloadedEver', 'downloadDir', 'error', 'errorString', 'doneDate', 'queuePosition',
+              'activityDate'
+            ]
+          }
+        }).then(r => {
+        if (r.data.result === 'success') {
+          state.torrents = r.data.arguments.torrents
+        }
+      })
+    },
     getSessionInfo(state) {
-      Vue.prototype.$axios.post('',
+      axios.post('',
         {
           method: 'session-get',
           arguments: {
@@ -83,7 +101,7 @@ export default new Vuex.Store({
             ]
           }
         }).then(r => {
-        if (r.data.result) {
+        if (r.data.result === 'success') {
           state.sessionInfo = r.data.arguments
         }
       })
