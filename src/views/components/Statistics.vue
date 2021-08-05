@@ -128,6 +128,9 @@ export default {
     this.intervalId = setInterval(() => {
       this.getStatistics()
     }, 2000)
+    window.onresize = () => {
+      this.myChart.resize()
+    }
   },
   beforeDestroy() {
     clearInterval(this.intervalId)
@@ -136,7 +139,7 @@ export default {
     getStatistics() {
       this.$axios.post('', {method: 'session-stats'})
         .then(r => {
-          if (r.data.result) {
+          if (r.data.result === 'success') {
             this.sessionStatistics = r.data.arguments
             let date = new Date()
             let hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
