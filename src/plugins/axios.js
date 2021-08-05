@@ -6,7 +6,12 @@ import router from '../router'
 axios.interceptors.request.use(config => {
   // Do something before request is sent
   config.headers['x-transmission-session-id'] = localStorage.getItem('x-transmission-session-id')
-  config.baseURL = localStorage.getItem('url')
+  let url = localStorage.getItem('url')
+  if (url === null) {
+    router.push({path: '/login'})
+    return Promise.reject('No Found RPC Url')
+  }
+  config.baseURL = url
   let auth = localStorage.getItem('auth')
   if (auth !== null && auth === 'true') {
     config.auth = {
