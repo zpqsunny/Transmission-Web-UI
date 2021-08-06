@@ -7,8 +7,8 @@
     </v-btn-toggle>
     <v-data-table v-model="trackerSelected" dense :headers="trackerHeaders" :items="trackersInfo" item-key="id" show-select no-data-text="暂无内容" no-results-text="未找到匹配项"
                   :items-per-page="$store.state.itemsPerPage" @update:items-per-page="e => $store.commit('updateItemsPerPage', e)">
-      <template v-slot:item.announceState="{ item }">
-        <font-awesome-icon :style="{color: item.announceState === 0 ? '#909399' : '#4CAF50'}" :icon="['fa', 'check-circle']"/>
+      <template v-slot:item.lastAnnounceSucceeded="{ item }">
+        <font-awesome-icon :style="{color: item.lastAnnounceSucceeded ? '#4CAF50': '#909399' }" :icon="['fa', 'check-circle']"/>
       </template>
       <template v-slot:item.lastScrapeTime="{ item }">
         {{ item.lastScrapeTime | timestampFormat }}
@@ -44,7 +44,7 @@ export default {
       trackersInfo: [],
       trackerHeaders: [
         {text: '服务器', align: 'start', sortable: false, value: 'announce', width: 150},
-        {text: '状态', align: 'center', sortable: false, value: 'announceState', width: 80},
+        {text: '状态', align: 'center', sortable: false, value: 'lastAnnounceSucceeded', width: 80},
         {text: '信息', align: 'start', sortable: false, value: 'lastAnnounceResult'},
         {text: '下载数', align: 'center', sortable: false, value: 'downloadCount', width: 80},
         {text: '吸血数', align: 'center', sortable: false, value: 'leecherCount', width: 80},
