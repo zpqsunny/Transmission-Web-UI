@@ -62,6 +62,10 @@ export default {
             }
           ]
         },
+        grid: {
+          left: '2%',
+          right: '2%',
+        },
         xAxis: {
           type: 'time',
           splitLine: {
