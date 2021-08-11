@@ -319,6 +319,7 @@ export default {
       }).then(r => {
         if (r.data.result === 'success') {
           this.deleteTorrentDialog = false
+          this.selectedTorrents = []
         }
       })
     },
