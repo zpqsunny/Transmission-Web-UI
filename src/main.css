@@ -4,7 +4,9 @@
 .mt-2 {
     margin-top: 2em;
 }
-
+.torrent-list {
+    padding: 0 4px !important;
+}
 .vh-100 {
     height: 100vh;
 }

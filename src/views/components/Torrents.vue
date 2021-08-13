@@ -100,11 +100,16 @@
 <!--      <template v-slot:item.rateUpload="{ item }">-->
 <!--      </template>-->
       <template v-slot:item.uploadedEver="{ item }">
-        {{ item.uploadedEver | unitFormat }}
+        <div>
+          <small><font-awesome-icon style="color: #67C23A;" :icon="['fa', 'sort-up']"/> {{ item.uploadedEver | unitFormat }}</small>
+        </div>
+        <div>
+          <small><font-awesome-icon style="color: #409EFF;" :icon="['fa', 'sort-down']"/> {{ item.downloadedEver | unitFormat }}</small>
+        </div>
       </template>
-      <template v-slot:item.downloadedEver="{ item }">
-        {{ item.downloadedEver | unitFormat }}
-      </template>
+<!--      <template v-slot:item.downloadedEver="{ item }">-->
+<!--        {{ item.downloadedEver | unitFormat }}-->
+<!--      </template>-->
       <template v-slot:item.doneDate="{ item }">
         {{ item.doneDate | timestampFormat }}
       </template>
@@ -182,27 +187,27 @@ export default {
       },
       selectedTorrents: [],
       headers: [
-        {text: '序号', align: 'center', sortable: true, value: 'queuePosition', width: 80},
+        {text: '序号', align: 'center', sortable: true, value: 'queuePosition', width: 60, class: 'torrent-list', cellClass: 'torrent-list'},
         // {text: 'id', align: 'start', sortable: false, value: 'id', width: 50},
-        {text: '名称', align: 'start', sortable: false, value: 'name', width: 300},
-        {text: '状态', align: 'center', sortable: false, value: 'status', width: 100},
+        {text: '名称', align: 'start', sortable: false, value: 'name', width: 300, class: 'torrent-list', cellClass: 'torrent-list'},
+        {text: '状态', align: 'center', sortable: false, value: 'status', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
         // {text: 'hashString', align: 'start', sortable: false, value: 'hashString'},
-        {text: '总大小', align: 'center', sortable: false, value: 'totalSize', width: 100},
-        {text: '进度', align: 'center', sortable: false, value: 'percentDone', width: 100},
-        {text: '添加时间', align: 'center', sortable: false, value: 'addedDate', width: 170},
+        {text: '总大小', align: 'right', sortable: false, value: 'totalSize', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
+        {text: '进度', align: 'center', sortable: false, value: 'percentDone', width: 100, class: 'torrent-list', cellClass: 'torrent-list'},
+        {text: '添加时间', align: 'center', sortable: false, value: 'addedDate', width: 170, class: 'torrent-list', cellClass: 'torrent-list'},
         // {text: 'trackerStats', align: 'start', sortable: false, value: 'trackerStats', width: 200},
         // {text: 'leftUntilDone', align: 'start', sortable: false, value: 'leftUntilDone', width: 200},
-        {text: '上传/下载速度', align: 'start', sortable: false, value: 'rateDownload', width: 250},
+        {text: '上传/下载速度', align: 'start', sortable: false, value: 'rateDownload', width: 250, class: 'torrent-list', cellClass: 'torrent-list'},
         // {text: '上传速度', align: 'start', sortable: false, value: 'rateUpload', width: 150},
         // {text: 'recheckProgress', align: 'start', sortable: false, value: 'recheckProgress', width: 200},
         // {text: 'peersGettingFromUs', align: 'start', sortable: false, value: 'peersGettingFromUs', width: 200},
         // {text: 'peersSendingToUs', align: 'start', sortable: false, value: 'peersSendingToUs', width: 200},
-        {text: '分享率', align: 'center', sortable: false, value: 'uploadRatio', width: 100},
-        {text: '已上传', align: 'center', sortable: false, value: 'uploadedEver', width: 120},
-        {text: '已完成', align: 'center', sortable: false, value: 'downloadedEver', width: 120},
+        {text: '分享率', align: 'center', sortable: false, value: 'uploadRatio', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
+        {text: '已上传/下载', align: 'left', sortable: false, value: 'uploadedEver', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
+        // {text: '已完成', align: 'center', sortable: false, value: 'downloadedEver', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
         // {text: '保存目录', align: 'start', sortable: false, value: 'downloadDir', width: 200},
-        {text: '完成时间', align: 'center', sortable: false, value: 'doneDate', width: 170},
-        {text: '最后活动于', align: 'center', sortable: false, value: 'activityDate', width: 170},
+        {text: '完成时间', align: 'center', sortable: false, value: 'doneDate', width: 160, class: 'torrent-list', cellClass: 'torrent-list'},
+        {text: '最后活动于', align: 'center', sortable: false, value: 'activityDate', width: 160, class: 'torrent-list', cellClass: 'torrent-list'},
       ],
       torrentsList: []
     }
