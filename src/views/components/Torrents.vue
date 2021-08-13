@@ -4,11 +4,11 @@
                   :headers="headers" :items="$store.state.torrents" item-key="id" show-select show-expand fixed-header
                   :items-per-page="-1" @contextmenu:row="showMenu" hide-default-footer :search="searchStatus" :custom-filter="filterOnlyStatus">
       <template v-slot:item.data-table-expand="{isExpanded, expand}">
-        <v-btn icon v-if="!isExpanded">
-          <font-awesome-icon @click="expand(true)" :icon="['fa', 'caret-right']" size="2x" />
+        <v-btn icon v-if="!isExpanded" @click="expand(true)">
+          <font-awesome-icon :icon="['fa', 'caret-right']" size="2x" />
         </v-btn>
-        <v-btn icon v-if="isExpanded">
-          <font-awesome-icon @click="expand(false)" :icon="['fa', 'caret-down']" size="2x" />
+        <v-btn icon v-if="isExpanded" @click="expand(false)" >
+          <font-awesome-icon :icon="['fa', 'caret-down']" size="2x" />
         </v-btn>
       </template>
       <template v-slot:expanded-item="{ headers, item }">
@@ -65,11 +65,11 @@
       <template v-slot:item.rateDownload="{ item }">
         <v-row no-gutters justify="start">
           <v-col align-self="center">
-            <div>
-              <small>{{ item.rateUpload | unitFormat }}</small><span v-if="item.rateUpload > 0">/s <font-awesome-icon style="color: #67C23A;" :icon="['fa', 'sort-up']"/></span>
+            <div v-if="item.rateUpload > 0">
+              <font-awesome-icon style="color: #67C23A;" :icon="['fa', 'sort-up']"/> <small>{{ item.rateUpload | unitFormat }} /s </small>
             </div>
-            <div>
-              <small>{{ item.rateDownload | unitFormat }}</small><span v-if="item.rateDownload > 0">/s <font-awesome-icon style="color: #409EFF;" :icon="['fa', 'sort-down']"/></span>
+            <div v-if="item.rateDownload > 0">
+              <font-awesome-icon style="color: #409EFF;" :icon="['fa', 'sort-down']"/> <small>{{ item.rateDownload | unitFormat }} /s</small>
             </div>
           </v-col>
           <v-col align-self="center">
@@ -77,19 +77,14 @@
           </v-col>
         </v-row>
       </template>
-<!--      <template v-slot:item.rateUpload="{ item }">-->
-<!--      </template>-->
       <template v-slot:item.uploadedEver="{ item }">
-        <div>
+        <div v-if="item.uploadedEver > 0">
           <small><font-awesome-icon style="color: #67C23A;" :icon="['fa', 'sort-up']"/> {{ item.uploadedEver | unitFormat }}</small>
         </div>
-        <div>
+        <div v-if="item.downloadedEver > 0">
           <small><font-awesome-icon style="color: #409EFF;" :icon="['fa', 'sort-down']"/> {{ item.downloadedEver | unitFormat }}</small>
         </div>
       </template>
-<!--      <template v-slot:item.downloadedEver="{ item }">-->
-<!--        {{ item.downloadedEver | unitFormat }}-->
-<!--      </template>-->
       <template v-slot:item.doneDate="{ item }">
         {{ item.doneDate | timestampFormat }}
       </template>
