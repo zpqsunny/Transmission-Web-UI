@@ -3,6 +3,14 @@
     <v-data-table v-model="selectedTorrents" :options="{sortBy: ['queuePosition']}" no-data-text="暂无内容" no-results-text="未找到匹配项"
                   :headers="headers" :items="$store.state.torrents" item-key="id" show-select show-expand fixed-header
                   :items-per-page="-1" @contextmenu:row="showMenu" hide-default-footer :search="searchStatus" :custom-filter="filterOnlyStatus">
+      <template v-slot:item.data-table-expand="{isExpanded, expand}">
+        <v-btn icon v-if="!isExpanded">
+          <font-awesome-icon @click="expand(true)" :icon="['fa', 'caret-right']" size="2x" />
+        </v-btn>
+        <v-btn icon v-if="isExpanded">
+          <font-awesome-icon @click="expand(false)" :icon="['fa', 'caret-down']" size="2x" />
+        </v-btn>
+      </template>
       <template v-slot:expanded-item="{ headers, item }">
         <td :colspan="headers.length" style="padding: 0">
           <Information :id="item.id"></Information>
@@ -15,7 +23,7 @@
         <span class="d-inline-block align-center" style="word-break: break-all" :title="item.name + '\n\n' + item.downloadDir">
           <v-tooltip v-if="item.error > 0" top>
             <template v-slot:activator="{ on, attrs }">
-              <font-awesome-icon style="color: red" v-bind="attrs" v-on="on" :icon="['fa', 'exclamation-triangle']"/>
+              <font-awesome-icon style="color: #e53935" v-bind="attrs" v-on="on" :icon="['fa', 'exclamation-triangle']"/>
             </template>
             <span>{{ item.errorString }}</span>
           </v-tooltip>
@@ -23,41 +31,13 @@
         </span>
       </template>
       <template v-slot:item.status="{ item }">
-        <div v-if="item.status === 0">
-          <v-chip label outlined>
-            已暂停
-          </v-chip>
-        </div>
-        <div v-if="item.status === 1">
-          <v-chip label outlined color="orange">
-            待校验
-          </v-chip>
-        </div>
-        <div v-if="item.status === 2">
-          <v-chip label outlined color="orange">
-            校验中
-          </v-chip>
-        </div>
-        <div v-if="item.status === 3">
-          <v-chip label outlined color="secondary">
-            待下载
-          </v-chip>
-        </div>
-        <div v-if="item.status === 4">
-          <v-chip label outlined color="primary">
-            下载中
-          </v-chip>
-        </div>
-        <div v-if="item.status === 5">
-          <v-chip label outlined color="green">
-            待做种
-          </v-chip>
-        </div>
-        <div v-if="item.status === 6">
-          <v-chip label outlined color="green">
-            做种中
-          </v-chip>
-        </div>
+        <div v-if="item.status === 0"><v-chip label outlined>已暂停</v-chip></div>
+        <div v-if="item.status === 1"><v-chip label outlined color="orange">待校验</v-chip></div>
+        <div v-if="item.status === 2"><v-chip label outlined color="orange">校验中</v-chip></div>
+        <div v-if="item.status === 3"><v-chip label outlined color="secondary">待下载</v-chip></div>
+        <div v-if="item.status === 4"><v-chip label outlined color="primary">下载中</v-chip></div>
+        <div v-if="item.status === 5"><v-chip label outlined color="green">待做种</v-chip></div>
+        <div v-if="item.status === 6"><v-chip label outlined color="green">做种中</v-chip></div>
       </template>
       <template v-slot:item.totalSize="{ item }">
         <v-progress-linear v-if="item.metadataPercentComplete < 1" color="purple lighten-1" height="20" rounded striped :value="(item.metadataPercentComplete * 100).toFixed(2)">
