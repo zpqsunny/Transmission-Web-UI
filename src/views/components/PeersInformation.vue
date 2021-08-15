@@ -36,7 +36,7 @@
       </template>
       <template v-slot:body.append>
         <tr class="text-center">
-          <td><v-btn text @click="getPeers"><font-awesome-icon :icon="['fa', 'redo']"/></v-btn></td>
+          <td><v-btn text color="primary" @click="getPeers"><font-awesome-icon :icon="['fa', 'redo']"/></v-btn></td>
           <td>Cache {{ peersFrom.fromCache }}</td>
           <td>Dht {{ peersFrom.fromDht }}</td>
           <td>Incoming {{ peersFrom.fromIncoming }}</td>

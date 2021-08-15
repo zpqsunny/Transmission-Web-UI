@@ -4,7 +4,7 @@
       <template v-slot:default>
         <thead>
         <tr>
-          <th colspan="4" class="text-center"><v-btn text @click="getTorrentBaseInfo"><font-awesome-icon :icon="['fa', 'redo']"/></v-btn>基本信息</th>
+          <th colspan="4" class="text-center"><v-btn text color="primary" @click="getTorrentBaseInfo">基本信息</v-btn></th>
         </tr>
         </thead>
         <tbody>

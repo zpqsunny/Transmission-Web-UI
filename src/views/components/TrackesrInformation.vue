@@ -1,9 +1,9 @@
 <template>
   <div>
     <v-btn-toggle v-model="trackerButtonAction">
-      <v-btn @click="getTrackers"><font-awesome-icon :icon="['fa', 'redo']"/></v-btn>
-      <v-btn @click="addTrackersAction">添加新的Tracker</v-btn>
-      <v-btn @click="removeTracker">删除已选中的Tracker</v-btn>
+      <v-btn text color="primary" @click="getTrackers"><font-awesome-icon :icon="['fa', 'redo']"/></v-btn>
+      <v-btn text @click="addTrackersAction">添加新的Tracker</v-btn>
+      <v-btn text @click="removeTracker">删除已选中的Tracker</v-btn>
     </v-btn-toggle>
     <v-data-table v-model="trackerSelected" dense :headers="trackerHeaders" :items="trackersInfo" item-key="id" show-select no-data-text="暂无内容" no-results-text="未找到匹配项"
                   :items-per-page="$store.state.itemsPerPage" @update:items-per-page="e => $store.commit('updateItemsPerPage', e)">

@@ -1,12 +1,12 @@
 <template>
   <div>
     <v-btn-toggle v-model="filesButtonAction">
-      <v-btn @click="getFiles"><font-awesome-icon :icon="['fa', 'redo']"/></v-btn>
-      <v-btn @click="setFilesWantedAndUnwanted('files-wanted')">下载已选择的文件</v-btn>
-      <v-btn @click="setFilesWantedAndUnwanted('files-unwanted')">忽略已选择的文件</v-btn>
+      <v-btn text color="primary" @click="getFiles"><font-awesome-icon :icon="['fa', 'redo']"/></v-btn>
+      <v-btn text @click="setFilesWantedAndUnwanted('files-wanted')">下载已选择的文件</v-btn>
+      <v-btn text @click="setFilesWantedAndUnwanted('files-unwanted')">忽略已选择的文件</v-btn>
       <v-menu offset-y transition="slide-x-transition">
         <template v-slot:activator="{ on, attrs }">
-          <v-btn v-bind="attrs" v-on="on">设置优先级别</v-btn>
+          <v-btn text v-bind="attrs" v-on="on">设置优先级别</v-btn>
         </template>
         <v-list>
           <v-list-item @click="setFilesPriority('priority-high')">
@@ -50,15 +50,9 @@
         </span>
       </template>
       <template v-slot:item.priority="{ item }">
-        <span v-if="item.priority === -1">
-          低
-        </span>
-        <span v-if="item.priority === 0">
-          正常
-        </span>
-        <span v-if="item.priority === 1">
-          高
-        </span>
+        <span v-if="item.priority === -1">低</span>
+        <span v-if="item.priority === 0">正常</span>
+        <span v-if="item.priority === 1">高</span>
       </template>
     </v-data-table>
   </div>
