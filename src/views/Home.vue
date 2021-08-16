@@ -145,18 +145,18 @@
       </v-footer>
       <!--  新增URL对话框  -->
       <v-dialog v-if="addTorrentFromUrlDialog" v-model="addTorrentFromUrlDialog" width="800">
-        <AddTorrentFromUrl @success="torrentActionAddSuccess" @cancel="addTorrentFromUrlDialog = false"/>
+        <AddTorrentFromUrl v-if="addTorrentFromUrlDialog" @success="torrentActionAddSuccess" @cancel="addTorrentFromUrlDialog = false"/>
       </v-dialog>
       <!--  新增文件上传对话框  -->
       <v-dialog v-if="addTorrentFromFileDialog" v-model="addTorrentFromFileDialog" width="800">
-        <AddTorrentFromFile @success="torrentActionAddSuccess" @cancel="addTorrentFromFileDialog = false"/>
+        <AddTorrentFromFile v-if="addTorrentFromFileDialog" @success="torrentActionAddSuccess" @cancel="addTorrentFromFileDialog = false"/>
       </v-dialog>
       <!--  设置对话框  -->
       <v-dialog v-if="sessionSetDialog" v-model="sessionSetDialog" width="800">
-        <SystemSetting @closed="sessionSetDialog = false"></SystemSetting>
+        <SystemSetting v-if="sessionSetDialog" @closed="sessionSetDialog = false"></SystemSetting>
       </v-dialog>
       <!--  删除种子对话框  -->
-      <v-dialog v-model="deleteTorrentDialog" width="30%">
+      <v-dialog v-model="deleteTorrentDialog" width="30%" persistent>
         <v-card>
           <v-card-title>删除种子确认</v-card-title>
           <v-card-text>
@@ -168,7 +168,7 @@
             <v-btn color="primary" text @click="torrentActionDelete">
               确 定
             </v-btn>
-            <v-btn color="second" text @click="deleteTorrentDialog = false">
+            <v-btn color="second" text @click="deleteTorrentDialog = false, deleteLocalData = false">
               取 消
             </v-btn>
           </v-card-actions>
@@ -318,8 +318,9 @@ export default {
         }
       }).then(r => {
         if (r.data.result === 'success') {
-          this.deleteTorrentDialog = false
           this.selectedTorrents = []
+          this.$store.commit('getTorrents')
+          this.deleteTorrentDialog = false
         }
       })
     },

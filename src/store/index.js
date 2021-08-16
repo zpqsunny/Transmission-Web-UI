@@ -6,6 +6,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    message: {
+      show: false,
+      timeout: 4000,
+      title: ''
+    },
     torrents: [],
     itemsPerPage: 10,
     sessionInfo: {
@@ -115,6 +120,10 @@ export default new Vuex.Store({
     },
     updateItemsPerPage(state, value) {
       state.itemsPerPage = value
+    },
+    showMessage(state, message) {
+      state.message.show = message.show
+      state.message.title = message.title
     }
   },
   actions: {

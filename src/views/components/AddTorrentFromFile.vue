@@ -9,12 +9,19 @@
           <v-row>
             <v-col cols="12">
               <v-form ref="form">
-                <v-text-field v-model="downloadDir" label="保存的位置" outlined autocomplete="off">
-                  <template v-slot:append v-if="pathSizeByte > 0">
-                    {{ pathSizeByte | unitFormat }} 可用
+                <v-text-field v-model="downloadDir" @blur="freeSpace" autocomplete="off">
+                  <template v-slot:prepend>
+                    <font-awesome-icon size="2x" :icon="['far', 'folder']"/>
+                  </template>
+                  <template v-slot:label>
+                    保存的位置
+                    <span v-if="pathSizeByte > 0"> | <strong>{{ pathSizeByte | unitFormat }}</strong> 可用</span>
+                  </template>
+                  <template v-slot:append>
+                    <v-btn icon color="#212121" @click="freeSpace"><font-awesome-icon :icon="['fa', 'sync-alt']"/></v-btn>
                   </template>
                 </v-text-field>
-                <v-file-input label="种子文件" outlined dense accept=".torrent,application/x-bittorrent" placeholder="*.torrent" @change="fileChange"></v-file-input>
+                <v-file-input label="种子文件" accept="application/x-bittorrent" placeholder="*.torrent" @change="fileChange"></v-file-input>
                 <v-checkbox v-model="autoStart" label="自动开始"></v-checkbox>
               </v-form>
             </v-col>
@@ -35,7 +42,7 @@
 import {Base64} from 'js-base64'
 
 export default {
-  name: 'AddTorrent',
+  name: 'AddTorrentFromFile',
   data: () => {
     return {
       addForm: {
@@ -60,13 +67,11 @@ export default {
       },
       set(v) {
         this.$store.state.sessionInfo["download-dir"] = v
-        this.freeSpace()
       }
     }
   },
   mounted() {
     this.$store.commit('getSessionInfo')
-    this.freeSpace()
   },
   methods: {
     addTorrentAction() {
@@ -82,7 +87,9 @@ export default {
       }).then(r => {
         if (r.data.result === 'success') {
           this.$emit('success')
+          return
         }
+        this.$store.commit('showMessage', {show: true, title: r.data.result})
       })
     },
     fileChange(e) {
@@ -99,9 +106,7 @@ export default {
           path: this.downloadDir
         }
       }).then(r => {
-        if (r.data.result === 'success') {
-          this.pathSizeByte = r.data.arguments['size-bytes']
-        }
+        this.pathSizeByte = r.data.arguments['size-bytes']
       })
     },
   }
