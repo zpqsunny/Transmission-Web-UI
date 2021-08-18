@@ -94,7 +94,7 @@
     </v-data-table>
     <v-menu v-model="menu.show" :position-x="menu.x" :position-y="menu.y" absolute offset-y transition="slide-x-transition">
       <v-list>
-        <v-list-item @click="torrentRenamePathDialog = true">
+        <v-list-item @click="showTorrentRenamePath">
           <v-list-item-avatar><font-awesome-icon :icon="['far', 'save']"/></v-list-item-avatar>
           <v-list-item-content><v-list-item-title>路径重命名</v-list-item-title></v-list-item-content>
         </v-list-item>
@@ -106,16 +106,16 @@
     </v-menu>
     <v-dialog v-model="torrentRenamePathDialog" width="30%">
       <v-card>
-        <v-card-title>路径重命名</v-card-title>
+        <v-card-title class="text-h5 grey lighten-2 justify-center">路径重命名</v-card-title>
         <v-container>
           <v-row>
             <v-col cols="12">
-              <v-text-field label="name" v-model="renamePath.name"></v-text-field>
+              <v-text-field label="名称" v-model="renamePath.name"></v-text-field>
             </v-col>
           </v-row>
           <v-row>
             <v-col cols="12">
-              <v-text-field label="path" v-model="renamePath.path"></v-text-field>
+              <v-text-field label="路径" v-model="renamePath.path"></v-text-field>
             </v-col>
           </v-row>
         </v-container>
@@ -147,7 +147,7 @@ export default {
       default: 'all'
     }
   },
-  data: () => {
+  data() {
     return {
       menu: {
         show: false,
@@ -201,6 +201,11 @@ export default {
         this.menu.show = true
       })
     },
+    showTorrentRenamePath(){
+      this.renamePath.name = this.menu.selectItem.name
+      this.renamePath.path = this.menu.selectItem.downloadDir
+      this.torrentRenamePathDialog = true
+    },
     torrentRenamePath() {
       this.$axios.post('', {
         method: 'torrent-rename-path',
@@ -211,7 +216,9 @@ export default {
       }).then(r => {
         if (r.data.result === 'success') {
           this.torrentRenamePathDialog = false
+          return
         }
+        this.$store.commit('showMessage', {type: 'error', title: r.data.result})
       })
     },
     copyDownloadDir() {
@@ -221,6 +228,7 @@ export default {
       input.select()
       document.execCommand('Copy')
       input.remove()
+      this.$store.commit('showMessage', {type: 'success', title: '复制成功'})
     },
     filterOnlyStatus(value, search, item) {
       if (search === 'all') {

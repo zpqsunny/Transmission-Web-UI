@@ -84,6 +84,9 @@
         <v-btn text small @click="helpMeDialog = true">
           <font-awesome-icon size="2x" :icon="['fa', 'thumbs-up']"/>
         </v-btn>
+        <v-btn text small @click="linkGithub">
+          <font-awesome-icon size="2x" :icon="['fab', 'github']"/>
+        </v-btn>
         <v-divider style="margin: 0 2px" vertical/>
         <v-btn text small @click="goEmail">
           <font-awesome-icon size="2x" :icon="['fa', 'envelope']"/>
@@ -158,7 +161,7 @@
       <!--  删除种子对话框  -->
       <v-dialog v-model="deleteTorrentDialog" width="30%" persistent>
         <v-card>
-          <v-card-title>删除种子确认</v-card-title>
+          <v-card-title class="justify-center">删除种子确认</v-card-title>
           <v-card-text>
             确定要删除已选择的种子吗?
             <v-checkbox v-model="deleteLocalData" label="同时删除数据"></v-checkbox>
@@ -175,17 +178,13 @@
         </v-card>
       </v-dialog>
       <!--  移动种子对话框  -->
-      <v-dialog v-model="torrentSetLocationDialog" width="30%">
+      <v-dialog v-model="torrentSetLocationDialog" width="30%" persistent>
         <v-card>
-          <v-card-title>设置位置</v-card-title>
-          <v-container>
+          <v-card-title class="text-h5 grey lighten-2 justify-center">设置位置</v-card-title>
+          <v-container fluid>
             <v-row>
               <v-col cols="12">
                 <v-text-field label="新的位置" outlined v-model="setLocation.location" autocomplete="off"></v-text-field>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="12">
                 <v-checkbox label="同时移动数据（如果不钩选，则从新目录下查找文件）" v-model="setLocation.move"></v-checkbox>
               </v-col>
             </v-row>
@@ -351,8 +350,13 @@ export default {
       }).then(r => {
         if (r.data.result === 'success') {
           this.torrentSetLocationDialog = false
+          return
         }
+        this.$store.commit('showMessage', {type: 'error', title: r.data.result})
       })
+    },
+    linkGithub() {
+      window.location.href = 'https://github.com/zpqsunny/Transmission-Web-UI'
     },
     goEmail() {
       window.location.href = 'mailto:torrentweb@gmail.com'

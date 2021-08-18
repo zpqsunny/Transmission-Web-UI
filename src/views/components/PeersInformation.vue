@@ -59,7 +59,7 @@ export default {
       default: 0
     }
   },
-  data: () => {
+  data() {
     return {
       peersFrom: {
         fromCache: 0,

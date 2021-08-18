@@ -82,7 +82,7 @@ export default {
       default: 0
     }
   },
-  data: () => {
+  data() {
     return {
       cells: [],
       baseInfo: {

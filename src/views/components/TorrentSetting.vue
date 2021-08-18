@@ -27,7 +27,7 @@ export default {
       default: 0
     }
   },
-  data: () => {
+  data() {
     return {
       setInfo: {
         downloadLimited: false,

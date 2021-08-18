@@ -8,6 +8,7 @@ export default new Vuex.Store({
   state: {
     message: {
       show: false,
+      type: '',
       timeout: 4000,
       title: ''
     },
@@ -122,7 +123,8 @@ export default new Vuex.Store({
       state.itemsPerPage = value
     },
     showMessage(state, message) {
-      state.message.show = message.show
+      state.message.show = true
+      state.message.type = message.type
       state.message.title = message.title
     }
   },

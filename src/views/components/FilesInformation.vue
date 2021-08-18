@@ -67,7 +67,7 @@ export default {
       default: 0
     }
   },
-  data: () => {
+  data() {
     return {
       filesButtonAction: null,
       filesInfo: [],

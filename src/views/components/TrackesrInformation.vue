@@ -23,9 +23,7 @@
     </v-dialog>
     <v-dialog v-if="replaceTrackerDialog" v-model="replaceTrackerDialog" width="30%">
       <v-card>
-        <v-card-title>
-          Tracker替换
-        </v-card-title>
+        <v-card-title class="justify-center"><strong>Tracker替换</strong></v-card-title>
         <v-container>
           <v-row>
             <v-col cols="12">
@@ -46,7 +44,7 @@
       <v-list>
         <v-list-item @click="showReplaceDialog">
           <v-list-item-avatar><font-awesome-icon :icon="['far', 'edit']"/></v-list-item-avatar>
-          <v-list-item-content ><v-list-item-title>Tracker 替换</v-list-item-title></v-list-item-content>
+          <v-list-item-content><v-list-item-title>Tracker 替换</v-list-item-title></v-list-item-content>
         </v-list-item>
       </v-list>
     </v-menu>
@@ -67,7 +65,7 @@ export default {
       default: 0
     }
   },
-  data: () => {
+  data() {
     return {
       trackerButtonAction: null,
       addTrackerDialog: false,
@@ -169,7 +167,7 @@ export default {
           this.getTrackers()
           return
         }
-        this.$store.commit('showMessage', {show: true, title: r.data.result})
+        this.$store.commit('showMessage', {type: 'error', title: r.data.result})
       })
     },
     addTrackerSuccess() {

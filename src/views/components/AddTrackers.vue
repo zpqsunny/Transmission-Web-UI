@@ -1,8 +1,8 @@
 <template>
   <div>
     <v-card>
-      <v-card-title class="text-h5 grey lighten-2">
-        添加Trackers
+      <v-card-title class="text-h5 grey lighten-2 justify-center">
+        <strong>添加Trackers</strong>
       </v-card-title>
       <v-card-text>
         <v-container>
@@ -29,7 +29,7 @@
 <script>
 export default {
   name: 'AddTrackers',
-  data: () => {
+  data() {
     return {
       addTrackersForm: {
         trackers: '',

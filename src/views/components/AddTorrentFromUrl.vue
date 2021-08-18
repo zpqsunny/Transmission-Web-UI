@@ -1,11 +1,11 @@
 <template>
   <div>
     <v-card>
-      <v-card-title class="text-h5 grey lighten-2">
-        添加种子
+      <v-card-title class="text-h5 grey lighten-2 justify-center">
+        <strong>添加种子</strong>
       </v-card-title>
       <v-card-text>
-        <v-container>
+        <v-container fluid>
           <v-row>
             <v-col cols="12">
               <v-form ref="form">
@@ -41,7 +41,7 @@
 <script>
 export default {
   name: 'AddTorrentFromUrl',
-  data: () => {
+  data() {
     return {
       addForm: {
         filename: '',
@@ -87,7 +87,7 @@ export default {
           this.$emit('success')
           return
         }
-        this.$store.commit('showMessage', {show: true, title: r.data.result})
+        this.$store.commit('showMessage', {type: 'error', title: r.data.result})
       })
     },
     freeSpace() {

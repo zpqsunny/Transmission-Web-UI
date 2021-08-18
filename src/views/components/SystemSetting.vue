@@ -2,8 +2,8 @@
   <div>
     <!--  设置对话框    -->
       <v-card>
-        <v-card-title class="headline grey lighten-2">
-          设置
+        <v-card-title class="headline grey lighten-2 justify-center">
+          <strong>设置</strong>
         </v-card-title>
         <v-card-text>
           <v-tabs v-model="setTab">
@@ -334,7 +334,7 @@
 <script>
   export default {
     name: 'SystemSetting',
-    data: () => {
+    data() {
       return {
         timeBeginMenu: false,
         timeEndMenu: false,
