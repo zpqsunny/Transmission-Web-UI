@@ -147,15 +147,15 @@
       <v-footer app>
       </v-footer>
       <!--  新增URL对话框  -->
-      <v-dialog v-if="addTorrentFromUrlDialog" v-model="addTorrentFromUrlDialog" width="800">
+      <v-dialog v-if="addTorrentFromUrlDialog" v-model="addTorrentFromUrlDialog" width="30%">
         <AddTorrentFromUrl v-if="addTorrentFromUrlDialog" @success="torrentActionAddSuccess" @cancel="addTorrentFromUrlDialog = false"/>
       </v-dialog>
       <!--  新增文件上传对话框  -->
-      <v-dialog v-if="addTorrentFromFileDialog" v-model="addTorrentFromFileDialog" width="800">
+      <v-dialog v-if="addTorrentFromFileDialog" v-model="addTorrentFromFileDialog" width="30%">
         <AddTorrentFromFile v-if="addTorrentFromFileDialog" @success="torrentActionAddSuccess" @cancel="addTorrentFromFileDialog = false"/>
       </v-dialog>
       <!--  设置对话框  -->
-      <v-dialog v-if="sessionSetDialog" v-model="sessionSetDialog" width="800">
+      <v-dialog v-if="sessionSetDialog" v-model="sessionSetDialog" width="40%">
         <SystemSetting v-if="sessionSetDialog" @closed="sessionSetDialog = false"></SystemSetting>
       </v-dialog>
       <!--  删除种子对话框  -->
