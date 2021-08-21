@@ -128,14 +128,6 @@
                       </v-text-field>
                     </v-col>
                   </v-row>
-                  <v-row>
-                    <v-col cols="2">
-
-                    </v-col>
-                    <v-col cols="10">
-
-                    </v-col>
-                  </v-row>
                 </v-container>
               </v-card>
               <v-card>
@@ -180,16 +172,15 @@
                     </v-col>
                   </v-row>
                   <v-row>
-                    <v-col cols="6">
-                      <v-checkbox v-model="$store.state.sessionInfo['script-torrent-done-enabled']">
-                        <template v-slot:label>
-                          当 Torrent 完成时调用脚本：
-                          <a href="https://github.com/ronggang/transmission-web-control/wiki/About-script-torrent-done-filename">Wiki</a>
-                        </template>
-                      </v-checkbox>
+                    <v-col cols="4">
+                      <v-checkbox v-model="$store.state.sessionInfo['script-torrent-done-enabled']" label="当 Torrent 完成时调用脚本：" ></v-checkbox>
                     </v-col>
-                    <v-col cols="6">
-                      <v-text-field outlined v-model="$store.state.sessionInfo['script-torrent-done-filename']" :disabled="!$store.state.sessionInfo['script-torrent-done-enabled']"></v-text-field>
+                    <v-col cols="8">
+                      <v-text-field outlined v-model="$store.state.sessionInfo['script-torrent-done-filename']" :disabled="!$store.state.sessionInfo['script-torrent-done-enabled']">
+                        <template v-slot:prepend-inner>
+                          <a href="https://github.com/ronggang/transmission-web-control/wiki/About-script-torrent-done-filename" target="_blank">Wiki</a>
+                        </template>
+                      </v-text-field>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -555,7 +546,7 @@
               method: 'port-test',
               arguments: {}
             }).then(r => {
-          if (r.data.result) {
+          if (r.data.result === 'success') {
             this.portIsOpen = r.data.arguments['port-is-open'] ? '端口是开启的' : '端口是关闭的'
           }
         })
