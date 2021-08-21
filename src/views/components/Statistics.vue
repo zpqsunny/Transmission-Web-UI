@@ -141,11 +141,11 @@ export default {
   },
   methods: {
     getStatistics() {
+      let date = new Date()
       this.$axios.post('', {method: 'session-stats'})
         .then(r => {
           if (r.data.result === 'success') {
             this.sessionStatistics = r.data.arguments
-            let date = new Date()
             let hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
             let minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
             let seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
