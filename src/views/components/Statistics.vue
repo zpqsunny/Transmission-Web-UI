@@ -67,7 +67,7 @@ export default {
           right: '2%',
         },
         xAxis: {
-          type: 'time',
+          type: 'category',
           splitLine: {
             show: false
           },
