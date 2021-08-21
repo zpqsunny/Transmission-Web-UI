@@ -74,7 +74,9 @@ Vue.filter('unitFormat', function (value) {
 })
 
 Vue.filter('timeInterval', function (value) {
-  if (value < 0 || value >= (999 * 60 * 60)) return ''
+  if (value < 0 ) {
+    return '∞'
+  }
   let days = Math.floor(value / 86400),
     hours = Math.floor((value % 86400) / 3600),
     minutes = Math.floor((value % 3600) / 60),
