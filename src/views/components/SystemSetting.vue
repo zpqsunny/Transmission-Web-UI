@@ -256,7 +256,7 @@
                       <v-checkbox v-model="$store.state.sessionInfo['peer-port-random-on-start']" label="每次启动时随机选择端口"></v-checkbox>
                     </v-col>
                     <v-col cols="6">
-                      <v-text-field outlined type="number" label="入站连接的端口" v-model.number="$store.state.sessionInfo['peer-port']" :disabled="!$store.state.sessionInfo['peer-port-random-on-start']">
+                      <v-text-field outlined type="number" label="入站连接的端口" v-model.number="$store.state.sessionInfo['peer-port']" :disabled="$store.state.sessionInfo['peer-port-random-on-start']">
                         <template v-slot:append>
                           {{ portIsOpen }}
                         </template>
