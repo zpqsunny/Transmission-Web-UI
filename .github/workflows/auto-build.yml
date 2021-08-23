@@ -19,8 +19,7 @@ jobs:
         run: npm run build
 
       - name: switch branch
-        run: |
-        git checkout -b release
+        run: git checkout -b release
 
       - name: push
         run: |
