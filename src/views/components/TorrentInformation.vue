@@ -57,7 +57,7 @@
         <tr>
           <td>磁链接地址</td>
           <td colspan="3">
-            <v-textarea rows="3" readonly :value="baseInfo.magnetLink"></v-textarea>
+            <v-textarea rows="3" readonly style="word-break: break-all;" :value="baseInfo.magnetLink"></v-textarea>
           </td>
         </tr>
         </tbody>
