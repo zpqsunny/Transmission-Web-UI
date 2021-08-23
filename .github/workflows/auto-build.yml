@@ -8,9 +8,14 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
-        node-version: [ 14.x, 15.x ]
+        node-version: [ 15.x ]
     steps:
       - uses: actions/checkout@main
+
+      - name: switch branch
+        run: |
+          git checkout -b release
+          rm -rf ./dist
 
       - name: install dependencies
         run: npm install
@@ -18,8 +23,8 @@ jobs:
       - name: build
         run: npm run build
 
-      - name: switch branch
-        run: git checkout -b release
+      - name: rm map
+        run: rm -rf ./dist/js/*.map
 
       - name: push
         run: |
