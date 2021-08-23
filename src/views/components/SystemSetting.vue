@@ -569,7 +569,9 @@
         }).then(r => {
           if (r.data.result === 'success') {
             this.blockListSize = r.data.arguments['blocklist-size']
+            return
           }
+          this.$store.commit('showMessage',{ title: r.data.result, type: 'error'})
         })
       }
     }
