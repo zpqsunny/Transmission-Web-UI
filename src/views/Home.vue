@@ -317,7 +317,7 @@ export default {
         }
       }).then(r => {
         if (r.data.result === 'success') {
-          this.selectedTorrents = []
+          this.deleteLocalData = false
           this.$store.commit('getTorrents')
           this.deleteTorrentDialog = false
         }
