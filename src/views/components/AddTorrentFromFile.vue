@@ -21,7 +21,7 @@
                     <v-btn icon color="#212121" @click="freeSpace"><font-awesome-icon :icon="['fa', 'sync-alt']"/></v-btn>
                   </template>
                 </v-text-field>
-                <v-file-input label="种子文件" accept="application/x-bittorrent" placeholder="*.torrent" @change="fileChange"></v-file-input>
+                <v-file-input label="种子文件" accept="application/x-bittorrent,.torrent" placeholder="*.torrent" @change="fileChange"></v-file-input>
                 <v-checkbox v-model="autoStart" label="自动开始"></v-checkbox>
               </v-form>
             </v-col>
