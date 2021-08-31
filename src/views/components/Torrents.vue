@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-data-table v-model="selectedTorrents" :options="{sortBy: ['queuePosition']}" no-data-text="暂无内容" no-results-text="未找到匹配项"
+    <v-data-table v-model="selectedTorrents" :sort-by="['queuePosition']" no-data-text="暂无内容" no-results-text="未找到匹配项"
                   :headers="headers" :items="$store.state.torrents" item-key="id" show-select show-expand fixed-header
                   :items-per-page="-1" @contextmenu:row="showMenu" hide-default-footer :search="searchStatus" :custom-filter="filterOnlyStatus">
       <template v-slot:item.data-table-expand="{isExpanded, expand}">

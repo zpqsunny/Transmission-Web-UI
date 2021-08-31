@@ -1,9 +1,9 @@
 <template>
   <div>
     <v-form>
-      <v-container>
+      <v-container fluid>
         <v-row>
-          <v-col cols="4">
+          <v-col cols="3">
             <v-text-field type="number" label="当种子的分享率达到这个数时，自动停止做种: " v-model="setInfo.seedRatioLimit" :min="1"></v-text-field>
           </v-col>
         </v-row>
