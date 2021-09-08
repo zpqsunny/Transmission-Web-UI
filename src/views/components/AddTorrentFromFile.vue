@@ -40,6 +40,7 @@
 
 <script>
 import {Base64} from 'js-base64'
+import bEncode from 'bencode'
 
 export default {
   name: 'AddTorrentFromFile',
@@ -93,6 +94,10 @@ export default {
       })
     },
     fileChange(e) {
+      if (e == null) {
+        this.addForm.metainfo = ''
+        return
+      }
       const fileRead = new FileReader()
       fileRead.onload = (f) => {
         this.addForm.metainfo = Base64.fromUint8Array(new Uint8Array(f.target.result))
