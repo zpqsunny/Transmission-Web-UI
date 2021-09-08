@@ -95,9 +95,9 @@ export default {
     fileChange(e) {
       const fileRead = new FileReader()
       fileRead.onload = (f) => {
-        this.addForm.metainfo = Base64.btoa(f.target.result)
+        this.addForm.metainfo = Base64.fromUint8Array(new Uint8Array(f.target.result))
       }
-      fileRead.readAsBinaryString(e)
+      fileRead.readAsArrayBuffer(e)
     },
     freeSpace() {
       this.$axios.post('', {
