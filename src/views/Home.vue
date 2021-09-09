@@ -259,25 +259,27 @@ export default {
       return this.$store.state.torrents.filter(v => {return v.status === 6}).length
     }
   },
-  data: () => ({
-    search: 'all',
-    filterItem: 0,
-    intervalId: null,
-    sessionSetDialog: false,
-    deleteTorrentDialog: false,
-    deleteLocalData: false,
-    addDialog: false,
-    addTorrentFromUrlDialog: false,
-    addTorrentFromFileDialog: false,
-    torrentSetLocationDialog: false,
-    selectedTorrents: [],
-    setLocation: {
-      location: '',
-      move: false,
-    },
-    speedEnabled: false,
-    helpMeDialog: false
-  }),
+  data() {
+    return {
+      search: 'all',
+      filterItem: 0,
+      intervalId: null,
+      sessionSetDialog: false,
+      deleteTorrentDialog: false,
+      deleteLocalData: false,
+      addDialog: false,
+      addTorrentFromUrlDialog: false,
+      addTorrentFromFileDialog: false,
+      torrentSetLocationDialog: false,
+      selectedTorrents: [],
+      setLocation: {
+        location: '',
+        move: false,
+      },
+      speedEnabled: false,
+      helpMeDialog: false
+    }
+  },
   mounted() {
     this.intervalId = setInterval(() => {
       this.$refs['torrents'].getTorrentList()
@@ -318,6 +320,7 @@ export default {
       }).then(r => {
         if (r.data.result === 'success') {
           this.deleteLocalData = false
+          this.selectedTorrents = []
           this.$store.commit('getTorrents')
           this.deleteTorrentDialog = false
         }
