@@ -40,7 +40,6 @@
 
 <script>
 import {Base64} from 'js-base64'
-import bEncode from 'bencode'
 
 export default {
   name: 'AddTorrentFromFile',
