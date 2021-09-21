@@ -9,53 +9,53 @@
         </thead>
         <tbody>
         <tr>
-          <td>名称</td>
+          <td class="text-no-wrap">名称</td>
           <td colspan="3">{{ baseInfo.name }}</td>
         </tr>
         <tr>
-          <td>保存目录</td>
+          <td class="text-no-wrap">保存目录</td>
           <td colspan="3">{{ baseInfo.downloadDir }}</td>
         </tr>
         <tr>
-          <td>哈希值</td>
+          <td class="text-no-wrap">哈希值</td>
           <td colspan="3">{{ baseInfo.hashString }}</td>
         </tr>
         <tr>
-          <td>大小</td>
+          <td class="text-no-wrap">大小</td>
           <td>{{ baseInfo.totalSize | unitFormat }}</td>
-          <td>添加时间</td>
+          <td class="text-no-wrap">添加时间</td>
           <td>{{ baseInfo.addedDate | timestampFormat}}</td>
         </tr>
         <tr>
-          <td>剩余</td>
+          <td class="text-no-wrap">剩余</td>
           <td>{{ baseInfo.leftUntilDone | unitFormat}}</td>
-          <td>已完成</td>
+          <td class="text-no-wrap">已完成</td>
           <td>{{ baseInfo.downloadedEver | unitFormat}}</td>
         </tr>
         <tr>
-          <td>下载速度</td>
+          <td class="text-no-wrap">下载速度</td>
           <td>{{ baseInfo.rateDownload | unitFormat}}</td>
-          <td>上传速度</td>
+          <td class="text-no-wrap">上传速度</td>
           <td>{{ baseInfo.rateUpload | unitFormat}}</td>
         </tr>
         <tr>
-          <td>创建者</td>
+          <td class="text-no-wrap">创建者</td>
           <td>{{ baseInfo.creator }}</td>
-          <td>创建时间</td>
+          <td class="text-no-wrap">创建时间</td>
           <td>{{ baseInfo.dateCreated | timestampFormat}}</td>
         </tr>
         <tr>
-          <td>描述</td>
+          <td class="text-no-wrap">描述</td>
           <td colspan="3">{{ baseInfo.comment }}</td>
         </tr>
         <tr>
-          <td>是否私有</td>
+          <td class="text-no-wrap">是否私有</td>
           <td>{{ baseInfo.isPrivate ? '是' : '否' }}</td>
           <td></td>
           <td></td>
         </tr>
         <tr>
-          <td>磁链接地址</td>
+          <td class="text-no-wrap">磁链接地址</td>
           <td colspan="3">
             <v-textarea rows="3" readonly style="word-break: break-all;" :value="baseInfo.magnetLink"></v-textarea>
           </td>
