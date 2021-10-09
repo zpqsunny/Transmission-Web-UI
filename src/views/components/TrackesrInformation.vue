@@ -159,6 +159,7 @@ export default {
       this.$axios.post('', {
         method: 'torrent-set',
         arguments: {
+          ids: [this.id],
           trackerReplace: [this.replaceTrackerForm.id, this.replaceTrackerForm.announce]
         }
       }).then(r => {
