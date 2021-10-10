@@ -66,23 +66,23 @@
         <v-row no-gutters justify="start">
           <v-col align-self="center">
             <div v-if="item.rateUpload > 0">
-              <font-awesome-icon style="color: #67C23A;" :icon="['fa', 'sort-up']"/> <small>{{ item.rateUpload | unitFormat }} /s </small>
+              <font-awesome-icon class="up-color" :icon="['fa', 'sort-up']"/> <small>{{ item.rateUpload | unitFormat }} /s </small>
             </div>
             <div v-if="item.rateDownload > 0">
-              <font-awesome-icon style="color: #409EFF;" :icon="['fa', 'sort-down']"/> <small>{{ item.rateDownload | unitFormat }} /s</small>
+              <font-awesome-icon class="down-color" :icon="['fa', 'sort-down']"/> <small>{{ item.rateDownload | unitFormat }} /s</small>
             </div>
           </v-col>
           <v-col align-self="center">
-            <small v-if="item.rateDownload > 0" class="text-no-wrap" style="color: #409EFF;">剩余 {{ item.eta | timeInterval }}</small>
+            <small v-if="item.rateDownload > 0" class="text-no-wrap down-color">剩余 {{ item.eta | timeInterval }}</small>
           </v-col>
         </v-row>
       </template>
       <template v-slot:item.uploadedEver="{ item }">
         <div v-if="item.uploadedEver > 0">
-          <small><font-awesome-icon style="color: #67C23A;" :icon="['fa', 'sort-up']"/> {{ item.uploadedEver | unitFormat }}</small>
+          <small><font-awesome-icon class="up-color" :icon="['fa', 'sort-up']"/> {{ item.uploadedEver | unitFormat }}</small>
         </div>
         <div v-if="item.downloadedEver > 0">
-          <small><font-awesome-icon style="color: #409EFF;" :icon="['fa', 'sort-down']"/> {{ item.downloadedEver | unitFormat }}</small>
+          <small><font-awesome-icon class="down-color" :icon="['fa', 'sort-down']"/> {{ item.downloadedEver | unitFormat }}</small>
         </div>
       </template>
       <template v-slot:item.doneDate="{ item }">

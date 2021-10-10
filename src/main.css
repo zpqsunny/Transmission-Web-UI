@@ -15,3 +15,15 @@
     overflow: hidden;
     white-space: nowrap;
 }
+.up-color {
+    color: #67C23A;
+}
+.down-color {
+    color: #409EFF;
+}
+.yes-color {
+    color: #4CAF50;
+}
+.no-color {
+    color: #909399;
+}

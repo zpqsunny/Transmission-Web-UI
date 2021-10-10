@@ -1,23 +1,33 @@
 <template>
   <div>
+    <v-row no-gutters justify="space-around">
+      <v-col align-self="center"><v-btn text color="primary" @click="getPeers"><font-awesome-icon :icon="['fa', 'redo']"/></v-btn></v-col>
+      <v-col align-self="center">Cache {{ peersFrom.fromCache }}</v-col>
+      <v-col align-self="center">Dht {{ peersFrom.fromDht }}</v-col>
+      <v-col align-self="center">Incoming {{ peersFrom.fromIncoming }}</v-col>
+      <v-col align-self="center">Lpd {{ peersFrom.fromLpd }}</v-col>
+      <v-col align-self="center">Ltep {{ peersFrom.fromLtep }}</v-col>
+      <v-col align-self="center">Pex {{ peersFrom.fromPex }}</v-col>
+      <v-col align-self="center">Tracker {{ peersFrom.fromTracker }}</v-col>
+    </v-row>
     <v-data-table dense :headers="peersHeaders" :items="peersInfo" item-key="address" no-data-text="暂无内容" no-results-text="未找到匹配项"
                   :items-per-page="$store.state.itemsPerPage" @update:items-per-page="e => $store.commit('updateItemsPerPage', e)">
       <template v-slot:item.connectInfo="{ item }">
         <v-row no-gutters justify="center">
           <v-col>
-            <font-awesome-icon :icon="['fa', 'download']" :style="{color: item.isDownloadingFrom ? '#4CAF50' : '#909399'}" title="正在下载"/>
+            <font-awesome-icon :icon="['fa', 'download']" :class="item.isDownloadingFrom ? 'yes-color': 'no-color'" title="正在下载"/>
           </v-col>
           <v-col>
-            <font-awesome-icon :icon="['fa', 'lock']" :style="{color: item.isEncrypted ? '#4CAF50' : '#909399'}" title="加密"/>
+            <font-awesome-icon :icon="['fa', 'lock']" :class="item.isEncrypted ? 'yes-color': 'no-color'" title="加密"/>
           </v-col>
           <v-col>
-            <font-awesome-icon :icon="['fa', 'arrow-right']" :style="{color: item.isIncoming ? '#4CAF50' : '#909399'}" title="传入" />
+            <font-awesome-icon :icon="['fa', 'arrow-right']" :class="item.isIncoming ? 'yes-color': 'no-color'" title="传入" />
           </v-col>
           <v-col>
-            <font-awesome-icon :icon="['fa', 'upload']" :style="{color: item.isUploadingTo ? '#4CAF50' : '#909399'}" title="正在上传" />
+            <font-awesome-icon :icon="['fa', 'upload']" :class="item.isUploadingTo ? 'yes-color': 'no-color'" title="正在上传" />
           </v-col>
           <v-col>
-            <span :style="{color: item.isUTP ? '#4CAF50' : '#909399'}">μTP</span>
+            <span :class="item.isUTP ? 'yes-color': 'no-color'">μTP</span>
           </v-col>
         </v-row>
       </template>
@@ -29,22 +39,16 @@
         </v-progress-linear>
       </template>
       <template v-slot:item.rateToClient="{ item }">
-        {{ item.rateToClient | unitFormat }}<span v-if="item.rateToClient > 0">/s</span>
-      </template>
-      <template v-slot:item.rateToPeer="{ item }">
-        {{ item.rateToPeer | unitFormat }}<span v-if="item.rateToPeer > 0">/s</span>
-      </template>
-      <template v-slot:body.append>
-        <tr class="text-center">
-          <td><v-btn text color="primary" @click="getPeers"><font-awesome-icon :icon="['fa', 'redo']"/></v-btn></td>
-          <td>Cache {{ peersFrom.fromCache }}</td>
-          <td>Dht {{ peersFrom.fromDht }}</td>
-          <td>Incoming {{ peersFrom.fromIncoming }}</td>
-          <td>Lpd {{ peersFrom.fromLpd }}</td>
-          <td>Ltep {{ peersFrom.fromLtep }}</td>
-          <td>Pex {{ peersFrom.fromPex }}</td>
-          <td>Tracker {{ peersFrom.fromTracker }}</td>
-        </tr>
+        <v-row no-gutters justify="start">
+          <v-col align-self="center">
+            <div v-if="item.rateToPeer > 0">
+              <font-awesome-icon class="up-color" :icon="['fa', 'sort-up']"/> <small>{{ item.rateToPeer | unitFormat }} /s</small>
+            </div>
+            <div v-if="item.rateToClient > 0">
+              <font-awesome-icon class="down-color" :icon="['fa', 'sort-down']"/> <small>{{ item.rateToClient | unitFormat }} /s </small>
+            </div>
+          </v-col>
+        </v-row>
       </template>
     </v-data-table>
   </div>
@@ -78,8 +82,8 @@ export default {
         {text: '连接方式', align: 'center', sortable: false, value: 'connectInfo', width: 100},
         {text: '端口', align: 'center', sortable: false, value: 'port', width: 100},
         {text: '完成进度', align: 'center', sortable: false, value: 'progress', width: 120},
-        {text: '下载速度', align: 'center', sortable: false, value: 'rateToClient', width: 120},
-        {text: '上传速度', align: 'center', sortable: false, value: 'rateToPeer', width: 120},
+        {text: '上传/下载速度', align: 'center', sortable: false, value: 'rateToClient', width: 120},
+        // {text: '上传速度', align: 'center', sortable: false, value: 'rateToPeer', width: 120},
       ]
     }
   },
