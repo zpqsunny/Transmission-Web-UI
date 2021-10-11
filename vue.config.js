@@ -7,11 +7,10 @@ module.exports = {
     },
     proxy: {
       '': {
-        target: 'http://127.0.0.1:9091/transmission/rpc',
+        target: 'http://192.168.1.250:9091/transmission/rpc',
         changeOrigin: true,
       }
     }
   },
-  outputDir: 'E:\\zpq\\torrent-web-ui\\dist',
   lintOnSave: false,
 }
