@@ -21,7 +21,7 @@
                     <v-btn icon color="#212121" @click="freeSpace"><font-awesome-icon :icon="['fa', 'sync-alt']"/></v-btn>
                   </template>
                 </v-text-field>
-                <v-textarea outlined label="种子地址" v-model="addForm.filename" placeholder="magnet:?xt=urn:btih:"></v-textarea>
+                <v-textarea outlined label="种子地址" v-model="addForm.filename" @focus="freeSpace" placeholder="magnet:?xt=urn:btih:"></v-textarea>
                 <v-checkbox v-model="autoStart" label="自动开始"></v-checkbox>
               </v-form>
             </v-col>
