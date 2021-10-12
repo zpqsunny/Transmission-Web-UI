@@ -2,7 +2,7 @@
   <div>
     <v-tabs v-model="tab">
       <v-tab>常规</v-tab>
-      <v-tab>Tracker 服务器</v-tab>
+      <v-tab style="text-transform: none">Tracker 服务器</v-tab>
       <v-tab>文件</v-tab>
       <v-tab>用户</v-tab>
       <v-tab>设置</v-tab>
