@@ -76,13 +76,13 @@ export default {
       },
       peersInfo: [],
       peersHeaders: [
-        {text: 'IP地址', align: 'center', sortable: false, value: 'address', width: 100},
-        {text: '客户端', align: 'center', sortable: false, value: 'clientName', width: 100},
-        {text: '标记', align: 'center', sortable: false, value: 'flagStr', width: 80},
-        {text: '连接方式', align: 'center', sortable: false, value: 'connectInfo', width: 100},
-        {text: '端口', align: 'center', sortable: false, value: 'port', width: 100},
-        {text: '完成进度', align: 'center', sortable: false, value: 'progress', width: 120},
-        {text: '上传/下载速度', align: 'center', sortable: false, value: 'rateToClient', width: 120},
+        {text: 'IP地址', align: 'center', sortable: false, value: 'address'},
+        {text: '客户端', align: 'center', sortable: false, value: 'clientName'},
+        {text: '标记', align: 'center', sortable: false, value: 'flagStr'},
+        {text: '连接方式', align: 'center', sortable: false, value: 'connectInfo'},
+        {text: '端口', align: 'center', sortable: false, value: 'port'},
+        {text: '完成进度', align: 'center', sortable: false, value: 'progress'},
+        {text: '上传/下载速度', align: 'start', sortable: false, value: 'rateToClient'},
         // {text: '上传速度', align: 'center', sortable: false, value: 'rateToPeer', width: 120},
       ]
     }
