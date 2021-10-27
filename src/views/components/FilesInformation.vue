@@ -74,9 +74,9 @@ export default {
       filesSelected: [],
       filesHeaders: [
         {text: '名称', align: 'start', sortable: false, value: 'name'},
-        {text: '大小', align: 'center', sortable: false, value: 'length', width: 150},
+        {text: '大小', align: 'right', sortable: true, value: 'length', width: 150},
         {text: '进度', align: 'center', sortable: false, value: 'progress', width: 150},
-        {text: '已下载', align: 'center', sortable: false, value: 'bytesCompleted', width: 150},
+        {text: '已下载', align: 'right', sortable: false, value: 'bytesCompleted', width: 150},
         {text: '需要下载', align: 'center', sortable: false, value: 'wanted', width: 100},
         {text: '优先级别', align: 'center', sortable: false, value: 'priority', width: 100},
       ],
