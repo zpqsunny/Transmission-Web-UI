@@ -23,10 +23,26 @@
     </v-btn-toggle>
     <v-data-table dense v-model="filesSelected" :headers="filesHeaders" :items="filesInfo" item-key="name" show-select no-data-text="暂无内容" no-results-text="未找到匹配项"
                   :items-per-page="$store.state.itemsPerPage" @update:items-per-page="e => $store.commit('updateItemsPerPage', e)">
+      <template v-slot:header.name>
+        <v-menu bottom origin="center center" transition="scale-transition">
+          <template v-slot:activator="{ on, attrs }">
+            <span v-bind="attrs" v-on="on">名称 <font-awesome-icon :icon="['fa', 'filter']"/></span>
+          </template>
+          <v-list dense>
+            <v-list-item-group v-model="filterValue">
+              <v-list-item :value="item.value" v-for="(item, i) in fileFilter" :key="i" @click="filterExt = item.ext">
+                <v-list-item-content>
+                  <v-list-item-title>{{ item.name }}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
+        </v-menu>
+      </template>
       <template v-slot:item.name="{ item }">
-            <span class="d-inline-block" style="word-break: break-all;" :title="item.name">
-              {{ item.name }}
-            </span>
+        <span class="d-inline-block" style="word-break: break-all;" :title="item.name">
+          {{ item.name }}
+        </span>
       </template>
       <template v-slot:item.length="{ item }">
         {{ item.length | unitFormat }}
@@ -69,11 +85,56 @@ export default {
   },
   data() {
     return {
+      filterValue: 'All',
+      filterExt: [],
+      fileFilter: [
+        {
+          value: 'All',
+          name: '全部',
+          ext: []
+        },
+        {
+          value: 'Movie',
+          name: '视频',
+          ext: ['.avi', '.mov', '.rmvb', '.rm', '.flv', '.mp4', '.3gp', '.mkv', '.wmv']
+        },
+        {
+          value: 'Music',
+          name: '音乐',
+          ext: ['.mp3','.wav', '.flac']
+        },
+        {
+          value: 'Picture',
+          name: '图片',
+          ext: ['.bmp', '.jpg', '.png', '.tif', '.gif', '.pcx', '.tga', '.exif', '.fpx', '.svg', '.psd', '.cdr',
+            '.pcd', '.dxf', '.ufo', '.eps', '.ai', '.raw', '.wmf', '.webp']
+        },
+        {
+          value: 'Other',
+          name: '其他',
+          ext: ['.avi', '.mov', '.rmvb', '.rm', '.flv', '.mp4', '.3gp', '.mkv', '.wmv',
+            '.mp3','.wav', '.flac',
+            '.bmp', '.jpg', '.png', '.tif', '.gif', '.pcx', '.tga', '.exif', '.fpx', '.svg', '.psd', '.cdr',
+            '.pcd', '.dxf', '.ufo', '.eps', '.ai', '.raw', '.wmf', '.webp']
+        }
+      ],
       filesButtonAction: null,
       filesInfo: [],
       filesSelected: [],
       filesHeaders: [
-        {text: '名称', align: 'start', sortable: false, value: 'name'},
+        {
+          text: '名称', align: 'start', sortable: false, value: 'name', filter: value => {
+            if (this.filterExt.length > 0) {
+              let extIndex = value.lastIndexOf('.')
+              if (extIndex < 0) {
+                return false
+              }
+              let ext = value.slice(extIndex).toLowerCase()
+              return this.filterValue === 'Other' ? !(this.filterExt.indexOf(ext) > -1) : this.filterExt.indexOf(ext) > -1
+            }
+            return true
+          }
+        },
         {text: '大小', align: 'right', sortable: true, value: 'length', width: 150},
         {text: '进度', align: 'center', sortable: false, value: 'progress', width: 150},
         {text: '已下载', align: 'right', sortable: false, value: 'bytesCompleted', width: 150},
