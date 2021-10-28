@@ -11,6 +11,7 @@
     "core-js": "^3.6.5",
     "echarts": "^5.1.1",
     "js-base64": "^3.6.1",
+    "node-ipinfo": "^3.0.1",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuetify": "^2.5.7",

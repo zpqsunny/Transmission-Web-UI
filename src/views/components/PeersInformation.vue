@@ -12,6 +12,10 @@
     </v-row>
     <v-data-table dense :headers="peersHeaders" :items="peersInfo" item-key="address" no-data-text="暂无内容" no-results-text="未找到匹配项"
                   :items-per-page="$store.state.itemsPerPage" @update:items-per-page="e => $store.commit('updateItemsPerPage', e)">
+      <template v-slot:item.address="{ item }">
+        <img v-if="item.countryCode !== ''" :src="require('@/assets/country/' + item.countryCode + '.png')" alt="country">
+        {{ item.address }}
+      </template>
       <template v-slot:item.connectInfo="{ item }">
         <v-row no-gutters justify="center">
           <v-col>
@@ -55,6 +59,8 @@
 </template>
 
 <script>
+import IpInfoWrapper from 'node-ipinfo'
+
 export default {
   name: 'PeersInformation',
   props: {
@@ -107,8 +113,22 @@ export default {
         }
         let torrent = r.data.arguments.torrents[0]
         //peers
-        this.peersInfo = torrent.peers
+        this.peersInfo = torrent.peers.map(v => {
+          v.countryCode = ''
+          return v
+        })
         this.peersFrom = torrent.peersFrom
+        let ipInfoToken = localStorage.getItem('ipInfoToken')
+        if (ipInfoToken === null || ipInfoToken.trim() === '') {
+          return
+        }
+        const ipInfoWrapper = new IpInfoWrapper(ipInfoToken)
+        for (let i = 0; i < this.peersInfo.length; i++) {
+          ipInfoWrapper.lookupIp(this.peersInfo[i].address)
+              .then(info => {
+                this.peersInfo[i].countryCode = info.countryCode.toLowerCase()
+              })
+        }
       })
     },
   }
