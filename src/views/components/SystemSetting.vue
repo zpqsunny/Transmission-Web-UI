@@ -12,6 +12,7 @@
             <v-tab>做种</v-tab>
             <v-tab>隐私</v-tab>
             <v-tab>网络</v-tab>
+            <v-tab>其他</v-tab>
           </v-tabs>
           <v-tabs-items v-model="setTab">
             <v-tab-item>
@@ -306,6 +307,22 @@
                 </v-container>
               </v-card>
             </v-tab-item>
+            <v-tab-item>
+              <v-card>
+                <v-card-title>ipinfo.io</v-card-title>
+                <v-container>
+                  <v-row>
+                    <v-col cols="12">
+                      <v-text-field label="Access Token" v-model="ipInfoToken" outlined>
+                        <template v-slot:append>
+                          <a href="https://ipinfo.io/" target="_blank"><font-awesome-icon size="1" :icon="['fa', 'info-circle']"/></a>
+                        </template>
+                      </v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card>
+            </v-tab-item>
           </v-tabs-items>
         </v-card-text>
         <v-divider></v-divider>
@@ -337,6 +354,15 @@
       }
     },
     computed: {
+      ipInfoToken: {
+        get() {
+          let token = localStorage.getItem('ipInfoToken')
+          return token === null ? '' : token
+        },
+        set(v) {
+          localStorage.setItem('ipInfoToken', v)
+        }
+      },
       downloadDir: {
         get() {
           return this.$store.state.sessionInfo['download-dir']

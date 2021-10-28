@@ -82,12 +82,12 @@ export default {
       },
       peersInfo: [],
       peersHeaders: [
-        {text: 'IP地址', align: 'center', sortable: false, value: 'address'},
-        {text: '客户端', align: 'center', sortable: false, value: 'clientName'},
-        {text: '标记', align: 'center', sortable: false, value: 'flagStr'},
-        {text: '连接方式', align: 'center', sortable: false, value: 'connectInfo'},
-        {text: '端口', align: 'center', sortable: false, value: 'port'},
-        {text: '完成进度', align: 'center', sortable: false, value: 'progress'},
+        {text: 'IP地址', align: 'start', sortable: false, value: 'address'},
+        {text: '客户端', align: 'start', sortable: false, value: 'clientName'},
+        {text: '标记', align: 'start', sortable: false, value: 'flagStr'},
+        {text: '连接方式', align: 'start', sortable: false, value: 'connectInfo'},
+        {text: '端口', align: 'start', sortable: false, value: 'port'},
+        {text: '完成进度', align: 'start', sortable: false, value: 'progress'},
         {text: '上传/下载速度', align: 'start', sortable: false, value: 'rateToClient'},
         // {text: '上传速度', align: 'center', sortable: false, value: 'rateToPeer', width: 120},
       ]
