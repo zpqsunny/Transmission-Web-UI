@@ -13,7 +13,7 @@
     <v-data-table dense :headers="peersHeaders" :items="peersInfo" item-key="address" no-data-text="暂无内容" no-results-text="未找到匹配项"
                   :items-per-page="$store.state.itemsPerPage" @update:items-per-page="e => $store.commit('updateItemsPerPage', e)">
       <template v-slot:item.address="{ item }">
-        <img v-if="item.countryCode !== ''" :src="require('@/assets/country/' + item.countryCode + '.png')" alt="country">
+        <img v-if="item.countryCode !== ''" :src="require('@/assets/country/' + item.countryCode + '.png')" :alt="item.country" :title="['地区: ' + item.region, '国家: ' + item.country, '城市: ' + item.city].join('\n')">
         {{ item.address }}
       </template>
       <template v-slot:item.connectInfo="{ item }">
@@ -115,6 +115,9 @@ export default {
         //peers
         this.peersInfo = torrent.peers.map(v => {
           v.countryCode = ''
+          v.country = ''
+          v.region = ''
+          v.city = ''
           return v
         })
         this.peersFrom = torrent.peersFrom
@@ -127,6 +130,9 @@ export default {
           ipInfoWrapper.lookupIp(this.peersInfo[i].address)
               .then(info => {
                 this.peersInfo[i].countryCode = info.countryCode.toLowerCase()
+                this.peersInfo[i].country = info.country
+                this.peersInfo[i].region = info.region
+                this.peersInfo[i].city = info.city
               })
         }
       })
