@@ -23,11 +23,8 @@ Vue.filter('amountFormat', function (amount) {
 
 Vue.filter('timestampFormat', function (value) {
 
-  if (value === undefined) {
-    return ''
-  }
-  if (value === 0) {
-    return '∞'
+  if (value === undefined || value <= 0) {
+    return '-'
   }
   let date = new Date()
   if (value.toString().length === 10) {
@@ -40,7 +37,7 @@ Vue.filter('timestampFormat', function (value) {
   let minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
   let hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
   let day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
-  let month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : date.getMonth()
+  let month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)
   return date.getFullYear() + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
 })
 
@@ -105,4 +102,27 @@ Vue.filter('timeInterval', function (value) {
     return m + ', ' + s;
   }
   return s;
+})
+
+Vue.filter('timeFormatText', function (value) {
+
+  if (value === undefined || value <= 0) {
+    return '-'
+  }
+  let timestamp = value
+  let now = Math.round(new Date().getTime() / 1000)
+  if (value.toString().length === 13) {
+    timestamp = Number.parseInt(value.toString().substr(0, 10))
+  }
+  let diff = now - timestamp
+  let postfix = diff > 0 ? '前' : '后'
+  diff = Math.abs(diff)
+  let arrDay = ['年', '个月', '星期', '天', '小时', '分钟', '秒']
+  let arrSecond = [31536000, 2592000, 6404800, 86400, 3600, 60, 1]
+  for (let i = 0; i < 7; i++) {
+    let inm = Math.floor(diff / arrSecond[i])
+    if (inm !== 0) {
+      return inm + arrDay[i] + postfix
+    }
+  }
 })
