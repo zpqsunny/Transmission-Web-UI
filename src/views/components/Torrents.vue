@@ -86,10 +86,10 @@
         </div>
       </template>
       <template v-slot:item.doneDate="{ item }">
-        {{ item.doneDate | timestampFormat }}
+        {{ item.doneDate | timeFormatText }}
       </template>
       <template v-slot:item.activityDate="{ item }">
-        {{ item.activityDate | timestampFormat }}
+        {{ item.activityDate | timeFormatText }}
       </template>
     </v-data-table>
     <v-menu v-model="menu.show" :position-x="menu.x" :position-y="menu.y" absolute offset-y transition="slide-x-transition">

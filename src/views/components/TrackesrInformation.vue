@@ -12,10 +12,10 @@
         <font-awesome-icon :style="{color: item.lastAnnounceSucceeded ? '#4CAF50': '#909399' }" :icon="['fa', 'check-circle']"/>
       </template>
       <template v-slot:item.lastScrapeTime="{ item }">
-        {{ item.lastScrapeTime | timestampFormat }}
+        {{ item.lastScrapeTime | timeFormatText }}
       </template>
       <template v-slot:item.nextAnnounceTime="{ item }">
-        {{ item.nextAnnounceTime | timestampFormat }}
+        {{ item.nextAnnounceTime | timeFormatText }}
       </template>
     </v-data-table>
     <v-dialog v-if="addTrackerDialog" v-model="addTrackerDialog" width="500">
