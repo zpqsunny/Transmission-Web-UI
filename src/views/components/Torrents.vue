@@ -73,7 +73,7 @@
             </div>
           </v-col>
           <v-col align-self="center">
-            <small v-if="item.rateDownload > 0" class="text-no-wrap down-color">剩余 {{ item.eta | timeInterval }}</small>
+            <small v-if="item.eta > 0" class="text-no-wrap down-color">剩余 {{ item.eta | timeInterval }}</small>
           </v-col>
         </v-row>
       </template>
