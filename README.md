@@ -6,13 +6,19 @@
 
 主要功能有
 
--[x] 添加/删除种子
--[x] 查看/管理种子列表
--[x] 查看/管理下载文件及文件类型筛选/过滤
--[x] 管理文件优先级
--[x] 新增/删除Tracker
--[x] 控制下载/上传速度。
--[x] IP地理位置查询 ipinfo.io 支持
+:heavy_check_mark: 添加/删除种子
+
+:heavy_check_mark: 查看/管理种子列表
+
+:heavy_check_mark: 查看/管理下载文件及文件类型筛选/过滤
+
+:heavy_check_mark: 管理文件优先级
+
+:heavy_check_mark: 新增/删除Tracker
+
+:heavy_check_mark: 控制下载/上传速度。
+
+:heavy_check_mark: IP地理位置查询 [ipinfo](https://ipinfo.io) 支持
 
 ### 食用方法
 首次使用时会进入登录界面
@@ -43,4 +49,4 @@ PayPal: zpqsunny#gmail.com
 
 ![](./src/assets/weixin.jpg)
 
-感谢
+感谢!
