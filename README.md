@@ -1,5 +1,13 @@
 ## Transmission Web UI
 
+![GitHub](https://img.shields.io/github/license/zpqsunny/Transmission-Web-UI)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/zpqsunny/Transmission-Web-UI/vue)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/zpqsunny/Transmission-Web-UI/vuetify)
+
+[Chrome 扩展商店链接](https://chrome.google.com/webstore/detail/transmission-web-ui/kbpnojigbmopjjhokfbdeejefhniedlo)
+
+[Edge 扩展商店链接](https://microsoftedge.microsoft.com/addons/detail/lffaomgjiombjbglofglnmckpghnobom)
+
 ### 介绍
 本项目是基于 Transmission RPC 接口
 并采用Vue框架编写了前端UI界面
