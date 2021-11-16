@@ -10,6 +10,9 @@
 .vh-100 {
     height: 100vh;
 }
+.w-50 {
+    width: 50%;
+}
 .text-over-hide {
     text-overflow: ellipsis;
     overflow: hidden;

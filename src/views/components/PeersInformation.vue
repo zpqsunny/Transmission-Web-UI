@@ -16,6 +16,9 @@
         <img v-if="item.countryCode !== ''" :src="require('@/assets/country/' + item.countryCode + '.png')" :alt="item.country" :title="['地区: ' + item.region, '国家: ' + item.country, '城市: ' + item.city].join('\n')">
         {{ item.address }}
       </template>
+      <template v-slot:item.flagStr="{ item }">
+        <span :title="item.flagStr | flagStrFormat">{{ item.flagStr }}</span>
+      </template>
       <template v-slot:item.connectInfo="{ item }">
         <v-row no-gutters justify="center">
           <v-col>

@@ -126,3 +126,70 @@ Vue.filter('timeFormatText', function (value) {
     }
   }
 })
+
+/**
+ *  D: Downloading from this peer
+ *  d: We would download from this peer if they would let us
+ *  E: Encrypted connection
+ *  H: Peer was found through DHT
+ *  I: Peer is an incoming connection
+ *  K: Peer has unchoked us, but we're not interested
+ *  O: Optimistic unchoked
+ *  T: Peer is connected over uTP
+ *  U: Uploading to peer
+ *  u: We would upload to this peer if they asked
+ *  X: Peer was discovered through Peer Exchange (PEX)
+ *  ?: We unchoked this peer, but they're not interested
+ */
+Vue.filter('flagStrFormat', function (value) {
+
+  if (value === undefined || value === '') {
+    return ''
+  }
+  let text = []
+  let flags = value.split('')
+  flags.forEach(v => {
+    switch (v) {
+      case 'D':
+        text.push('D: Downloading from this peer')
+        break
+      case 'd':
+        text.push('d: We would download from this peer if they would let us')
+        break
+      case 'E':
+        text.push('E: Encrypted connection')
+        break
+      case 'H':
+        text.push('H: Peer was found through DHT')
+        break
+      case 'I':
+        text.push('I: Peer is an incoming connection')
+        break
+      case 'K':
+        text.push('K: Peer has unchoked us, but we\'re not interested')
+        break
+      case 'O':
+        text.push('O: Optimistic unchoked')
+        break
+      case 'T':
+        text.push('T: Peer is connected over uTP')
+        break
+      case 'U':
+        text.push('U: Uploading to peer')
+        break
+      case 'u':
+        text.push('u: We would upload to this peer if they asked')
+        break
+      case 'X':
+        text.push('X: Peer was discovered through Peer Exchange (PEX)')
+        break
+      case '?':
+        text.push('?: We unchoked this peer, but they\'re not interested')
+        break
+      default:
+        break
+    }
+  })
+  return text.join('\r\n')
+
+})
