@@ -26,8 +26,8 @@
           </v-list>
         </v-menu>
         <v-divider style="margin: 0 2px" vertical/>
-        <v-btn text small @click="speed" :title="speedEnabled ? '限速' : '全速'">
-          <font-awesome-icon size="2x" :icon="speedEnabled ? ['fa', 'running'] : ['fa', 'paper-plane']"/>
+        <v-btn text small @click="speed" :title="this.$store.state.sessionInfo['alt-speed-enabled'] ? '限速' : '全速'">
+          <font-awesome-icon size="2x" :icon="this.$store.state.sessionInfo['alt-speed-enabled'] ? ['fa', 'running'] : ['fa', 'paper-plane']"/>
         </v-btn>
         <v-divider style="margin: 0 2px" vertical/>
         <v-btn text small @click="torrentAction('torrent-start')" title="重新开始已选择的种子" :disabled="!selectedTorrents.length > 0">
@@ -276,7 +276,6 @@ export default {
         location: '',
         move: false,
       },
-      speedEnabled: false,
       helpMeDialog: false
     }
   },
@@ -284,6 +283,7 @@ export default {
     this.intervalId = setInterval(() => {
       this.$refs['torrents'].getTorrentList()
     }, 2000)
+    this.$store.commit('getSessionInfo')
   },
   beforeDestroy() {
     clearInterval(this.intervalId)
@@ -327,11 +327,15 @@ export default {
       })
     },
     speed() {
-      this.speedEnabled = !this.speedEnabled
+      let enabled = !this.$store.state.sessionInfo["alt-speed-enabled"]
       this.$axios.post('', {
         method: 'session-set',
         arguments: {
-          "alt-speed-enabled": this.speedEnabled
+          "alt-speed-enabled": enabled
+        }
+      }).then(r => {
+        if (r.data.result === 'success') {
+          this.$store.state.sessionInfo["alt-speed-enabled"] = !this.$store.state.sessionInfo["alt-speed-enabled"]
         }
       })
     },
