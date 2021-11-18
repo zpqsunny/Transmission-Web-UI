@@ -1,4 +1,5 @@
 module.exports = {
+  publicPath: '.',
   // 选项...
   devServer: {
     overlay: {
