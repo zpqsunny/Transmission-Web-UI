@@ -1,8 +1,6 @@
 name: Transmission Web UI Auto Build
 on:
-  push:
-    tags:
-      - 'v*'
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-18.04
