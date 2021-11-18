@@ -1,6 +1,6 @@
 name: Transmission Web UI Auto Build
 on:
-  create:
+  push:
     tags:
       - 'v*'
 jobs:
