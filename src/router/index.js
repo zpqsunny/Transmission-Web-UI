@@ -11,6 +11,12 @@ const routes = [
     component: () => import('../views/Home')
   },
   {
+    path: '/m',
+    name: 'Mobile',
+    meta: { auth: true },
+    component: () => import('../views/Mobile')
+  },
+  {
     path: '/login',
     name: 'Login',
     meta: { auth: false },

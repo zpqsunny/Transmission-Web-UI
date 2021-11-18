@@ -5,7 +5,7 @@
         <v-container fluid style="margin-top: 100px">
           <v-form>
             <v-row justify="center" align="center">
-              <v-col cols="3">
+              <v-col xl="3" lg="4" md="5" sm="8" xs="12">
                 <v-text-field v-model="api.url" label="Transmission RPC" outlined></v-text-field>
                 <v-checkbox v-model="api.auth" label="身份验证"></v-checkbox>
                 <v-text-field :disabled="!api.auth" v-model="api.username" label="用户名" outlined></v-text-field>
