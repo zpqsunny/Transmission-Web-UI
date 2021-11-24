@@ -39,7 +39,12 @@ export default {
       localStorage.setItem('auth', this.api.auth)
       localStorage.setItem('username', this.api.username)
       localStorage.setItem('password', this.api.password)
-      this.$router.push({path: '/'})
+      let re = /(Mobile|Android|iPad|Windows Phone|iPhone)/i
+      if (re.test(navigator.appVersion)) {
+        this.$router.push({path: '/m'})
+      } else {
+        this.$router.push({path: '/'})
+      }
     }
   }
 }

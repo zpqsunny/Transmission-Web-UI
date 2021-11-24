@@ -369,7 +369,10 @@ export default {
       window.location.href = 'mailto:torrentweb@gmail.com'
     },
     logout() {
-      localStorage.clear()
+      localStorage.removeItem('url')
+      localStorage.removeItem('auth')
+      localStorage.removeItem('username')
+      localStorage.removeItem('password')
       this.$router.push({ path: '/login' })
     }
   }

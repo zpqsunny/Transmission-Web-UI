@@ -225,7 +225,10 @@ export default {
       this.filterMenu = false;
     },
     logout() {
-      localStorage.clear()
+      localStorage.removeItem('url')
+      localStorage.removeItem('auth')
+      localStorage.removeItem('username')
+      localStorage.removeItem('password')
       this.$router.push({ path: '/login' })
     },
     torrentActionDelete() {
