@@ -10,6 +10,9 @@
       <v-btn text small @click.stop="torrentAction('torrent-stop')" title="暂停已选择的种子" :disabled="!selectedTorrents.length > 0">
         <font-awesome-icon size="2x" :icon="['fa', 'pause']"/>
       </v-btn>
+      <v-btn text small @click="deleteTorrentDialog = true" title="删除种子" :disabled="!selectedTorrents.length > 0">
+        <font-awesome-icon size="2x" :icon="['fa','trash-alt']"/>
+      </v-btn>
       <v-spacer></v-spacer>
       <v-btn text small @click.stop="logout">
         <font-awesome-icon size="2x" :icon="['fa','sign-out-alt']"/>
@@ -134,6 +137,25 @@
         </v-list>
       </v-container>
     </v-main>
+    <!--  删除种子对话框  -->
+    <v-dialog v-model="deleteTorrentDialog" width="80%" persistent>
+      <v-card>
+        <v-card-title class="justify-center">删除种子确认</v-card-title>
+        <v-card-text>
+          确定要删除已选择的种子吗?
+          <v-checkbox v-model="deleteLocalData" label="同时删除数据"></v-checkbox>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" text @click="torrentActionDelete">
+            确 定
+          </v-btn>
+          <v-btn color="second" text @click="deleteTorrentDialog = false, deleteLocalData = false">
+            取 消
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-app>
 </template>
 
@@ -143,6 +165,8 @@ export default {
   data() {
     return {
       filterMenu: false,
+      deleteTorrentDialog: false,
+      deleteLocalData: false,
       filterItem: 0,
       torrentStatus: -1,
       intervalId: null,
@@ -203,6 +227,22 @@ export default {
     logout() {
       localStorage.clear()
       this.$router.push({ path: '/login' })
+    },
+    torrentActionDelete() {
+      this.$axios.post('', {
+        method: 'torrent-remove',
+        arguments: {
+          ids: this.selectedTorrents,
+          "delete-local-data": this.deleteLocalData
+        }
+      }).then(r => {
+        if (r.data.result === 'success') {
+          this.deleteLocalData = false
+          this.selectedTorrents = []
+          this.$store.commit('getTorrents')
+          this.deleteTorrentDialog = false
+        }
+      })
     },
   }
 }
