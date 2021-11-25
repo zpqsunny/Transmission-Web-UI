@@ -78,7 +78,7 @@ export default new Vuex.Store({
         {
           method: 'torrent-get',
           arguments: {
-            fields: ['id', 'name', 'status', 'hashString', 'totalSize', 'percentDone', 'addedDate', 'leftUntilDone',
+            fields: ['id', 'name', 'status', 'hashString', 'totalSize', 'percentDone', 'addedDate', 'leftUntilDone', 'sizeWhenDone',
               'rateDownload', 'rateUpload', 'recheckProgress', 'peersGettingFromUs', 'peersSendingToUs', 'eta', 'metadataPercentComplete',
               'uploadRatio', 'uploadedEver', 'downloadedEver', 'downloadDir', 'error', 'errorString', 'doneDate', 'queuePosition',
               'activityDate'

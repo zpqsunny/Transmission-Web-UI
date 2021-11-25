@@ -126,10 +126,10 @@
                     </v-list-item-subtitle>
                     <v-list-item-subtitle>
                       <template v-if="item.metadataPercentComplete >= 1">
-                        <span>{{ item.downloadedEver | unitFormat }}</span> /
-                        <span>{{ item.totalSize | unitFormat }}</span>&nbsp;
+                        <span>{{ item.downloadedEver | unitFormat }} /</span>
+                        <span>{{ item.totalSize | unitFormat }}</span>
                       </template>
-                      <span v-if="item.eta > 0" class="text-no-wrap down-color">剩余 {{ item.eta | timeInterval }}</span>
+                      <span v-if="item.eta > 0" class="text-no-wrap down-color"> 剩余 {{ item.eta | timeInterval }}</span>
                     </v-list-item-subtitle>
                   </v-list-item-content>
                 </template>
