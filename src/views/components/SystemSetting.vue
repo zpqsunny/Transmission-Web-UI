@@ -93,13 +93,13 @@
                   <v-row>
                     <v-col cols="12">
                       <div class="d-flex justify-space-between">
-                        <v-checkbox label="星期日" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="sunday"></v-checkbox>
-                        <v-checkbox label="星期一" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="monday"></v-checkbox>
-                        <v-checkbox label="星期二" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="tuesday"></v-checkbox>
-                        <v-checkbox label="星期三" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="wednesday"></v-checkbox>
-                        <v-checkbox label="星期四" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="thursday"></v-checkbox>
-                        <v-checkbox label="星期五" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="friday"></v-checkbox>
-                        <v-checkbox label="星期六" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="saturday"></v-checkbox>
+                        <v-checkbox :label="$t('weekday.Sunday')" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="sunday"></v-checkbox>
+                        <v-checkbox :label="$t('weekday.Monday')" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="monday"></v-checkbox>
+                        <v-checkbox :label="$t('weekday.Tuesday')" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="tuesday"></v-checkbox>
+                        <v-checkbox :label="$t('weekday.Wednesday')" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="wednesday"></v-checkbox>
+                        <v-checkbox :label="$t('weekday.Thursday')" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="thursday"></v-checkbox>
+                        <v-checkbox :label="$t('weekday.Friday')" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="friday"></v-checkbox>
+                        <v-checkbox :label="$t('weekday.Saturday')" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="saturday"></v-checkbox>
                       </div>
                     </v-col>
                   </v-row>
