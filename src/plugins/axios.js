@@ -37,6 +37,12 @@ axios.interceptors.response.use(response => {
     }
     if (error.response.status === 409) {
       localStorage.setItem('x-transmission-session-id', error.response.headers['x-transmission-session-id'])
+      // if chrome extension
+      if (chrome.storage.local !== undefined) {
+        chrome.storage.local.set({
+          'x-transmission-session-id': error.response.headers['x-transmission-session-id'],
+        })
+      }
     }
   }
   // Any status codes that falls outside the range of 2xx cause this function to trigger

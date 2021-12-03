@@ -14,7 +14,7 @@ import './filter'
 Vue.use(VueI18n)
 
 const i18n = new VueI18n({
-  locale: 'en',
+  locale: 'cn',
   messages: language
 })
 

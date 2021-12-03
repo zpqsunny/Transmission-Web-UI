@@ -39,6 +39,15 @@ export default {
       localStorage.setItem('auth', this.api.auth)
       localStorage.setItem('username', this.api.username)
       localStorage.setItem('password', this.api.password)
+      // if chrome extension
+      if (chrome.storage.local !== undefined) {
+        chrome.storage.local.set({
+          url: this.api.url,
+          auth: this.api.auth,
+          username: this.api.username,
+          password: this.api.password,
+        })
+      }
       let re = /(Mobile|Android|iPad|Windows Phone|iPhone)/i
       if (re.test(navigator.appVersion)) {
         this.$router.push({path: '/m'})
