@@ -1,15 +1,6 @@
 <template>
   <div>
-    <v-row no-gutters justify="space-around">
-      <v-col align-self="center"><v-btn text color="primary" @click="getPeers"><font-awesome-icon :icon="['fa', 'redo']"/></v-btn></v-col>
-      <v-col align-self="center">Cache {{ peersFrom.fromCache }}</v-col>
-      <v-col align-self="center">Dht {{ peersFrom.fromDht }}</v-col>
-      <v-col align-self="center">Incoming {{ peersFrom.fromIncoming }}</v-col>
-      <v-col align-self="center">Lpd {{ peersFrom.fromLpd }}</v-col>
-      <v-col align-self="center">Ltep {{ peersFrom.fromLtep }}</v-col>
-      <v-col align-self="center">Pex {{ peersFrom.fromPex }}</v-col>
-      <v-col align-self="center">Tracker {{ peersFrom.fromTracker }}</v-col>
-    </v-row>
+    <v-btn text color="primary" @click="getPeers"><font-awesome-icon :icon="['fa', 'redo']"/></v-btn>
     <v-data-table dense :headers="peersHeaders" :items="peersInfo" item-key="address" no-data-text="暂无内容" no-results-text="未找到匹配项"
                   :items-per-page="$store.state.itemsPerPage" @update:items-per-page="e => $store.commit('updateItemsPerPage', e)">
       <template v-slot:item.address="{ item }">
