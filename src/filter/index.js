@@ -78,10 +78,10 @@ Vue.filter('timeInterval', function (value) {
     hours = Math.floor((value % 86400) / 3600),
     minutes = Math.floor((value % 3600) / 60),
     seconds = Math.floor(value % 60),
-    d = days + ' ' + 'd',
-    h = hours + ' ' + 'h',
-    m = minutes + ' ' + 'm',
-    s = seconds + ' ' + 's';
+    d = days + ' ' + '天',
+    h = hours + ' ' + '时',
+    m = minutes + ' ' + '分',
+    s = seconds + ' ' + '秒';
 
   if (days) {
     if (days >= 4 || !hours) {
