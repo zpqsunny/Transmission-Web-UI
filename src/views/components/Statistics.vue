@@ -87,6 +87,9 @@ export default {
         },
         yAxis: {
           type: 'value',
+          max: (value => {
+            return value * 0.09 + value
+          }),
           boundaryGap: [0, '100%'],
           splitLine: {
             show: false
@@ -100,7 +103,7 @@ export default {
             showSymbol: false,
             lineStyle: {
               color: '#67C23A',
-              width: 5
+              width: 3
             },
             areaStyle: {
               opacity: 0.8,
@@ -112,6 +115,7 @@ export default {
                 color: 'rgba(200, 230, 201)'
               }])
             },
+            smooth: true,
             data: [],
           },
           {
@@ -120,7 +124,7 @@ export default {
             showSymbol: false,
             lineStyle: {
               color: '#409EFF',
-              width: 5
+              width: 3
             },
             areaStyle: {
               opacity: 0.8,
@@ -132,6 +136,7 @@ export default {
                 color: 'rgba(187, 222, 251)'
               }])
             },
+            smooth: true,
             data: [],
           },
         ],
@@ -163,11 +168,11 @@ export default {
             let seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
             this.chart.series[0].data.push({
               name: date.toString(),
-              value: [ [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('/') + ' ' +  [hours, minutes, seconds].join(':'), this.sessionStatistics.uploadSpeed]
+              value: [ [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-') + ' ' +  [hours, minutes, seconds].join(':'), this.sessionStatistics.uploadSpeed]
             })
             this.chart.series[1].data.push({
               name: date.toString(),
-              value: [ [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('/') + ' ' +  [hours, minutes, seconds].join(':'), this.sessionStatistics.downloadSpeed]
+              value: [ [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-') + ' ' +  [hours, minutes, seconds].join(':'), this.sessionStatistics.downloadSpeed]
             })
             if (this.chart.series[0].data.length > 40) {
               this.chart.series[0].data.shift()

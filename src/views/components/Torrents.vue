@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-data-table v-model="selectedTorrents" :sort-by="['queuePosition']" no-data-text="暂无内容" no-results-text="未找到匹配项"
-                  :headers="headers" :items="$store.state.torrents" item-key="id" show-select show-expand fixed-header
+                  :headers="headers" :items="$store.state.torrents" item-key="id" show-select show-expand fixed-header :single-select="false"
                   :items-per-page="-1" @contextmenu:row="showMenu" hide-default-footer :search="searchStatus" :custom-filter="filterOnlyStatus">
       <template v-slot:item.data-table-expand="{isExpanded, expand}">
         <v-btn icon v-if="!isExpanded" @click="expand(true)">
@@ -155,6 +155,7 @@ export default {
         y: 0,
         selectItem: {}
       },
+      selectAll: false,
       torrentRenamePathDialog: false,
       renamePath: {
         path: '',
