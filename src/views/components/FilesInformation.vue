@@ -21,56 +21,80 @@
         </v-list>
       </v-menu>
     </v-btn-toggle>
-    <v-data-table dense v-model="filesSelected" :headers="filesHeaders" :items="filesInfo" item-key="name" show-select no-data-text="暂无内容" no-results-text="未找到匹配项"
-                  :items-per-page="$store.state.itemsPerPage" @update:items-per-page="e => $store.commit('updateItemsPerPage', e)">
-      <template v-slot:header.name>
-        <v-menu bottom origin="center center" transition="scale-transition">
-          <template v-slot:activator="{ on, attrs }">
-            <span v-bind="attrs" v-on="on">名称 <font-awesome-icon :icon="['fa', 'filter']"/></span>
-          </template>
-          <v-list dense>
-            <v-list-item-group v-model="filterValue">
-              <v-list-item :value="item.value" v-for="(item, i) in fileFilter" :key="i" @click="filterExt = item.ext">
-                <v-list-item-content>
-                  <v-list-item-title>{{ item.name }}</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list-item-group>
-          </v-list>
-        </v-menu>
+<!--    <v-data-table dense v-model="filesSelected" :headers="filesHeaders" :items="filesInfo" item-key="name" show-select no-data-text="暂无内容" no-results-text="未找到匹配项"-->
+<!--                  :items-per-page="$store.state.itemsPerPage" @update:items-per-page="e => $store.commit('updateItemsPerPage', e)">-->
+<!--      <template v-slot:header.name>-->
+<!--        <v-menu bottom origin="center center" transition="scale-transition">-->
+<!--          <template v-slot:activator="{ on, attrs }">-->
+<!--            <span v-bind="attrs" v-on="on">名称 <font-awesome-icon :icon="['fa', 'filter']"/></span>-->
+<!--          </template>-->
+<!--          <v-list dense>-->
+<!--            <v-list-item-group v-model="filterValue">-->
+<!--              <v-list-item :value="item.value" v-for="(item, i) in fileFilter" :key="i" @click="filterExt = item.ext">-->
+<!--                <v-list-item-content>-->
+<!--                  <v-list-item-title>{{ item.name }}</v-list-item-title>-->
+<!--                </v-list-item-content>-->
+<!--              </v-list-item>-->
+<!--            </v-list-item-group>-->
+<!--          </v-list>-->
+<!--        </v-menu>-->
+<!--      </template>-->
+<!--      <template v-slot:item.name="{ item }">-->
+<!--        <span class="d-inline-block" style="word-break: break-all;" :title="item.name">-->
+<!--          {{ item.name }}-->
+<!--        </span>-->
+<!--      </template>-->
+<!--      <template v-slot:item.length="{ item }">-->
+<!--        {{ item.length | unitFormat }}-->
+<!--      </template>-->
+<!--      <template v-slot:item.progress="{ item }">-->
+<!--        <v-progress-linear v-if="item.length > 0" :value="(item.bytesCompleted / item.length * 100).toFixed(2)" striped rounded color="#67C23A" height="25">-->
+<!--          <template v-slot:default="{ value }">-->
+<!--            <strong>{{ value }}%</strong>-->
+<!--          </template>-->
+<!--        </v-progress-linear>-->
+<!--      </template>-->
+<!--      <template v-slot:item.bytesCompleted="{ item }">-->
+<!--        {{ item.bytesCompleted | unitFormat }}-->
+<!--      </template>-->
+<!--      <template v-slot:item.wanted="{ item }">-->
+<!--        <span v-if="item.wanted">-->
+<!--          <font-awesome-icon title="是" style="color: #4CAF50" :icon="['fa', 'check']"/>-->
+<!--        </span>-->
+<!--        <span v-else>-->
+<!--          <font-awesome-icon title="否" style="color: #909399" :icon="['fa', 'times']"/>-->
+<!--        </span>-->
+<!--      </template>-->
+<!--      <template v-slot:item.priority="{ item }">-->
+<!--        <span v-if="item.priority === -1">低</span>-->
+<!--        <span v-if="item.priority === 0">正常</span>-->
+<!--        <span v-if="item.priority === 1">高</span>-->
+<!--      </template>-->
+<!--    </v-data-table>-->
+    <v-treeview dense selectable transition :items="fileTree">
+      <template v-slot:label="{ item }">
+        <div class="d-flex justify-space-between">
+          <div> {{ item.name }} </div>
+          <div>
+            <span v-if="item.length > 0">
+              {{ item.bytesCompleted | unitFormat }} / {{ item.length | unitFormat }}
+              <strong>[{{ (item.bytesCompleted / item.length * 100).toFixed(2) }}%]</strong>
+            </span>
+          </div>
+          <div>
+            <span v-if="item.priority === -1">低</span>
+            <span v-if="item.priority === 0">正常</span>
+            <span v-if="item.priority === 1">高</span>
+            <span v-if="item.wanted">
+              <font-awesome-icon title="是" style="color: #4CAF50" :icon="['fa', 'check']"/>
+            </span>
+            <span v-else>
+              <font-awesome-icon title="否" style="color: #909399" :icon="['fa', 'times']"/>
+            </span>
+          </div>
+        </div>
       </template>
-      <template v-slot:item.name="{ item }">
-        <span class="d-inline-block" style="word-break: break-all;" :title="item.name">
-          {{ item.name }}
-        </span>
-      </template>
-      <template v-slot:item.length="{ item }">
-        {{ item.length | unitFormat }}
-      </template>
-      <template v-slot:item.progress="{ item }">
-        <v-progress-linear v-if="item.length > 0" :value="(item.bytesCompleted / item.length * 100).toFixed(2)" striped rounded color="#67C23A" height="25">
-          <template v-slot:default="{ value }">
-            <strong>{{ value }}%</strong>
-          </template>
-        </v-progress-linear>
-      </template>
-      <template v-slot:item.bytesCompleted="{ item }">
-        {{ item.bytesCompleted | unitFormat }}
-      </template>
-      <template v-slot:item.wanted="{ item }">
-        <span v-if="item.wanted">
-          <font-awesome-icon title="是" style="color: #4CAF50" :icon="['fa', 'check']"/>
-        </span>
-        <span v-else>
-          <font-awesome-icon title="否" style="color: #909399" :icon="['fa', 'times']"/>
-        </span>
-      </template>
-      <template v-slot:item.priority="{ item }">
-        <span v-if="item.priority === -1">低</span>
-        <span v-if="item.priority === 0">正常</span>
-        <span v-if="item.priority === 1">高</span>
-      </template>
-    </v-data-table>
+    </v-treeview>
   </div>
 </template>
 
@@ -141,6 +165,7 @@ export default {
         {text: '需要下载', align: 'center', sortable: false, value: 'wanted', width: 100},
         {text: '优先级别', align: 'center', sortable: false, value: 'priority', width: 100},
       ],
+      fileTree: []
     }
   },
   mounted() {
@@ -162,18 +187,19 @@ export default {
         //files
         let fileStats = torrent.fileStats
         let files = torrent.files
-        let temp = []
-        files.forEach((value, index) => {
-          temp.push({
+        let temp = files.map((value, index) => {
+          return {
             index: index,
             name: value.name,
             length: value.length,
             bytesCompleted: value.bytesCompleted,
             wanted: fileStats[index].wanted,
             priority: fileStats[index].priority,
-          })
+          }
         })
-        this.filesInfo = temp
+        console.log(temp)
+        // this.filesInfo = temp
+        this.fileTree = this.treeify(temp)
       })
     },
     setFilesWantedAndUnwanted(value) {
@@ -224,6 +250,51 @@ export default {
       })
       this.getFiles()
     },
+    /**
+     * Copy From https://github.com/WDaan/VueTorrent
+     * @param paths
+     * @returns {[]}
+     */
+    treeify(paths) {
+      let result = []
+      const level = { result }
+      let id = 0
+      paths.forEach(path => {
+        path.name.split('/').reduce((r, name) => {
+          if (!r[name]) {
+            r[name] = { result: [] }
+            r.result.push({
+              id: ++id,
+              index: path.index,
+              name: name,
+              fullName: path.name,
+              length: path.length,
+              bytesCompleted: path.bytesCompleted,
+              wanted: path.wanted,
+              priority: path.priority,
+              children: r[name].result
+            })
+          }
+          return r[name]
+        }, level)
+      })
+      result = result.map(el => this.parseFolder(el))
+      return result
+    },
+    parseFolder(el) {
+      if (el.children.length !== 0) {
+        const folder = {
+          id: el.id,
+          name: el.name,
+          fullName: el.name,
+          type: 'directory',
+          children: el.children
+        }
+        folder.children = folder.children.map(el => this.parseFolder(el))
+        return folder
+      }
+      return el
+    }
   }
 }
 </script>
