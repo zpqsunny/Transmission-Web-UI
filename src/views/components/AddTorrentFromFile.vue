@@ -22,6 +22,9 @@
                   </template>
                 </v-text-field>
                 <v-file-input label="种子文件" accept="application/x-bittorrent,.torrent" @focus="freeSpace" placeholder="*.torrent" @change="fileChange"></v-file-input>
+                <div style="max-height: 200px;overflow-y: scroll">
+                  <v-treeview dense selectable :items="treeFiles"></v-treeview>
+                </div>
                 <v-checkbox v-model="autoStart" label="自动开始"></v-checkbox>
               </v-form>
             </v-col>
@@ -40,6 +43,7 @@
 
 <script>
 import {Base64} from 'js-base64'
+import bEncode from 'bencode'
 
 export default {
   name: 'AddTorrentFromFile',
@@ -49,7 +53,8 @@ export default {
         metainfo: '',
         paused: false,
       },
-      pathSizeByte: 0
+      pathSizeByte: 0,
+      treeFiles: []
     }
   },
   computed: {
@@ -95,11 +100,25 @@ export default {
     fileChange(e) {
       if (e == null) {
         this.addForm.metainfo = ''
+        this.treeFiles = []
         return
       }
       const fileRead = new FileReader()
       fileRead.onload = (f) => {
         this.addForm.metainfo = Base64.fromUint8Array(new Uint8Array(f.target.result))
+        // tree part
+        let torrent = bEncode.decode(Base64.toUint8Array(this.addForm.metainfo))
+        if (Array.isArray(torrent.info.files)) {
+          let textDecoder = new TextDecoder()
+          let pp = []
+          let name = textDecoder.decode(torrent.info.name)
+          torrent.info.files.forEach((value, index) => {
+            let path = value['path.utf-8'] || value.path
+            let p = [name, ...path.map(v => textDecoder.decode(v))].join('/')
+            pp.push({name: p, index: index})
+          })
+          this.treeFiles = this.treeify(pp)
+        }
       }
       fileRead.readAsArrayBuffer(e)
     },
@@ -112,6 +131,47 @@ export default {
       }).then(r => {
         this.pathSizeByte = r.data.arguments['size-bytes']
       })
+    },
+    /**
+     * Copy From https://github.com/WDaan/VueTorrent
+     * @param paths
+     * @returns {[]}
+     */
+    treeify(paths) {
+      let result = []
+      const level = { result }
+      let id = 0
+      paths.forEach(path => {
+        path.name.split('/').reduce((r, name) => {
+          if (!r[name]) {
+            r[name] = { result: [] }
+            r.result.push({
+              id: ++id,
+              index: path.index,
+              name: name,
+              fullName: path.name,
+              children: r[name].result
+            })
+          }
+          return r[name]
+        }, level)
+      })
+      result = result.map(el => this.parseFolder(el))
+      return result
+    },
+    parseFolder(el) {
+      if (el.children.length !== 0) {
+        const folder = {
+          id: el.id,
+          name: el.name,
+          fullName: el.name,
+          type: 'directory',
+          children: el.children
+        }
+        folder.children = folder.children.map(el => this.parseFolder(el))
+        return folder
+      }
+      return el
     },
   }
 }

@@ -88,7 +88,7 @@ export default {
         yAxis: {
           type: 'value',
           max: (value => {
-            return value * 0.09 + value
+            return value.max * 0.1 + value.max
           }),
           boundaryGap: [0, '100%'],
           splitLine: {
@@ -174,7 +174,7 @@ export default {
               name: date.toString(),
               value: [ [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-') + ' ' +  [hours, minutes, seconds].join(':'), this.sessionStatistics.downloadSpeed]
             })
-            if (this.chart.series[0].data.length > 40) {
+            if (this.chart.series[0].data.length > 20) {
               this.chart.series[0].data.shift()
               this.chart.series[1].data.shift()
             }

@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "axios": "^0.21.0",
+    "bencode": "^2.0.2",
     "core-js": "^3.6.5",
     "echarts": "^5.1.1",
     "js-base64": "^3.6.1",
