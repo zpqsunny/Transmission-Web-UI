@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-data-table v-model="selectedTorrents" :sort-by="['queuePosition']" no-data-text="暂无内容" no-results-text="未找到匹配项"
-                  :headers="headers" :items="$store.state.torrents" item-key="id" show-select show-expand fixed-header single-select
+                  :headers="headers" :items="$store.state.torrents" item-key="id" show-select show-expand fixed-header
                   :items-per-page="-1" @contextmenu:row="showMenu" hide-default-footer :search="searchStatus" :custom-filter="filterOnlyStatus">
       <template v-slot:item.data-table-expand="{isExpanded, expand}">
         <v-btn icon v-if="!isExpanded" @click="expand(true)">
@@ -47,7 +47,9 @@
             <strong title="正在检索元数据">{{ value }}%</strong>
           </template>
         </v-progress-linear>
-        {{ item.totalSize | unitFormat }}
+        <span v-if="item.totalSize > 0">
+          {{ item.totalSize | unitFormat }}
+        </span>
       </template>
       <template v-slot:item.percentDone="{ item }">
         <v-progress-linear v-if="item.status === 2" color="cyan lighten-1" height="20" rounded striped :value="(item.recheckProgress * 100).toFixed(2)">

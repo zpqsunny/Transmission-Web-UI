@@ -284,6 +284,7 @@ export default {
       this.$refs['torrents'].getTorrentList()
     }, 2000)
     this.$store.commit('getSessionInfo')
+    this.chromeEnv()
   },
   beforeDestroy() {
     clearInterval(this.intervalId)
@@ -374,6 +375,41 @@ export default {
       localStorage.removeItem('username')
       localStorage.removeItem('password')
       this.$router.push({ path: '/login' })
+    },
+    chromeEnv() {
+      try {
+        chrome.runtime.onMessage.addListener(((message, sender, sendResponse) => {
+          let downloadLink = message.message.url
+          if (downloadLink.match(/^[0-9a-f]{40}$/i)) {
+            downloadLink = 'magnet:?xt=urn:btih:' + downloadLink
+          } else if (!downloadLink.match(/^magnet:\?xt=urn:btih:[0-9a-f]{40}.?/i)) {
+            console.warn(downloadLink + 'is not magnet url')
+            return
+          }
+          this.$axios.post('', {
+            method: 'session-get',
+            arguments: {
+              fields: ['download-dir']
+            }
+          }).then(r => {
+            if (r.data.result === 'success') {
+              let downloadDir = r.data.arguments['download-dir']
+              this.$axios.post('', {
+                method: 'torrent-add',
+                arguments: {
+                  'download-dir': downloadDir,
+                  filename: downloadLink,
+                  paused: false,
+                }
+              }).then(r => {
+                console.log('torrent-add: ' + r.data.result)
+              })
+            }
+          })
+        }))
+      } catch (e) {
+        console.warn('is not run in chrome extension')
+      }
     }
   }
 }
