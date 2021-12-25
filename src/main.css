@@ -30,3 +30,15 @@
 .no-color {
     color: #909399;
 }
+.v-data-table > .v-data-table__wrapper > table > tbody > tr > td,
+.v-data-table > .v-data-table__wrapper > table > tbody > tr > th,
+.v-data-table > .v-data-table__wrapper > table > thead > tr > td,
+.v-data-table > .v-data-table__wrapper > table > thead > tr > th,
+.v-data-table > .v-data-table__wrapper > table > tfoot > tr > td,
+.v-data-table > .v-data-table__wrapper > table > tfoot > tr > th {
+    padding: 0 4px
+}
+
+.v-data-table > .v-data-table__wrapper tbody tr.v-data-table__expanded__content {
+    box-shadow: none;
+}

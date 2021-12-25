@@ -12,7 +12,9 @@
         </v-btn>
       </template>
       <template v-slot:expanded-item="{ headers, item }">
-        <td :colspan="headers.length" style="padding: 0">
+        <td></td>
+        <td></td>
+        <td :colspan="headers.length - 2">
           <Information :id="item.id"></Information>
         </td>
       </template>
