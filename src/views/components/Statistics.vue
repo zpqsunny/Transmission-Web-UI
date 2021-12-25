@@ -184,7 +184,7 @@ export default {
     },
     format(value) {
       if (value === undefined || value === 0) {
-        return ''
+        return '0 B'
       }
       if (value < 1024) {
         return value + ' B'
