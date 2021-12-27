@@ -36,9 +36,9 @@
 .v-data-table > .v-data-table__wrapper > table > thead > tr > th,
 .v-data-table > .v-data-table__wrapper > table > tfoot > tr > td,
 .v-data-table > .v-data-table__wrapper > table > tfoot > tr > th {
-    padding: 0 4px
+    padding: 0 4px !important;
 }
 
 .v-data-table > .v-data-table__wrapper tbody tr.v-data-table__expanded__content {
-    box-shadow: none;
+    box-shadow: none !important;
 }
