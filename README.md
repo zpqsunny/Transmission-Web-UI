@@ -43,6 +43,8 @@ unzip release-v2.0.3.zip
 
 [Edge 扩展商店链接](https://microsoftedge.microsoft.com/addons/detail/lffaomgjiombjbglofglnmckpghnobom)
 
+**扩展支持选中/链接右键快速下载**
+
 ### 食用方法
 首次使用时会进入登录界面
 
