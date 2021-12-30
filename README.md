@@ -25,6 +25,8 @@
 
 :heavy_check_mark: IP地理位置查询 [ipinfo](https://ipinfo.io) 支持
 
+:heavy_check_mark: **浏览器扩展支持选中/链接右键快速下载**
+
 ### 安装方法
 
 #### 1.替换默认安装
@@ -39,13 +41,13 @@ unzip release-v2.0.3.zip
 # 如果想恢复原来的 直接将备份的index.html.bak 重命名回index.html
 ```
 #### 2.浏览器扩展安装
+
 [Chrome 扩展商店链接](https://chrome.google.com/webstore/detail/transmission-web-ui/kbpnojigbmopjjhokfbdeejefhniedlo)
 
 [Edge 扩展商店链接](https://microsoftedge.microsoft.com/addons/detail/lffaomgjiombjbglofglnmckpghnobom)
 
-**扩展支持选中/链接右键快速下载**
-
 ### 食用方法
+
 首次使用时会进入登录界面
 
 登录界面里设置Transmission RPC 的URL
