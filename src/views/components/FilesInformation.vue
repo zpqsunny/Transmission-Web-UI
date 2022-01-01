@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-btn-toggle v-model="filesButtonAction">
+    <v-btn-toggle class="ma-1" v-model="filesButtonAction">
       <v-btn text color="primary" @click="getFiles"><font-awesome-icon :icon="['fa', 'redo']"/></v-btn>
       <v-btn :disabled="filesSelected.length <= 0" text @click="setFilesWantedAndUnwanted('files-wanted')">下载已选择的文件</v-btn>
       <v-btn :disabled="filesSelected.length <= 0" text @click="setFilesWantedAndUnwanted('files-unwanted')">忽略已选择的文件</v-btn>
@@ -43,7 +43,7 @@
                 <span v-if="item.priority === 0">优先级别: 正常</span>
                 <span v-if="item.priority === 1">优先级别: 高</span>
                 <span v-if="item.type === 'file'">
-                  是否下载:
+                  下载:
                   <font-awesome-icon v-if="item.wanted" title="是" style="color: #4CAF50" :icon="['fa', 'check']"/>
                   <font-awesome-icon v-if="!item.wanted" title="否" style="color: #909399" :icon="['fa', 'times']"/>
                 </span>

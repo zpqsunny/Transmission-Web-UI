@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-btn-toggle v-model="trackerButtonAction">
+    <v-btn-toggle class="ma-1" v-model="trackerButtonAction">
       <v-btn text color="primary" @click="getTrackers"><font-awesome-icon :icon="['fa', 'redo']"/></v-btn>
       <v-btn style="text-transform: none" text @click="addTrackersAction">添加新的Tracker</v-btn>
       <v-btn :disabled="trackerSelected.length <= 0" style="text-transform: none" text @click="removeTracker">删除已选中的Tracker</v-btn>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="border-style">
     <v-tabs v-model="tab">
       <v-tab>常规</v-tab>
       <v-tab style="text-transform: none">Tracker 服务器</v-tab>
@@ -69,5 +69,8 @@ export default {
 </script>
 
 <style scoped>
-
+  .border-style {
+    border-left: #e0e0e0 1px;
+    border-left-style: solid;
+  }
 </style>

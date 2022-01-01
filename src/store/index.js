@@ -81,7 +81,7 @@ export default new Vuex.Store({
             fields: ['id', 'name', 'status', 'hashString', 'totalSize', 'percentDone', 'addedDate', 'leftUntilDone', 'sizeWhenDone',
               'rateDownload', 'rateUpload', 'recheckProgress', 'peersGettingFromUs', 'peersSendingToUs', 'eta', 'metadataPercentComplete',
               'uploadRatio', 'uploadedEver', 'downloadedEver', 'downloadDir', 'error', 'errorString', 'doneDate', 'queuePosition',
-              'activityDate'
+              'activityDate', 'labels'
             ]
           }
         }).then(r => {
