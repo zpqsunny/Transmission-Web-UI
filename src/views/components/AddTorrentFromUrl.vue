@@ -21,7 +21,7 @@
                     <v-btn icon color="#212121" @click="freeSpace"><font-awesome-icon :icon="['fa', 'sync-alt']"/></v-btn>
                   </template>
                 </v-text-field>
-                <v-textarea outlined label="种子地址" v-model="addForm.filename" @focus="freeSpace" placeholder="magnet:?xt=urn:btih:"></v-textarea>
+                <v-textarea outlined label="种子地址" v-model="addForm.filename" @focus="onfocus" placeholder="magnet:?xt=urn:btih:"></v-textarea>
                 <v-checkbox v-model="autoStart" label="自动开始"></v-checkbox>
               </v-form>
             </v-col>
@@ -89,6 +89,24 @@ export default {
         }
         this.$store.commit('showMessage', {type: 'error', title: r.data.result})
       })
+    },
+    onfocus() {
+      navigator.clipboard.readText()
+        .then(r => {
+          if (r.match(/^[0-9a-f]{40}$/i)) {
+            this.addForm.filename = 'magnet:?xt=urn:btih:' + r
+            this.$store.commit('showMessage', {type: 'success', title: '已从剪贴板获取磁力链'})
+            return
+          }
+          if (r.match(/^magnet:\?xt=urn:btih:[0-9a-f]{40}.?/i)) {
+            this.addForm.filename = r
+            this.$store.commit('showMessage', {type: 'success', title: '已从剪贴板获取磁力链'})
+          }
+        })
+        .catch(reason => {
+          console.warn('拒绝粘贴板',reason)
+        })
+      this.freeSpace()
     },
     freeSpace() {
       this.$axios.post('', {
