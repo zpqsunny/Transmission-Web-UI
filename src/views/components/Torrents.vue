@@ -64,7 +64,7 @@
         </v-progress-linear>
       </template>
       <template v-slot:item.addedDate="{ item }">
-        {{ item.addedDate | timestampFormat }}
+        {{ item.addedDate | timeFormatText }}
       </template>
       <template v-slot:item.rateDownload="{ item }">
         <v-row no-gutters justify="start">
@@ -174,7 +174,7 @@ export default {
         // {text: 'hashString', align: 'start', sortable: false, value: 'hashString'},
         {text: '总大小', align: 'right', sortable: false, value: 'totalSize', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
         {text: '进度', align: 'center', sortable: false, value: 'percentDone', width: 100, class: 'torrent-list', cellClass: 'torrent-list'},
-        {text: '添加时间', align: 'center', sortable: false, value: 'addedDate', width: 170, class: 'torrent-list', cellClass: 'torrent-list'},
+        {text: '添加时间', align: 'center', sortable: false, value: 'addedDate', width: 120, class: 'torrent-list', cellClass: 'torrent-list'},
         // {text: 'trackerStats', align: 'start', sortable: false, value: 'trackerStats', width: 200},
         // {text: 'leftUntilDone', align: 'start', sortable: false, value: 'leftUntilDone', width: 200},
         {text: '上传/下载速度', align: 'start', sortable: false, value: 'rateDownload', width: 250, class: 'torrent-list', cellClass: 'torrent-list'},
@@ -186,8 +186,8 @@ export default {
         {text: '已上传/下载', align: 'left', sortable: false, value: 'uploadedEver', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
         // {text: '已完成', align: 'center', sortable: false, value: 'downloadedEver', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
         // {text: '保存目录', align: 'start', sortable: false, value: 'downloadDir', width: 200},
-        {text: '完成时间', align: 'center', sortable: false, value: 'doneDate', width: 160, class: 'torrent-list', cellClass: 'torrent-list'},
-        {text: '最后活动于', align: 'center', sortable: false, value: 'activityDate', width: 160, class: 'torrent-list', cellClass: 'torrent-list'},
+        {text: '完成时间', align: 'center', sortable: false, value: 'doneDate', width: 120, class: 'torrent-list', cellClass: 'torrent-list'},
+        {text: '最后活动于', align: 'center', sortable: false, value: 'activityDate', width: 120, class: 'torrent-list', cellClass: 'torrent-list'},
       ],
       torrentsList: []
     }
