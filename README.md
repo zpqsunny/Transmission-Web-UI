@@ -1,5 +1,6 @@
 ## Transmission Web UI
 
+![GitHub package.json version](https://img.shields.io/github/package-json/v/zpqsunny/Transmission-Web-UI)
 ![GitHub](https://img.shields.io/github/license/zpqsunny/Transmission-Web-UI)
 ![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/zpqsunny/Transmission-Web-UI/vue)
 ![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/zpqsunny/Transmission-Web-UI/vuetify)
