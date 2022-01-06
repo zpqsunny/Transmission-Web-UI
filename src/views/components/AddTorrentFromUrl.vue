@@ -95,16 +95,16 @@ export default {
         .then(r => {
           if (r.match(/^[0-9a-f]{40}$/i)) {
             this.addForm.filename = 'magnet:?xt=urn:btih:' + r
-            this.$store.commit('showMessage', {type: 'success', title: '已从剪贴板获取磁力链'})
+            this.$store.commit('showMessage', {type: 'success', title: '已从剪贴板获取磁力链接'})
             return
           }
           if (r.match(/^magnet:\?xt=urn:btih:[0-9a-f]{40}.?/i)) {
             this.addForm.filename = r
-            this.$store.commit('showMessage', {type: 'success', title: '已从剪贴板获取磁力链'})
+            this.$store.commit('showMessage', {type: 'success', title: '已从剪贴板获取磁力链接'})
           }
         })
         .catch(reason => {
-          console.warn('拒绝粘贴板',reason)
+          console.warn('粘贴板权限被拒绝 ',reason)
         })
       this.freeSpace()
     },
