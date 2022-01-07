@@ -42,3 +42,7 @@
 .v-data-table > .v-data-table__wrapper tbody tr.v-data-table__expanded__content {
     box-shadow: none !important;
 }
+
+.v-application--is-ltr .v-treeview-node__prepend {
+    margin-right: 0 !important;
+}

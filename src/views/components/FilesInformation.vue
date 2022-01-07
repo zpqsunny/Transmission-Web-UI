@@ -21,13 +21,17 @@
         </v-list>
       </v-menu>
     </v-btn-toggle>
-    <v-treeview dense selectable transition :items="fileTree" return-object @input="selectInput">
+    <v-treeview dense selectable transition shaped hoverable :items="fileTree" return-object @input="selectInput">
+      <template v-slot:prepend="{ item, open }">
+        <font-awesome-icon v-if="item.type === 'directory'" :icon="['far', open ? 'folder-open' : 'folder']" size="lg" />
+        <font-awesome-icon v-if="item.type === 'file'" :icon="['far', item.icon]" size="lg" />
+      </template>
       <template v-slot:label="{ item }">
         <div class="d-flex justify-space-between align-center align-content-center">
           <div>
             <span>{{ item.name }}</span>
           </div>
-          <div style="width: 300px">
+          <div style="width: calc(100vw/7);">
             <div v-if="item.type === 'file'" class="d-flex flex-column">
               <div class="d-flex flex-row justify-space-between">
                 <span>{{ item.bytesCompleted | unitFormat }} / {{ item.length | unitFormat }}</span>
@@ -69,7 +73,22 @@ export default {
     return {
       filesButtonAction: null,
       filesSelected: [],
-      fileTree: []
+      fileTree: [],
+      fileExtList: [
+        {
+          icon: 'file-video',
+          ext: ['.avi', '.mov', '.rmvb', '.rm', '.flv', '.mp4', '.3gp', '.mkv', '.wmv']
+        },
+        {
+          icon: 'file-audio',
+          ext: ['.mp3','.wav', '.flac']
+        },
+        {
+          icon: 'file-image',
+          ext: ['.bmp', '.jpg', '.png', '.tif', '.gif', '.pcx', '.tga', '.exif', '.fpx', '.svg', '.psd', '.cdr',
+            '.pcd', '.dxf', '.ufo', '.eps', '.ai', '.raw', '.wmf', '.webp']
+        }
+      ],
     }
   },
   mounted() {
@@ -161,7 +180,8 @@ export default {
               bytesCompleted: path.bytesCompleted,
               wanted: path.wanted,
               priority: path.priority,
-              children: r[name].result
+              children: r[name].result,
+              icon: this.fileIcon(path.name)
             })
           }
           return r[name]
@@ -186,6 +206,17 @@ export default {
     },
     selectInput(e) {
       this.filesSelected = e.map(v => v.index)
+    },
+    fileIcon(fileName) {
+      let index = fileName.lastIndexOf('.')
+      if (index < 0) {
+        return 'file'
+      }
+      let ext = fileName.substr(index)
+      let i = this.fileExtList.findIndex(v => {
+        return v.ext.findIndex(v => v === ext) >= 0
+      })
+      return i >= 0 ? this.fileExtList[i].icon : 'file'
     }
   }
 }
