@@ -4,7 +4,9 @@
     <v-data-table dense :headers="peersHeaders" :items="peersInfo" item-key="address" no-data-text="暂无内容" no-results-text="未找到匹配项"
                   :items-per-page="$store.state.itemsPerPage" @update:items-per-page="e => $store.commit('updateItemsPerPage', e)">
       <template v-slot:item.address="{ item }">
-        <img v-if="item.countryCode !== ''" :src="require('@/assets/country/' + item.countryCode + '.png')" :alt="item.country" :title="['地区: ' + item.region, '国家: ' + item.country, '城市: ' + item.city].join('\n')">
+        <span class="d-inline-block" style="width: 16px;height: 11px">
+          <v-img v-if="item.countryCode !== ''" :src="require('@/assets/country/' + item.countryCode + '.png')" :alt="item.country" :title="['地区: ' + item.region, '国家: ' + item.country, '城市: ' + item.city].join('\n')"></v-img>
+        </span>
         {{ item.address }}
       </template>
       <template v-slot:item.flagStr="{ item }">
@@ -19,10 +21,10 @@
             <font-awesome-icon :icon="['fa', 'lock']" :class="item.isEncrypted ? 'yes-color': 'no-color'" title="加密"/>
           </v-col>
           <v-col>
-            <font-awesome-icon :icon="['fa', 'arrow-right']" :class="item.isIncoming ? 'yes-color': 'no-color'" title="传入" />
+            <font-awesome-icon :icon="['fa', 'arrow-right']" :class="item.isIncoming ? 'yes-color': 'no-color'" title="传入"/>
           </v-col>
           <v-col>
-            <font-awesome-icon :icon="['fa', 'upload']" :class="item.isUploadingTo ? 'yes-color': 'no-color'" title="正在上传" />
+            <font-awesome-icon :icon="['fa', 'upload']" :class="item.isUploadingTo ? 'yes-color': 'no-color'" title="正在上传"/>
           </v-col>
           <v-col>
             <span :class="item.isUTP ? 'yes-color': 'no-color'">μTP</span>
