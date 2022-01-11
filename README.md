@@ -36,7 +36,7 @@
 进入 transmission web 目录 /transmission/web
 ```shell script
 # 下载编译后文件
-wget https://github.com/zpqsunny/Transmission-Web-UI/releases/download/v2.0.3/release-v2.0.3.zip
+wget https://github.com/zpqsunny/Transmission-Web-UI/releases/download/v2.1.0/release-v2.1.0.zip
 # 重命名原transmission 默认index
 mv index.html index.html.bak
 unzip release-v2.0.3.zip
