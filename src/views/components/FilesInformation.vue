@@ -21,7 +21,7 @@
         </v-list>
       </v-menu>
     </v-btn-toggle>
-    <v-treeview dense selectable transition shaped hoverable :items="fileTree" return-object @input="selectInput">
+    <v-treeview dense selectable transition hoverable :items="fileTree" return-object @input="selectInput">
       <template v-slot:prepend="{ item, open }">
         <font-awesome-icon v-if="item.type === 'directory'" :icon="['far', open ? 'folder-open' : 'folder']" size="lg" />
         <font-awesome-icon v-if="item.type === 'file'" :icon="['far', item.icon]" size="lg" />
@@ -31,25 +31,30 @@
           <div>
             <span>{{ item.name }}</span>
           </div>
-          <div style="width: calc(100vw/7);">
-            <div v-if="item.type === 'file'" class="d-flex flex-column">
-              <div class="d-flex flex-row justify-space-between">
-                <span>{{ item.bytesCompleted | unitFormat }} / {{ item.length | unitFormat }}</span>
-                <span><strong>{{(item.bytesCompleted / item.length * 100).toFixed(2)}}%</strong></span>
-              </div>
-            </div>
+          <div v-if="item.type === 'file'" style="width: calc(100vw/7);">
             <div class="d-flex flex-column">
-              <v-progress-linear v-if="item.length > 0" :value="(item.bytesCompleted / item.length * 100).toFixed(2)" striped rounded color="#03a9f4"></v-progress-linear>
+              <v-progress-linear v-if="item.length > 0" height="18" :value="(item.bytesCompleted / item.length * 100).toFixed(2)" striped rounded color="#03a9f4">
+                <template v-slot:default="{ value }">
+                  <strong>{{ value }}%</strong>
+                </template>
+              </v-progress-linear>
             </div>
             <div class="d-flex flex-column">
               <div class="d-flex justify-space-between">
-                <span v-if="item.priority === -1">优先级别: 低</span>
-                <span v-if="item.priority === 0">优先级别: 正常</span>
-                <span v-if="item.priority === 1">优先级别: 高</span>
-                <span v-if="item.type === 'file'">
-                  下载:
-                  <font-awesome-icon v-if="item.wanted" title="是" style="color: #4CAF50" :icon="['fa', 'check']"/>
-                  <font-awesome-icon v-if="!item.wanted" title="否" style="color: #909399" :icon="['fa', 'times']"/>
+                <span v-if="item.priority === -1">
+                  <font-awesome-icon title="优先级别: 低" style="color: #ff5252" :icon="['fa', 'battery-quarter']"/>
+                </span>
+                <span v-if="item.priority === 0">
+                  <font-awesome-icon title="优先级别: 正常" style="color: #03A9F4" :icon="['fa', 'battery-half']"/>
+                </span>
+                <span v-if="item.priority === 1">
+                  <font-awesome-icon title="优先级别: 高" class="yes-color" :icon="['fa', 'battery-full']"/>
+                </span>
+                <span>
+                  <small>{{ item.bytesCompleted | unitFormat }} / {{ item.length | unitFormat }}</small>
+                </span>
+                <span>
+                  <font-awesome-icon :title="item.wanted? '是': '否'" :class="item.wanted? 'yes-color': 'no-color'" :icon="['fa', 'cloud-download-alt']"/>
                 </span>
               </div>
             </div>
@@ -71,9 +76,9 @@ export default {
   },
   data() {
     return {
+      filesList: [],
       filesButtonAction: null,
       filesSelected: [],
-      fileTree: [],
       fileExtList: [
         {
           icon: 'file-video',
@@ -94,6 +99,11 @@ export default {
   mounted() {
     this.getFiles()
   },
+  computed: {
+    fileTree() {
+      return this.treeify(this.filesList)
+    }
+  },
   methods: {
     getFiles() {
       this.$axios.post('', {
@@ -110,7 +120,7 @@ export default {
         //files
         let fileStats = torrent.fileStats
         let files = torrent.files
-        let temp = files.map((value, index) => {
+        this.filesList = files.map((value, index) => {
           return {
             index: index,
             name: value.name,
@@ -120,7 +130,6 @@ export default {
             priority: fileStats[index].priority,
           }
         })
-        this.fileTree = this.treeify(temp)
       })
     },
     setFilesWantedAndUnwanted(value) {
