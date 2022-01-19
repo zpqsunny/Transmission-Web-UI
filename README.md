@@ -1,10 +1,10 @@
 ## Transmission Web UI
 
-[![GitHub package.json version](https://img.shields.io/github/package-json/v/zpqsunny/Transmission-Web-UI)](#)
-[![GitHub](https://img.shields.io/github/license/zpqsunny/Transmission-Web-UI)](#)
-[![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/zpqsunny/Transmission-Web-UI/vue)](#)
-[![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/zpqsunny/Transmission-Web-UI/vuetify)](#)
-[![#](https://img.shields.io/badge/transmission-version%3E%3D2.4-success)](#)
+[![GitHub package.json version](https://img.shields.io/github/package-json/v/zpqsunny/Transmission-Web-UI)]()
+[![GitHub](https://img.shields.io/github/license/zpqsunny/Transmission-Web-UI)]()
+[![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/zpqsunny/Transmission-Web-UI/vue)]()
+[![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/zpqsunny/Transmission-Web-UI/vuetify)]()
+[![#](https://img.shields.io/badge/transmission-version%3E%3D2.4-success)]()
 
 ### 介绍
 本项目是基于 Transmission RPC 接口
@@ -73,6 +73,6 @@ unzip release-v2.0.3.zip
 
 PayPal: zpqsunny#gmail.com
 
-<img src="./src/assets/alipay.jpg" height="450"><img src="./src/assets/weixin.jpg" height="450">
+<img src="https://raw.githubusercontent.com/zpqsunny/Transmission-Web-UI/main/src/assets/alipay.jpg" height="450"><img src="https://raw.githubusercontent.com/zpqsunny/Transmission-Web-UI/main/src/assets/weixin.jpg" height="450">
 
 **感谢!**
