@@ -1,11 +1,10 @@
 ## Transmission Web UI
 
-![GitHub package.json version](https://img.shields.io/github/package-json/v/zpqsunny/Transmission-Web-UI)
-![GitHub](https://img.shields.io/github/license/zpqsunny/Transmission-Web-UI)
-![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/zpqsunny/Transmission-Web-UI/vue)
-![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/zpqsunny/Transmission-Web-UI/vuetify)
-![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/kbpnojigbmopjjhokfbdeejefhniedlo)
-![#](https://img.shields.io/badge/transmission-version%3E%3D2.4-success)
+[![GitHub package.json version](https://img.shields.io/github/package-json/v/zpqsunny/Transmission-Web-UI)](#)
+[![GitHub](https://img.shields.io/github/license/zpqsunny/Transmission-Web-UI)](#)
+[![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/zpqsunny/Transmission-Web-UI/vue)](#)
+[![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/zpqsunny/Transmission-Web-UI/vuetify)](#)
+[![#](https://img.shields.io/badge/transmission-version%3E%3D2.4-success)](#)
 
 ### 介绍
 本项目是基于 Transmission RPC 接口
@@ -44,9 +43,13 @@ unzip release-v2.0.3.zip
 ```
 #### 2.浏览器扩展安装
 
-[Chrome 扩展商店链接](https://chrome.google.com/webstore/detail/transmission-web-ui/kbpnojigbmopjjhokfbdeejefhniedlo)
+[![](https://img.shields.io/chrome-web-store/v/kbpnojigbmopjjhokfbdeejefhniedlo)](https://chrome.google.com/webstore/detail/transmission-web-ui/kbpnojigbmopjjhokfbdeejefhniedlo)
+[![](https://img.shields.io/chrome-web-store/rating/kbpnojigbmopjjhokfbdeejefhniedlo)](https://chrome.google.com/webstore/detail/transmission-web-ui/kbpnojigbmopjjhokfbdeejefhniedlo)
+[![](https://img.shields.io/chrome-web-store/users/kbpnojigbmopjjhokfbdeejefhniedlo)](https://chrome.google.com/webstore/detail/transmission-web-ui/kbpnojigbmopjjhokfbdeejefhniedlo)
 
-[Edge 扩展商店链接](https://microsoftedge.microsoft.com/addons/detail/lffaomgjiombjbglofglnmckpghnobom)
+[![](https://img.shields.io/badge/dynamic/json?label=edge%20web%20store&prefix=v&query=%24.version&url=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fgetproductdetailsbycrxid%2Flffaomgjiombjbglofglnmckpghnobom)](https://microsoftedge.microsoft.com/addons/detail/transmission-web-ui/lffaomgjiombjbglofglnmckpghnobom)
+[![](https://img.shields.io/badge/dynamic/json?label=rating&suffix=/5&query=%24.averageRating&url=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fgetproductdetailsbycrxid%2Flffaomgjiombjbglofglnmckpghnobom)](https://microsoftedge.microsoft.com/addons/detail/transmission-web-ui/lffaomgjiombjbglofglnmckpghnobom)
+[![](https://img.shields.io/badge/dynamic/json?label=users&query=%24.activeInstallCount&url=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fgetproductdetailsbycrxid%2Flffaomgjiombjbglofglnmckpghnobom)](https://microsoftedge.microsoft.com/addons/detail/transmission-web-ui/lffaomgjiombjbglofglnmckpghnobom)
 
 ### 食用方法
 
