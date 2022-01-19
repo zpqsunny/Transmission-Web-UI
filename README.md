@@ -73,8 +73,6 @@ unzip release-v2.0.3.zip
 
 PayPal: zpqsunny#gmail.com
 
-![](./src/assets/alipay.jpg)
+<img src="./src/assets/alipay.jpg" height="450"><img src="./src/assets/weixin.jpg" height="450">
 
-![](./src/assets/weixin.jpg)
-
-感谢!
+**感谢!**
