@@ -21,7 +21,7 @@
         {{ item.queuePosition + 1 }}
       </template>
       <template v-slot:item.name="{ item }">
-        <span class="d-inline-block align-center" style="word-break: break-all" :title="item.name + '\n\n' + item.downloadDir">
+        <span class="d-inline-block align-center" style="word-break: break-all" :title="[item.name, item.downloadDir].join('\n\n')">
           <v-tooltip v-if="item.error > 0" top>
             <template v-slot:activator="{ on, attrs }">
               <font-awesome-icon style="color: #e53935" v-bind="attrs" v-on="on" :icon="['fa', 'exclamation-triangle']"/>

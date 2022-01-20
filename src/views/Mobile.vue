@@ -83,7 +83,7 @@
       <v-container fluid>
         <v-list flat three-line>
           <v-list-item-group v-model="selectedTorrents" multiple>
-            <template v-for="(item, index) in this.$store.state.torrents">
+            <template v-for="(item, index) in $store.state.torrents">
               <v-list-item :value="item.id" style="padding: 0;border-bottom: thin solid #e0e0e0;" v-if="torrentStatus < 0 || item.status === torrentStatus" :key="index">
                 <template v-slot:default="{ active }">
                   <v-list-item-action style="margin-right: 16px;">
