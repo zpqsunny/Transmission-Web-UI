@@ -291,10 +291,7 @@ export default {
   },
   methods: {
     torrentAction(method) {
-      let ids = []
-      this.selectedTorrents.forEach(value => {
-        ids.push(value.id)
-      })
+      let ids = this.selectedTorrents.map(v => v.id)
       this.$axios.post('', {
         method: method,
         arguments: {
@@ -308,10 +305,7 @@ export default {
       this.$refs['torrents'].getTorrentList()
     },
     torrentActionDelete() {
-      let ids = []
-      this.selectedTorrents.forEach(value => {
-        ids.push(value.id)
-      })
+      let ids = this.selectedTorrents.map(v => v.id)
       this.$axios.post('', {
         method: 'torrent-remove',
         arguments: {
@@ -345,10 +339,7 @@ export default {
       this.torrentSetLocationDialog = true
     },
     torrentSetLocation() {
-      let ids = []
-      this.selectedTorrents.forEach(value => {
-        ids.push(value.id)
-      })
+      let ids = this.selectedTorrents.map(v => v.id)
       this.$axios.post('', {
         method: 'torrent-set-location',
         arguments: {

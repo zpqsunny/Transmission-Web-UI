@@ -98,11 +98,11 @@
     <v-menu v-model="menu.show" :position-x="menu.x" :position-y="menu.y" absolute offset-y transition="slide-x-transition">
       <v-list>
         <v-list-item @click="showTorrentRenamePath">
-          <v-list-item-avatar><font-awesome-icon :icon="['far', 'save']"/></v-list-item-avatar>
+          <v-list-item-avatar><font-awesome-icon :icon="['fa', 'save']"/></v-list-item-avatar>
           <v-list-item-content><v-list-item-title>路径重命名</v-list-item-title></v-list-item-content>
         </v-list-item>
         <v-list-item @click="copyDownloadDir">
-          <v-list-item-avatar><font-awesome-icon :icon="['far', 'copy']"/></v-list-item-avatar>
+          <v-list-item-avatar><font-awesome-icon :icon="['fa', 'copy']"/></v-list-item-avatar>
           <v-list-item-content><v-list-item-title>路径复制</v-list-item-title></v-list-item-content>
         </v-list-item>
       </v-list>
