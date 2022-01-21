@@ -315,7 +315,7 @@
                     <v-col cols="12">
                       <v-text-field label="Access Token" v-model="ipInfoToken" outlined>
                         <template v-slot:append>
-                          <a href="https://ipinfo.io/" target="_blank"><font-awesome-icon size="1" :icon="['fa', 'info-circle']"/></a>
+                          <a href="https://ipinfo.io/" target="_blank"><font-awesome-icon size="1x" :icon="['fa', 'info-circle']"/></a>
                         </template>
                       </v-text-field>
                     </v-col>

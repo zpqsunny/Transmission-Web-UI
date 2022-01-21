@@ -110,11 +110,13 @@ export default {
         let torrent = r.data.arguments.torrents[0]
         //peers
         this.peersInfo = torrent.peers.map(v => {
-          v.countryCode = ''
-          v.country = ''
-          v.region = ''
-          v.city = ''
-          return v
+          return {
+            countryCode: '',
+            country: '',
+            region: '',
+            city: '',
+            ...v
+          }
         })
         this.peersFrom = torrent.peersFrom
         let ipInfoToken = localStorage.getItem('ipInfoToken')

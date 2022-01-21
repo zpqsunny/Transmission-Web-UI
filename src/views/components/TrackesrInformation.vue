@@ -123,10 +123,7 @@ export default {
       if (this.trackerSelected.length <= 0) {
         return
       }
-      const d = []
-      this.trackerSelected.forEach(value => {
-        d.push(value.id)
-      })
+      const d = this.trackerSelected.map(v => v.id)
       this.$axios.post('', {
         method: 'torrent-set',
         arguments: {
