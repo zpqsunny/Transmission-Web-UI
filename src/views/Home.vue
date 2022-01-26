@@ -26,8 +26,8 @@
           </v-list>
         </v-menu>
         <v-divider style="margin: 0 2px" vertical/>
-        <v-btn text small @click="speed" :title="this.$store.state.sessionInfo['alt-speed-enabled'] ? '限速' : '全速'">
-          <font-awesome-icon size="2x" :icon="this.$store.state.sessionInfo['alt-speed-enabled'] ? ['fa', 'running'] : ['fa', 'paper-plane']"/>
+        <v-btn text small @click="speed" :title="$store.state.sessionInfo['alt-speed-enabled'] ? '限速' : '全速'">
+          <font-awesome-icon size="2x" :icon="$store.state.sessionInfo['alt-speed-enabled'] ? ['fa', 'running'] : ['fa', 'paper-plane']"/>
         </v-btn>
         <v-divider style="margin: 0 2px" vertical/>
         <v-btn text small @click="torrentAction('torrent-start')" title="重新开始已选择的种子" :disabled="!selectedTorrents.length > 0">
