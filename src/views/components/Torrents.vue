@@ -99,7 +99,7 @@
       <v-list>
         <v-list-item @click="showTorrentRenamePath">
           <v-list-item-avatar><font-awesome-icon :icon="['fa', 'save']"/></v-list-item-avatar>
-          <v-list-item-content><v-list-item-title>路径重命名</v-list-item-title></v-list-item-content>
+          <v-list-item-content><v-list-item-title>重命名</v-list-item-title></v-list-item-content>
         </v-list-item>
         <v-list-item @click="copyDownloadDir">
           <v-list-item-avatar><font-awesome-icon :icon="['fa', 'copy']"/></v-list-item-avatar>
@@ -109,16 +109,11 @@
     </v-menu>
     <v-dialog v-model="torrentRenamePathDialog" width="30%">
       <v-card>
-        <v-card-title class="text-h5 grey lighten-2 justify-center">路径重命名</v-card-title>
+        <v-card-title class="text-h5 grey lighten-2 justify-center">重命名</v-card-title>
         <v-container>
           <v-row>
             <v-col cols="12">
               <v-text-field label="名称" v-model="renamePath.name"></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="12">
-              <v-text-field label="路径" v-model="renamePath.path"></v-text-field>
             </v-col>
           </v-row>
         </v-container>
@@ -207,7 +202,7 @@ export default {
     },
     showTorrentRenamePath(){
       this.renamePath.name = this.menu.selectItem.name
-      this.renamePath.path = this.menu.selectItem.downloadDir
+      this.renamePath.path = this.menu.selectItem.name
       this.torrentRenamePathDialog = true
     },
     torrentRenamePath() {
