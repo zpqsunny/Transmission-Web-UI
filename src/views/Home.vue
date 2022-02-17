@@ -103,32 +103,32 @@
               <v-list dense>
                 <v-list-item-group v-model="filterItem" color="primary">
                   <v-list-item @click="search = 'all'">
-                    <v-list-item-avatar><font-awesome-icon size="2x" :icon="['fa','folder']"/></v-list-item-avatar>
+                    <v-list-item-avatar rounded><font-awesome-icon size="2x" :icon="['fa','folder']"/></v-list-item-avatar>
                     <v-list-item-content><v-list-item-title>全部</v-list-item-title></v-list-item-content>
                     <v-list-item-action>{{ torrentTotal }}</v-list-item-action>
                   </v-list-item>
                   <v-list-item @click="search = '0'">
-                    <v-list-item-avatar><font-awesome-icon size="2x" :icon="['fa','pause']"/></v-list-item-avatar>
+                    <v-list-item-avatar rounded><font-awesome-icon size="2x" :icon="['fa','pause']"/></v-list-item-avatar>
                     <v-list-item-content><v-list-item-title>暂停</v-list-item-title></v-list-item-content>
                     <v-list-item-action>{{ torrentPause }}</v-list-item-action>
                   </v-list-item>
                   <v-list-item @click="search = '2'">
-                    <v-list-item-avatar><font-awesome-icon size="2x" :icon="['fa','database']"/></v-list-item-avatar>
+                    <v-list-item-avatar rounded><font-awesome-icon size="2x" :icon="['fa','database']"/></v-list-item-avatar>
                     <v-list-item-content><v-list-item-title>校验中</v-list-item-title></v-list-item-content>
                     <v-list-item-action>{{ torrentDatabase }}</v-list-item-action>
                   </v-list-item>
                   <v-list-item @click="search = '3'">
-                    <v-list-item-avatar><font-awesome-icon size="2x" :icon="['fa','clock']"/></v-list-item-avatar>
+                    <v-list-item-avatar rounded><font-awesome-icon size="2x" :icon="['fa','clock']"/></v-list-item-avatar>
                     <v-list-item-content><v-list-item-title>待下载</v-list-item-title></v-list-item-content>
                     <v-list-item-action>{{ torrentWaitDownload }}</v-list-item-action>
                   </v-list-item>
                   <v-list-item @click="search = '4'">
-                    <v-list-item-avatar><font-awesome-icon size="2x" :icon="['fa','cloud-download-alt']"/></v-list-item-avatar>
+                    <v-list-item-avatar rounded><font-awesome-icon size="2x" :icon="['fa','cloud-download-alt']"/></v-list-item-avatar>
                     <v-list-item-content><v-list-item-title>下载中</v-list-item-title></v-list-item-content>
                     <v-list-item-action>{{ torrentDownloading }}</v-list-item-action>
                   </v-list-item>
                   <v-list-item @click="search = '6'">
-                    <v-list-item-avatar><font-awesome-icon size="2x" :icon="['fa','cloud-upload-alt']"/></v-list-item-avatar>
+                    <v-list-item-avatar rounded><font-awesome-icon size="2x" :icon="['fa','cloud-upload-alt']"/></v-list-item-avatar>
                     <v-list-item-content><v-list-item-title>做种中</v-list-item-title></v-list-item-content>
                     <v-list-item-action>{{ torrentUploading }}</v-list-item-action>
                   </v-list-item>
