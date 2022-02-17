@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-data-table v-model="selectedTorrents" :sort-by="['queuePosition']" no-data-text="暂无内容" no-results-text="未找到匹配项"
+    <v-data-table v-model="selectedTorrents" no-data-text="暂无内容" no-results-text="未找到匹配项"
                   :headers="headers" :items="$store.state.torrents" item-key="id" show-select show-expand fixed-header
                   :items-per-page="-1" @contextmenu:row="showMenu" hide-default-footer :search="searchStatus" :custom-filter="filterOnlyStatus">
       <template v-slot:item.data-table-expand="{isExpanded, expand}">
@@ -182,7 +182,7 @@ export default {
         // {text: 'peersGettingFromUs', align: 'start', sortable: false, value: 'peersGettingFromUs', width: 200},
         // {text: 'peersSendingToUs', align: 'start', sortable: false, value: 'peersSendingToUs', width: 200},
         {text: '分享率', align: 'center', sortable: true, value: 'uploadRatio', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
-        {text: '已上传/下载', align: 'left', sortable: true, value: 'uploadedEver', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
+        {text: '已上传/下载', align: 'left', sortable: false, value: 'uploadedEver', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
         // {text: '已完成', align: 'center', sortable: false, value: 'downloadedEver', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
         // {text: '保存目录', align: 'start', sortable: false, value: 'downloadDir', width: 200},
         {text: '完成时间', align: 'center', sortable: true, value: 'doneDate', width: 120, class: 'torrent-list', cellClass: 'torrent-list'},
