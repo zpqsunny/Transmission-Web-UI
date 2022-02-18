@@ -43,7 +43,7 @@
     <v-menu v-model="menu.show" :position-x="menu.x" :position-y="menu.y" absolute offset-y transition="slide-x-transition">
       <v-list>
         <v-list-item @click="showReplaceDialog">
-          <v-list-item-avatar><font-awesome-icon :icon="['far', 'edit']"/></v-list-item-avatar>
+          <v-list-item-icon><font-awesome-icon size="xl" :icon="['fa', 'edit']"/></v-list-item-icon>
           <v-list-item-content><v-list-item-title>Tracker 替换</v-list-item-title></v-list-item-content>
         </v-list-item>
       </v-list>
