@@ -49,7 +49,7 @@ jobs:
           asset_name: release-${{ steps.branch-name.outputs.current_branch }}.zip
           asset_content_type: application/zip
       - name: Upload Release Asset22
-        id: upload-release-asset
+        id: upload-release-asset22
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
