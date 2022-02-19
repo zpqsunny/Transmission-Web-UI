@@ -35,10 +35,10 @@
 进入 transmission web 目录 /transmission/web
 ```shell script
 # 下载编译后文件
-wget https://github.com/zpqsunny/Transmission-Web-UI/releases/download/v2.1.0/release-v2.1.0.zip
+wget https://github.com/zpqsunny/Transmission-Web-UI/releases/download/v2.1.9/release-v2.1.9.zip
 # 重命名原transmission 默认index
 mv index.html index.html.bak
-unzip release-v2.0.3.zip
+unzip release-v2.1.9.zip
 # 如果想恢复原来的 直接将备份的index.html.bak 重命名回index.html
 ```
 #### 2.浏览器扩展安装
@@ -66,8 +66,6 @@ unzip release-v2.0.3.zip
 ![主界面](./main.png)
 
 如配置正确下次打开默认自动进入种子管理界面
-
-本项目配合Chromium内核浏览器开发插件食用,插件项目[chrome-extensions](https://github.com/zpqsunny/chrome-extensions)
 
 如果您觉得这项目不错或对您有帮助请支持我
 
