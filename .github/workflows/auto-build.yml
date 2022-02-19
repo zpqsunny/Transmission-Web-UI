@@ -48,8 +48,8 @@ jobs:
           asset_path: ./dist/release.zip
           asset_name: release-${{ steps.branch-name.outputs.current_branch }}.zip
           asset_content_type: application/zip
-      - name: Upload Release Asset22
-        id: upload-release-asset22
+      - name: Upload Release Asset With Chrome
+        id: upload-release-asset-chrome
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
