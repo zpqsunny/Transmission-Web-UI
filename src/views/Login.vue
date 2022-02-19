@@ -39,12 +39,28 @@ export default {
       localStorage.setItem('auth', this.api.auth)
       localStorage.setItem('username', this.api.username)
       localStorage.setItem('password', this.api.password)
-      let re = /(Mobile|Android|iPad|Windows Phone|iPhone)/i
-      if (re.test(navigator.appVersion)) {
-        this.$router.push({path: '/m'})
-      } else {
-        this.$router.push({path: '/'})
-      }
+      this.$axios.post('',{
+        method: 'session-get',
+        arguments: {
+          fields: ['rpc-version', 'version']
+        }
+      }).then(r => {
+        if (r.data.result === 'success') {
+          let rpcVersion = this.$store.state.application.rpcVersion
+          if (r.data.arguments['rpc-version'] < rpcVersion) {
+            this.$store.commit('showMessage',{type: 'error', title: 'Transmission RPC version must >= ' + rpcVersion})
+            return
+          }
+          let re = /(Mobile|Android|iPad|Windows Phone|iPhone)/i
+          if (re.test(navigator.appVersion)) {
+            this.$router.push({path: '/m'})
+          } else {
+            this.$router.push({path: '/'})
+          }
+        }
+      }).catch(reason => {
+        this.$store.commit('showMessage',{type: 'error', title: 'Connect Fail'})
+      })
     }
   }
 }

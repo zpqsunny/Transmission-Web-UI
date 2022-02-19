@@ -6,6 +6,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    application: {
+      rpcVersion: 16,
+    },
     message: {
       show: false,
       type: '',
@@ -103,7 +106,7 @@ export default new Vuex.Store({
               'rpc-version-minimum', 'script-torrent-done-filename', 'script-torrent-done-enabled', 'seedRatioLimit',
               'seedRatioLimited', 'seed-queue-size', 'seed-queue-enabled', 'speed-limit-down', 'speed-limit-down-enabled',
               'speed-limit-up', 'speed-limit-up-enabled', 'start-added-torrents', 'trash-original-torrent-files', 'units',
-              'utp-enabled', 'version', 'units','download-dir-free-space'
+              'utp-enabled', 'version','download-dir-free-space'
             ]
           }
         }).then(r => {
