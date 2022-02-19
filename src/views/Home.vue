@@ -159,7 +159,7 @@
         </v-container>
       </v-main>
       <v-footer app>
-        <small class="text-right">Transmission: {{ $store.state.sessionInfo.version }} rpc-version: {{ $store.state.sessionInfo["rpc-version"] }}</small>
+        <small>Transmission: {{ $store.state.sessionInfo.version }} rpc-version: {{ $store.state.sessionInfo["rpc-version"] }}</small>
       </v-footer>
       <!--  新增URL对话框  -->
       <v-dialog v-if="addTorrentFromUrlDialog" v-model="addTorrentFromUrlDialog" width="30%">

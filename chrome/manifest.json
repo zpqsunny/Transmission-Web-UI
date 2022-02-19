@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Transmission Web UI",
+  "version": "2.1.8",
+  "action": {
+    "default_icon": {
+      "16": "images/download16.png",
+      "32": "images/download32.png"
+    },
+    "default_title": "Transmission Web UI"
+  },
+  "icons": {
+    "16": "images/download16.png",
+    "48": "images/download48.png",
+    "128": "images/download128.png"
+  },
+  "description": "A Web UI For Transmission",
+  "author": "zpq",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "homepage_url": "https://github.com/zpqsunny/Transmission-Web-UI",
+  "host_permissions": [
+    "https://*/",
+    "http://*/"
+  ],
+  "permissions": [
+    "contextMenus",
+    "background"
+  ]
+}
