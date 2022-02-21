@@ -159,7 +159,7 @@
         </v-container>
       </v-main>
       <v-footer app>
-        <small>Transmission: {{ $store.state.sessionInfo.version }} rpc-version: {{ $store.state.sessionInfo["rpc-version"] }}</small>
+        <Bottom/>
       </v-footer>
       <!--  新增URL对话框  -->
       <v-dialog v-if="addTorrentFromUrlDialog" v-model="addTorrentFromUrlDialog" width="30%">
@@ -243,6 +243,7 @@ import Information from '@/views/Information'
 import Torrents from '@/views/components/Torrents'
 import AddTorrentFromUrl from '@/views/components/AddTorrentFromUrl'
 import AddTorrentFromFile from '@/views/components/AddTorrentFromFile'
+import Bottom from '@/views/Bottom'
 
 export default {
   name: 'Home',
@@ -252,7 +253,8 @@ export default {
     Information,
     Torrents,
     AddTorrentFromUrl,
-    AddTorrentFromFile
+    AddTorrentFromFile,
+    Bottom,
   },
   computed: {
     torrentTotal: function () {

@@ -52,7 +52,7 @@ export default {
           formatter: (params) => {
             let upload = params[0].value
             let download = params[1].value
-            return upload[0] + '<br/>上传速度: ' + this.format(upload[1]) + '<br/>下载速度: ' + this.format(download[1]) + ''
+            return upload[0] + '<br/>上传速度: ' + this.format(upload[1]) + '<br/>下载速度: ' + this.format(download[1])
           },
           axisPointer: {
             animation: false
@@ -161,25 +161,26 @@ export default {
       let date = new Date()
       this.$axios.post('', {method: 'session-stats'})
         .then(r => {
-          if (r.data.result === 'success') {
-            this.sessionStatistics = r.data.arguments
-            let hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
-            let minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
-            let seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
-            this.chart.series[0].data.push({
-              name: date.toString(),
-              value: [ [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-') + ' ' +  [hours, minutes, seconds].join(':'), this.sessionStatistics.uploadSpeed]
-            })
-            this.chart.series[1].data.push({
-              name: date.toString(),
-              value: [ [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-') + ' ' +  [hours, minutes, seconds].join(':'), this.sessionStatistics.downloadSpeed]
-            })
-            if (this.chart.series[0].data.length > 20) {
-              this.chart.series[0].data.shift()
-              this.chart.series[1].data.shift()
-            }
-            this.myChart.setOption(this.chart)
+          if (r.data.result !== 'success') {
+            return
           }
+          this.sessionStatistics = r.data.arguments
+          let hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
+          let minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
+          let seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
+          this.chart.series[0].data.push({
+            name: date.toString(),
+            value: [ [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-') + ' ' +  [hours, minutes, seconds].join(':'), this.sessionStatistics.uploadSpeed]
+          })
+          this.chart.series[1].data.push({
+            name: date.toString(),
+            value: [ [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-') + ' ' +  [hours, minutes, seconds].join(':'), this.sessionStatistics.downloadSpeed]
+          })
+          if (this.chart.series[0].data.length > 20) {
+            this.chart.series[0].data.shift()
+            this.chart.series[1].data.shift()
+          }
+          this.myChart.setOption(this.chart)
         })
     },
     format(value) {
