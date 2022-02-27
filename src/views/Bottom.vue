@@ -11,9 +11,6 @@ export default {
     return {
 
     }
-  },
-  mounted() {
-    this.$store.commit('getSessionInfo')
   }
 }
 </script>

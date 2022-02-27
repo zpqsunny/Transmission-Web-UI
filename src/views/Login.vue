@@ -39,6 +39,9 @@ export default {
       localStorage.setItem('auth', this.api.auth)
       localStorage.setItem('username', this.api.username)
       localStorage.setItem('password', this.api.password)
+      this.action()
+    },
+    action() {
       this.$axios.post('',{
         method: 'session-get',
         arguments: {
@@ -58,7 +61,12 @@ export default {
             this.$router.push({path: '/'})
           }
         }
-      }).catch(reason => {
+      }).catch(error => {
+        if(error.response.status === 409) {
+          // 缺少头部 重试
+          this.action()
+          return
+        }
         this.$store.commit('showMessage',{type: 'error', title: 'Connect Fail'})
       })
     }
