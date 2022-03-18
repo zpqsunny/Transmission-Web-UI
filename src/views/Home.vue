@@ -2,7 +2,7 @@
   <div>
     <v-app style="height: 100vh">
       <v-system-bar height="40%" app>
-        <v-btn text small @click="nav = !nav">
+        <v-btn text small @click="navigation = !navigation">
           <font-awesome-icon size="2x" :icon="['fa','bars']"/>
         </v-btn>
         <v-btn text small @click="$refs['torrents'].getTorrentList()">
@@ -257,15 +257,6 @@ export default {
     Bottom,
   },
   computed: {
-    nav: {
-      get() {
-        return localStorage.getItem('navigation')
-      },
-      set(v) {
-        localStorage.setItem('navigation', v.toString())
-        this.navigation = v
-      }
-    },
     torrentTotal: function () {
       return this.$store.state.torrents.length
     },
