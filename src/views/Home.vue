@@ -2,7 +2,7 @@
   <div>
     <v-app style="height: 100vh">
       <v-system-bar height="40%" app>
-        <v-btn text small @click="navigation = !navigation">
+        <v-btn text small @click="nav = !nav">
           <font-awesome-icon size="2x" :icon="['fa','bars']"/>
         </v-btn>
         <v-btn text small @click="$refs['torrents'].getTorrentList()">
@@ -99,57 +99,57 @@
           <font-awesome-icon size="2x" :icon="['fa','sign-out-alt']"/>
         </v-btn>
       </v-system-bar>
-      <v-navigation-drawer v-model="navigation" app temporary width="320">
-        <v-list dense>
-          <v-list-item-group v-model="filterItem" color="primary">
-            <v-list-item @click="search = 'all'">
-              <v-list-item-icon><font-awesome-icon size="2x" :icon="['fa','folder']"/></v-list-item-icon>
-              <v-list-item-title>全部</v-list-item-title>
-              <v-list-item-action>
-                <v-list-item-action-text>{{ torrentTotal }}</v-list-item-action-text>
-              </v-list-item-action>
-            </v-list-item>
-            <v-list-item @click="search = '0'">
-              <v-list-item-icon><font-awesome-icon size="2x" :icon="['fa','pause']"/></v-list-item-icon>
-              <v-list-item-title>暂停</v-list-item-title>
-              <v-list-item-action>
-                <v-list-item-action-text>{{ torrentPause }}</v-list-item-action-text>
-              </v-list-item-action>
-            </v-list-item>
-            <v-list-item @click="search = '2'">
-              <v-list-item-icon><font-awesome-icon size="2x" :icon="['fa','database']"/></v-list-item-icon>
-              <v-list-item-title>校验中</v-list-item-title>
-              <v-list-item-action>
-                <v-list-item-action-text>{{ torrentDatabase }}</v-list-item-action-text>
-              </v-list-item-action>
-            </v-list-item>
-            <v-list-item @click="search = '3'">
-              <v-list-item-icon><font-awesome-icon size="2x" :icon="['fa','clock']"/></v-list-item-icon>
-              <v-list-item-title>待下载</v-list-item-title>
-              <v-list-item-action>
-                <v-list-item-action-text>{{ torrentWaitDownload }}</v-list-item-action-text>
-              </v-list-item-action>
-            </v-list-item>
-            <v-list-item @click="search = '4'">
-              <v-list-item-icon><font-awesome-icon size="2x" :icon="['fas','download']"/></v-list-item-icon>
-              <v-list-item-title>下载中</v-list-item-title>
-              <v-list-item-action>
-                <v-list-item-action-text>{{ torrentDownloading }}</v-list-item-action-text>
-              </v-list-item-action>
-            </v-list-item>
-            <v-list-item @click="search = '6'">
-              <v-list-item-icon><font-awesome-icon size="2x" :icon="['fas','upload']"/></v-list-item-icon>
-              <v-list-item-title>做种中</v-list-item-title>
-              <v-list-item-action>
-                <v-list-item-action-text>{{ torrentUploading }}</v-list-item-action-text>
-              </v-list-item-action>
-            </v-list-item>
-          </v-list-item-group>
-        </v-list>
-        <v-divider/>
-        <Statistics></Statistics>
-      </v-navigation-drawer>
       <v-main>
+        <v-navigation-drawer :value="navigation" app width="320">
+          <v-list dense>
+            <v-list-item-group v-model="filterItem" color="primary">
+              <v-list-item @click="search = 'all'">
+                <v-list-item-icon><font-awesome-icon size="2x" :icon="['fa','folder']"/></v-list-item-icon>
+                <v-list-item-title>全部</v-list-item-title>
+                <v-list-item-action>
+                  <v-list-item-action-text>{{ torrentTotal }}</v-list-item-action-text>
+                </v-list-item-action>
+              </v-list-item>
+              <v-list-item @click="search = '0'">
+                <v-list-item-icon><font-awesome-icon size="2x" :icon="['fa','pause']"/></v-list-item-icon>
+                <v-list-item-title>暂停</v-list-item-title>
+                <v-list-item-action>
+                  <v-list-item-action-text>{{ torrentPause }}</v-list-item-action-text>
+                </v-list-item-action>
+              </v-list-item>
+              <v-list-item @click="search = '2'">
+                <v-list-item-icon><font-awesome-icon size="2x" :icon="['fa','database']"/></v-list-item-icon>
+                <v-list-item-title>校验中</v-list-item-title>
+                <v-list-item-action>
+                  <v-list-item-action-text>{{ torrentDatabase }}</v-list-item-action-text>
+                </v-list-item-action>
+              </v-list-item>
+              <v-list-item @click="search = '3'">
+                <v-list-item-icon><font-awesome-icon size="2x" :icon="['fa','clock']"/></v-list-item-icon>
+                <v-list-item-title>待下载</v-list-item-title>
+                <v-list-item-action>
+                  <v-list-item-action-text>{{ torrentWaitDownload }}</v-list-item-action-text>
+                </v-list-item-action>
+              </v-list-item>
+              <v-list-item @click="search = '4'">
+                <v-list-item-icon><font-awesome-icon size="2x" :icon="['fas','download']"/></v-list-item-icon>
+                <v-list-item-title>下载中</v-list-item-title>
+                <v-list-item-action>
+                  <v-list-item-action-text>{{ torrentDownloading }}</v-list-item-action-text>
+                </v-list-item-action>
+              </v-list-item>
+              <v-list-item @click="search = '6'">
+                <v-list-item-icon><font-awesome-icon size="2x" :icon="['fas','upload']"/></v-list-item-icon>
+                <v-list-item-title>做种中</v-list-item-title>
+                <v-list-item-action>
+                  <v-list-item-action-text>{{ torrentUploading }}</v-list-item-action-text>
+                </v-list-item-action>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
+          <v-divider/>
+          <Statistics></Statistics>
+        </v-navigation-drawer>
         <v-container fluid>
           <v-row>
             <v-col cols="12">
@@ -257,6 +257,15 @@ export default {
     Bottom,
   },
   computed: {
+    nav: {
+      get() {
+        return localStorage.getItem('navigation')
+      },
+      set(v) {
+        localStorage.setItem('navigation', v.toString())
+        this.navigation = v
+      }
+    },
     torrentTotal: function () {
       return this.$store.state.torrents.length
     },
@@ -279,7 +288,7 @@ export default {
   data() {
     return {
       search: 'all',
-      navigation: null,
+      navigation: false,
       filterItem: 0,
       intervalId: null,
       sessionSetDialog: false,
