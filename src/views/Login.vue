@@ -32,7 +32,7 @@ export default {
   data: () => {
     return {
       api: {
-        url: 'http://localhost:8080/transmission/rpc',
+        url: 'http://127.0.0.1:9091/transmission/rpc',
         auth: false,
         username: '',
         password: ''
@@ -62,8 +62,8 @@ export default {
         if (r.data.result === 'success') {
           let rpcVersion = this.$store.state.application.rpcVersion
           if (r.data.arguments['rpc-version'] < rpcVersion) {
-            this.versionWarning.title = '警告'
-            this.versionWarning.text = '当前RPC版本为' + r.data.arguments['rpc-version'] + ',小于建议版本' + rpcVersion + '是否继续?'
+            this.versionWarning.title = '提示'
+            this.versionWarning.text = '当前RPC版本为' + r.data.arguments['rpc-version'] + ',小于建议版本' + rpcVersion + '是否继续登录?'
             this.versionWarning.show = true
             return
           }
