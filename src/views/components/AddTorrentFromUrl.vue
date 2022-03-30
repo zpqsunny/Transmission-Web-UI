@@ -91,21 +91,36 @@ export default {
       })
     },
     onfocus() {
-      navigator.clipboard.readText()
-        .then(r => {
-          if (r.match(/^[0-9a-f]{40}$/i)) {
-            this.addForm.filename = 'magnet:?xt=urn:btih:' + r
-            this.$store.commit('showMessage', {type: 'success', title: '已从剪贴板获取磁力链接'})
-            return
-          }
-          if (r.match(/^magnet:\?xt=urn:btih:[0-9a-f]{40}.?/i)) {
-            this.addForm.filename = r
-            this.$store.commit('showMessage', {type: 'success', title: '已从剪贴板获取磁力链接'})
-          }
-        })
-        .catch(reason => {
-          console.warn('粘贴板权限被拒绝 ',reason)
-        })
+      navigator.permissions.query({
+        name: 'clipboard-read'
+      }).then(v => {
+        switch (v.state) {
+          case 'granted':
+          case 'prompt':
+            navigator.clipboard.readText()
+                .then(r => {
+                  if (r.match(/^[0-9a-f]{40}$/i)) {
+                    this.addForm.filename = 'magnet:?xt=urn:btih:' + r
+                    this.$store.commit('showMessage', {type: 'success', title: '已从剪贴板获取磁力链接'})
+                    return
+                  }
+                  if (r.match(/^magnet:\?xt=urn:btih:[0-9a-f]{40}.?/i)) {
+                    this.addForm.filename = r
+                    this.$store.commit('showMessage', {type: 'success', title: '已从剪贴板获取磁力链接'})
+                  }
+                })
+                .catch(reason => {
+                  console.log(reason)
+                  this.$store.commit('showMessage', {type: 'warning', title: '粘贴板权限被拒绝,建议开启粘贴板'})
+                })
+            break;
+          case 'denied':
+            this.$store.commit('showMessage', {type: 'warning', title: '粘贴板权限被拒绝,建议开启粘贴板'})
+            break;
+          default:
+            break;
+        }
+      })
       this.freeSpace()
     },
     freeSpace() {

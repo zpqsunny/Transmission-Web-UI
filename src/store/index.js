@@ -12,7 +12,7 @@ export default new Vuex.Store({
     message: {
       show: false,
       type: '',
-      timeout: 4000,
+      timeout: 2000,
       title: ''
     },
     torrents: [],
