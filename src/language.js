@@ -212,9 +212,9 @@ const messages = {
     },
     information: {
       info: 'Info',
-      trackers: 'Tracker',
+      trackers: 'Trackers',
       files: 'Files',
-      peers: 'Peer',
+      peers: 'Peers',
       settings: 'Settings',
     },
     login: {

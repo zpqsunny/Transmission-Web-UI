@@ -240,7 +240,7 @@
                   </v-row>
                   <v-row justify="center">
                     <v-col cols="12">
-                      <span>{{ $t('components.system_setting.block_list_total_rules', [blockListSize])}}
+                      <span>{{ $t('components.system_setting.block_list_total_rules', [blockListSize]) }}
                         <v-btn color="secondary" :disabled="!$store.state.sessionInfo['blocklist-enabled']" @click="updateBlockList" v-text="$t('components.system_setting.update')"></v-btn>
                       </span>
                     </v-col>
@@ -253,18 +253,17 @@
                 <v-card-title v-text="$t('components.system_setting.peer_communication')"></v-card-title>
                 <v-container>
                   <v-row>
-                    <v-col cols="4">
+                    <v-col cols="5">
                       <v-checkbox v-model="$store.state.sessionInfo['peer-port-random-on-start']" :label="$t('components.system_setting.randomize_port_on_launch')"></v-checkbox>
                     </v-col>
-                    <v-col cols="6">
-                      <v-text-field outlined type="number" :label="$t('components.system_setting.peer_listening_port')" v-model.number="$store.state.sessionInfo['peer-port']" :disabled="$store.state.sessionInfo['peer-port-random-on-start']">
-                        <template v-slot:append>
-                          {{ portIsOpen }}
+                    <v-col cols="7">
+                      <v-text-field outlined type="number" :label="$t('components.system_setting.peer_listening_port')" v-model.number="$store.state.sessionInfo['peer-port']" :disabled="$store.state.sessionInfo['peer-port-random-on-start']" @blur="portTest">
+                        <template v-slot:append-outer>
+                          <font-awesome-icon size="xl" style="color: #f8cf06" v-if="portStatus === 'pending'" :icon="['fa', 'spinner']" :spin="true" />
+                          <font-awesome-icon size="xl" style="color: #67C23A" v-if="portStatus === 'ok'" :icon="['fa', 'check']" />
+                          <font-awesome-icon size="xl" style="color: #ff5252" v-if="portStatus === 'fail'" :icon="['fa', 'times']" />
                         </template>
                       </v-text-field>
-                    </v-col>
-                    <v-col cols="2">
-                      <v-btn text @click="portTest">测试端口</v-btn>
                     </v-col>
                   </v-row>
                   <v-row>
@@ -338,7 +337,7 @@
         timeBeginMenu: false,
         timeEndMenu: false,
         setTab: null,
-        portIsOpen: '状态未知',
+        portStatus: 'none',
         checkbox: [],
         pathSizeByte: 0,
         blockListSize: 0
@@ -557,14 +556,14 @@
         this.$emit('closed')
       },
       portTest() {
-        this.portIsOpen = '正在测试TCP端口...'
+        this.portStatus = 'pending'
         this.$axios.post('',
             {
               method: 'port-test',
               arguments: {}
             }).then(r => {
           if (r.data.result === 'success') {
-            this.portIsOpen = r.data.arguments['port-is-open'] ? '端口是开启的' : '端口是关闭的'
+            this.portStatus = r.data.arguments['port-is-open'] ? 'ok' : 'fail'
           }
         })
       },
