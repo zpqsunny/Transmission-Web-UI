@@ -19,11 +19,11 @@
             <v-list-item-group>
               <v-list-item @click="addTorrentFromUrlDialog = true">
                 <v-list-item-icon><font-awesome-icon size="xl" :icon="['fa','magnet']"/></v-list-item-icon>
-                <v-list-item-content><v-list-item-title>磁力链接</v-list-item-title></v-list-item-content>
+                <v-list-item-content><v-list-item-title v-text="$t('home.open_torrent_address')"></v-list-item-title></v-list-item-content>
               </v-list-item>
               <v-list-item @click="addTorrentFromFileDialog = true">
                 <v-list-item-icon><font-awesome-icon size="xl" :icon="['fa','paperclip']"/></v-list-item-icon>
-                <v-list-item-content><v-list-item-title>种子文件</v-list-item-title></v-list-item-content>
+                <v-list-item-content><v-list-item-title v-text="$t('home.open_torrent_file')"></v-list-item-title></v-list-item-content>
               </v-list-item>
             </v-list-item-group>
           </v-list>

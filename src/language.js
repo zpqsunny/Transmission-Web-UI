@@ -186,6 +186,8 @@ const messages = {
     home: {
       'global': 'Global',
       'speed': 'Speed',
+      'open_torrent_address': 'Open Torrent Address',
+      'open_torrent_file': 'Open Torrent File',
       'torrent_start': 'Start Selected Torrents',
       'torrent_stop': 'Parse Selected Torrents',
       'torrent_verify': 'Verify Selected Torrents',
@@ -406,6 +408,8 @@ const messages = {
     home: {
       'global': '全速',
       'speed': '限速',
+      'open_torrent_address': '磁力链接',
+      'open_torrent_file': '种子文件',
       'torrent_start': '重新开始已选择的种子',
       'torrent_stop': '暂停已选择的种子',
       'torrent_verify': '重新校验已选择的种子',
