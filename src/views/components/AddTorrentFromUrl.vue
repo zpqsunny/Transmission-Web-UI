@@ -22,7 +22,7 @@
                   </template>
                 </v-text-field>
                 <v-textarea outlined :label="$t('components.add_torrent.magnet_url')" v-model="addForm.filename" @focus="onfocus" placeholder="magnet:?xt=urn:btih:"></v-textarea>
-                <v-checkbox v-model="autoStart" :label="$t('components.add_torrent.auto_start')"></v-checkbox>
+                <v-checkbox v-model="autoStart" :label="$t('components.add_torrent.start_when_added')"></v-checkbox>
               </v-form>
             </v-col>
           </v-row>

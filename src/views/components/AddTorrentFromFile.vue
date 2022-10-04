@@ -22,7 +22,7 @@
                   </template>
                 </v-text-field>
                 <v-file-input :label="$t('components.add_torrent.torrent_file')" accept="application/x-bittorrent,.torrent" @focus="freeSpace" placeholder="*.torrent" @change="fileChange"></v-file-input>
-                <v-checkbox v-model="autoStart" :label="$t('components.add_torrent.auto_start')"></v-checkbox>
+                <v-checkbox v-model="autoStart" :label="$t('components.add_torrent.start_when_added')"></v-checkbox>
               </v-form>
             </v-col>
           </v-row>

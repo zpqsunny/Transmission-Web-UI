@@ -30,7 +30,7 @@ const messages = {
         'save_path': 'Save Location',
         'torrent_file': 'Torrent File',
         'magnet_url': 'Magnet Url',
-        'auto_start': 'Start Automatically'
+        'start_when_added': 'Start when added'
       },
       add_trackers: {
         'add_trackers': 'Add Trackers',
@@ -182,8 +182,8 @@ const messages = {
       }
     },
     home: {
-      'xs': '限速',
-      'xss': '全速',
+      'global': 'Global',
+      'speed': 'Speed',
       'torrent_start': 'Start Selected Torrents',
       'torrent_stop': 'Parse Selected Torrents',
       'torrent_verify': 'Verify Selected Torrents',
@@ -201,12 +201,12 @@ const messages = {
       'waiting_download': 'Waiting',
       'downloading': 'Downloading',
       'uploading': 'Uploading',
-      'confirm_remove_torrent': 'Delete Torrent Confirm',
-      'are_you_sure_remove_selected_torrent': 'Are You Sure Delete Selected Torrent ?',
-      'remove_with_data': 'Delete Data',
-      'set_location': 'Set Location',
-      'new_location': 'New Location',
-      'with_move_data': 'At The Same Time Move Data (If )（如果不钩选，则从新目录下查找文件）',
+      'confirm_remove_torrent': 'Delete torrent confirm',
+      'are_you_sure_remove_selected_torrent': 'Are you sure delete selected torrent ?',
+      'remove_with_data': 'Delete data',
+      'set_location': 'Set location',
+      'new_location': 'New location',
+      'with_move_data': 'At the same time move data (If not checked, find files from the new directory)',
     },
     information: {
       info: 'Info',
@@ -248,7 +248,7 @@ const messages = {
         'save_path': '保存的位置',
         'torrent_file': '种子文件',
         'magnet_url': '种子地址',
-        'auto_start': '自动开始'
+        'start_when_added': '自动开始'
       },
       add_trackers: {
         'add_trackers': '添加Trackers',
@@ -400,8 +400,8 @@ const messages = {
       }
     },
     home: {
-      'xs': '限速',
-      'xss': '全速',
+      'global': '全速',
+      'speed': '限速',
       'torrent_start': '重新开始已选择的种子',
       'torrent_stop': '暂停已选择的种子',
       'torrent_verify': '重新校验已选择的种子',
