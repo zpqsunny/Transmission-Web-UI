@@ -218,7 +218,7 @@ const messages = {
       settings: 'Settings',
     },
     login: {
-      auth: 'Auth',
+      auth: 'Authentication',
       username: 'Username',
       password: 'Password',
       login: 'Login'

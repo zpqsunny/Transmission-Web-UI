@@ -4,16 +4,19 @@
       <v-btn text small @click.stop="filterMenu = !filterMenu">
         <font-awesome-icon size="2x" :icon="['fa', 'filter']"/>
       </v-btn>
-      <v-btn text small @click.stop="torrentAction('torrent-start')" title="重新开始已选择的种子" :disabled="!selectedTorrents.length > 0">
+      <v-btn text small @click.stop="torrentAction('torrent-start')" :title="$t('home.torrent_start')" :disabled="!selectedTorrents.length > 0">
         <font-awesome-icon size="2x" :icon="['fa', 'play']"/>
       </v-btn>
-      <v-btn text small @click.stop="torrentAction('torrent-stop')" title="暂停已选择的种子" :disabled="!selectedTorrents.length > 0">
+      <v-btn text small @click.stop="torrentAction('torrent-stop')" :title="$t('home.torrent_stop')" :disabled="!selectedTorrents.length > 0">
         <font-awesome-icon size="2x" :icon="['fa', 'pause']"/>
       </v-btn>
-      <v-btn text small @click="deleteTorrentDialog = true" title="删除种子" :disabled="!selectedTorrents.length > 0">
+      <v-btn text small @click="deleteTorrentDialog = true" :title="$t('home.torrent_remove')" :disabled="!selectedTorrents.length > 0">
         <font-awesome-icon size="2x" :icon="['fa','trash-alt']"/>
       </v-btn>
       <v-spacer></v-spacer>
+      <v-btn text small @click="changeLanguage">
+        <font-awesome-icon size="2x" :icon="['fa', 'language']"/>
+      </v-btn>
       <v-btn text small @click.stop="logout">
         <font-awesome-icon size="2x" :icon="['fa','sign-out-alt']"/>
       </v-btn>
@@ -27,7 +30,7 @@
               <font-awesome-icon size="2x" :icon="['fa','folder']"/>
             </v-list-item-avatar>
             <v-list-item-content>
-              <v-list-item-title>全部</v-list-item-title>
+              <v-list-item-title v-text="$t('home.all')"></v-list-item-title>
             </v-list-item-content>
             <v-list-item-action>{{ torrentTotal }}</v-list-item-action>
           </v-list-item>
@@ -36,7 +39,7 @@
               <font-awesome-icon size="2x" :icon="['fa','pause']"/>
             </v-list-item-avatar>
             <v-list-item-content>
-              <v-list-item-title>暂停</v-list-item-title>
+              <v-list-item-title v-text="$t('home.pause')"></v-list-item-title>
             </v-list-item-content>
             <v-list-item-action>{{ torrentPause }}</v-list-item-action>
           </v-list-item>
@@ -45,7 +48,7 @@
               <font-awesome-icon size="2x" :icon="['fa','database']"/>
             </v-list-item-avatar>
             <v-list-item-content>
-              <v-list-item-title>校验中</v-list-item-title>
+              <v-list-item-title v-text="$t('home.checking')"></v-list-item-title>
             </v-list-item-content>
             <v-list-item-action>{{ torrentDatabase }}</v-list-item-action>
           </v-list-item>
@@ -54,7 +57,7 @@
               <font-awesome-icon size="2x" :icon="['fa','clock']"/>
             </v-list-item-avatar>
             <v-list-item-content>
-              <v-list-item-title>待下载</v-list-item-title>
+              <v-list-item-title v-text="$t('home.waiting_download')"></v-list-item-title>
             </v-list-item-content>
             <v-list-item-action>{{ torrentWaitDownload }}</v-list-item-action>
           </v-list-item>
@@ -63,7 +66,7 @@
               <font-awesome-icon size="2x" :icon="['fa','cloud-download-alt']"/>
             </v-list-item-avatar>
             <v-list-item-content>
-              <v-list-item-title>下载中</v-list-item-title>
+              <v-list-item-title v-text="$t('home.downloading')"></v-list-item-title>
             </v-list-item-content>
             <v-list-item-action>{{ torrentDownloading }}</v-list-item-action>
           </v-list-item>
@@ -72,7 +75,7 @@
               <font-awesome-icon size="2x" :icon="['fa','cloud-upload-alt']"/>
             </v-list-item-avatar>
             <v-list-item-content>
-              <v-list-item-title>做种中</v-list-item-title>
+              <v-list-item-title v-text="$t('home.uploading')"></v-list-item-title>
             </v-list-item-content>
             <v-list-item-action>{{ torrentUploading }}</v-list-item-action>
           </v-list-item>
@@ -96,13 +99,13 @@
                     <v-list-item-subtitle>
                       <div class="d-flex justify-space-between">
                         <div>
-                          <span v-if="item.status === 0" class="default--text">已暂停</span>
-                          <span v-if="item.status === 1" class="orange--text">待校验</span>
-                          <span v-if="item.status === 2" class="orange--text">校验中</span>
-                          <span v-if="item.status === 3" class="secondary--text">待下载</span>
-                          <span v-if="item.status === 4" class="primary--text">下载中</span>
-                          <span v-if="item.status === 5" class="green--text">待做种</span>
-                          <span v-if="item.status === 6" class="green--text">做种中</span>
+                          <span v-if="item.status === 0" class="default--text" v-text="$t('components.torrents.parse')"></span>
+                          <span v-if="item.status === 1" class="orange--text" v-text="$t('components.torrents.waiting_check')"></span>
+                          <span v-if="item.status === 2" class="orange--text" v-text="$t('components.torrents.checking')"></span>
+                          <span v-if="item.status === 3" class="secondary--text" v-text="$t('components.torrents.waiting_download')"></span>
+                          <span v-if="item.status === 4" class="primary--text" v-text="$t('components.torrents.downloading')"></span>
+                          <span v-if="item.status === 5" class="green--text" v-text="$t('components.torrents.wait_upload')"></span>
+                          <span v-if="item.status === 6" class="green--text" v-text="$t('components.torrents.uploading')"></span>
                         </div>
                         <div>
                           <span v-if="item.rateUpload > 0"><font-awesome-icon class="up-color" :icon="['fa', 'sort-up']"/> <small>{{ item.rateUpload | unitFormat }} /s </small></span>
@@ -148,12 +151,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="torrentActionDelete">
-            确 定
-          </v-btn>
-          <v-btn color="second" text @click="deleteTorrentDialog = false, deleteLocalData = false">
-            取 消
-          </v-btn>
+          <v-btn color="primary" text @click="torrentActionDelete" v-text="$t('sure')"></v-btn>
+          <v-btn color="second" text @click="deleteTorrentDialog = false, deleteLocalData = false" v-text="$t('cancel')"></v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -224,6 +223,15 @@ export default {
     torrentStatusUpdate(status) {
       this.torrentStatus = status
       this.filterMenu = false;
+    },
+    changeLanguage() {
+      if (this.$i18n.locale === 'en') {
+        this.$i18n.locale = 'zh-CN'
+        localStorage.setItem('i18n','zh-CN')
+      } else {
+        this.$i18n.locale = 'en'
+        localStorage.setItem('i18n','en')
+      }
     },
     logout() {
       localStorage.removeItem('url')
