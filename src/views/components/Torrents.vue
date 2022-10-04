@@ -156,7 +156,12 @@ export default {
         name: ''
       },
       selectedTorrents: [],
-      headers: [
+      torrentsList: []
+    }
+  },
+  computed: {
+    headers() {
+      return [
         {text: this.$t('components.torrents.queue_position'), align: 'center', sortable: true, value: 'queuePosition', width: 60, class: 'torrent-list', cellClass: 'torrent-list'},
         // {text: 'id', align: 'start', sortable: false, value: 'id', width: 50},
         {text: this.$t('components.torrents.name'), align: 'start', sortable: false, value: 'name', width: 300, class: 'torrent-list', cellClass: 'torrent-list'},
@@ -178,8 +183,7 @@ export default {
         // {text: '保存目录', align: 'start', sortable: false, value: 'downloadDir', width: 200},
         {text: this.$t('components.torrents.done_date'), align: 'center', sortable: true, value: 'doneDate', width: 120, class: 'torrent-list', cellClass: 'torrent-list'},
         {text: this.$t('components.torrents.activity_date'), align: 'center', sortable: true, value: 'activityDate', width: 120, class: 'torrent-list', cellClass: 'torrent-list'},
-      ],
-      torrentsList: []
+      ]
     }
   },
   methods: {

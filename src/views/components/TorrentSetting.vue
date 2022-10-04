@@ -4,7 +4,7 @@
       <v-container fluid>
         <v-row>
           <v-col cols="3">
-            <v-text-field type="number" :label="$t('components.torrent_setting.when')" v-model="setInfo.seedRatioLimit" :min="1"></v-text-field>
+            <v-text-field type="number" :label="$t('components.torrent_setting.stop_sending_at_ratio')" v-model="setInfo.seedRatioLimit" :min="1"></v-text-field>
           </v-col>
         </v-row>
         <v-row>

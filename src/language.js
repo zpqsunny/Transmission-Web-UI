@@ -26,7 +26,7 @@ const messages = {
     components: {
       add_torrent: {
         'add_torrent': 'Add Torrent',
-        'can_used': 'Available',
+        'available': 'Available',
         'save_path': 'Save Location',
         'torrent_file': 'Torrent File',
         'magnet_url': 'Magnet Url',
@@ -165,13 +165,13 @@ const messages = {
         'activity_date': 'Activity Date',
       },
       torrent_setting: {
-        'when': '当种子的分享率达到这个数时，自动停止做种'
+        'stop_sending_at_ratio': 'Stop sending at ratio'
       },
       trackers_information: {
         'add_new_trackers': 'Add New Tracker',
         'remove_selected_trackers': 'Delete Selected Trackers',
         'replace_tracker': 'Replace Tracker',
-        'announce': 'Server',
+        'announce': 'Announce',
         'status': 'Status',
         'info': 'Info',
         'download_count': 'Download Count',
@@ -244,7 +244,7 @@ const messages = {
     components: {
       add_torrent: {
         'add_torrent': '添加种子',
-        'can_used': '可用',
+        'available': '可用',
         'save_path': '保存的位置',
         'torrent_file': '种子文件',
         'magnet_url': '种子地址',
@@ -333,12 +333,13 @@ const messages = {
         'peer_listening_port': '入站连接的端口',
         'port_check_site_is_down': '',
         'automatically_map_port': '启用端口转发',
-        'peer_limit_global': '全体最大用户数量',
-        'peer_limit_per_torrent': '每个 Torrent 的最大用户数量',
+        'global_maximum_connections': '全体最大用户数量',
+        'maximum_connections_for_new_transfers': '每个 Torrent 的最大用户数量',
+        'connections': '连接',
         'enable_micro_transport_protocol': '为用户连接启用 µTP',
-        'pex_enabled': '使用 PEX 以寻找更多用户',
-        'dht_enabled': '使用 DHT 以寻找更多用户',
-        'lpd_enabled': '使用本地用户发现已寻找更多用户',
+        'use_peer_exchange_pex_for_public_torrents': '使用 PEX 以寻找更多用户',
+        'use_distributed_hash_table_dht_for_public_torrents': '使用 DHT 以寻找更多用户',
+        'use_local_peer_discovery_for_public_torrents': '使用本地用户发现已寻找更多用户',
       },
       torrent_information: {
         'base_info': '基本信息',
@@ -382,7 +383,7 @@ const messages = {
         'activity_date': '最后活动于',
       },
       torrent_setting: {
-        'when': '当种子的分享率达到这个数时，自动停止做种'
+        'stop_sending_at_ratio': '当种子的分享率达到这个数时，自动停止做种'
       },
       trackers_information: {
         'add_new_trackers': '添加新的Tracker',

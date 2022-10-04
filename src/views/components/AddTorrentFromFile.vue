@@ -15,7 +15,7 @@
                   </template>
                   <template v-slot:label>
                     {{ $t('components.add_torrent.save_path') }}
-                    <span v-if="pathSizeByte > 0"> | <strong>{{ pathSizeByte | unitFormat }}</strong> {{ $t('components.add_torrent.can_used') }}</span>
+                    <span v-if="pathSizeByte > 0"> | <strong>{{ pathSizeByte | unitFormat }}</strong> {{ $t('components.add_torrent.available') }}</span>
                   </template>
                   <template v-slot:append>
                     <v-btn icon color="#212121" @click="freeSpace"><font-awesome-icon :icon="['fa', 'sync-alt']"/></v-btn>
