@@ -1,11 +1,11 @@
 <template>
   <div>
     <v-btn text color="primary" @click="getPeers"><font-awesome-icon :icon="['fa', 'redo']"/></v-btn>
-    <v-data-table dense :headers="peersHeaders" :items="peersInfo" item-key="address" no-data-text="暂无内容" no-results-text="未找到匹配项"
+    <v-data-table dense :headers="peersHeaders" :items="peersInfo" item-key="address" :no-data-text="$t('no_data_text')" :no-results-text="$t('no_results_text')"
                   :items-per-page="$store.state.itemsPerPage" @update:items-per-page="e => $store.commit('updateItemsPerPage', e)">
       <template v-slot:item.address="{ item }">
         <span class="d-inline-block" style="width: 16px;height: 11px">
-          <v-img v-if="item.countryCode !== ''" :src="require('@/assets/country/' + item.countryCode + '.png')" :alt="item.country" :title="['地区: ' + item.region, '国家: ' + item.country, '城市: ' + item.city].join('\n')"></v-img>
+          <v-img v-if="item.countryCode !== ''" :src="require('@/assets/country/' + item.countryCode + '.png')" :alt="item.country" :title="[$t('components.peers_information.region') +': ' + item.region, $t('components.peers_information.country') +': ' + item.country, $t('components.peers_information.city') +': ' + item.city].join('\n')"></v-img>
         </span>
         {{ item.address }}
       </template>
@@ -15,16 +15,16 @@
       <template v-slot:item.connectInfo="{ item }">
         <v-row no-gutters justify="center">
           <v-col>
-            <font-awesome-icon :icon="['fa', 'download']" :class="item.isDownloadingFrom ? 'yes-color': 'no-color'" title="正在下载"/>
+            <font-awesome-icon :icon="['fa', 'download']" :class="item.isDownloadingFrom ? 'yes-color': 'no-color'" :title="$t('components.peers_information.downloading_from')"/>
           </v-col>
           <v-col>
-            <font-awesome-icon :icon="['fa', 'lock']" :class="item.isEncrypted ? 'yes-color': 'no-color'" title="加密"/>
+            <font-awesome-icon :icon="['fa', 'lock']" :class="item.isEncrypted ? 'yes-color': 'no-color'" :title="$t('components.peers_information.encrypted')"/>
           </v-col>
           <v-col>
-            <font-awesome-icon :icon="['fa', 'arrow-right']" :class="item.isIncoming ? 'yes-color': 'no-color'" title="传入"/>
+            <font-awesome-icon :icon="['fa', 'arrow-right']" :class="item.isIncoming ? 'yes-color': 'no-color'" :title="$t('components.peers_information.incoming')"/>
           </v-col>
           <v-col>
-            <font-awesome-icon :icon="['fa', 'upload']" :class="item.isUploadingTo ? 'yes-color': 'no-color'" title="正在上传"/>
+            <font-awesome-icon :icon="['fa', 'upload']" :class="item.isUploadingTo ? 'yes-color': 'no-color'" :title="$t('components.peers_information.uploading_to')"/>
           </v-col>
           <v-col>
             <span :class="item.isUTP ? 'yes-color': 'no-color'">μTP</span>
@@ -78,13 +78,13 @@ export default {
       },
       peersInfo: [],
       peersHeaders: [
-        {text: 'IP地址', align: 'start', sortable: false, value: 'address'},
-        {text: '客户端', align: 'start', sortable: false, value: 'clientName'},
-        {text: '标记', align: 'start', sortable: false, value: 'flagStr'},
-        {text: '连接方式', align: 'start', sortable: false, value: 'connectInfo'},
-        {text: '端口', align: 'start', sortable: false, value: 'port'},
-        {text: '完成进度', align: 'start', sortable: false, value: 'progress'},
-        {text: '上传/下载速度', align: 'start', sortable: false, value: 'rateToClient'},
+        {text: this.$t('components.peers_information.ip_address'), align: 'start', sortable: false, value: 'address'},
+        {text: this.$t('components.peers_information.client_name'), align: 'start', sortable: false, value: 'clientName'},
+        {text: this.$t('components.peers_information.flag'), align: 'start', sortable: false, value: 'flagStr'},
+        {text: this.$t('components.peers_information.connect_info'), align: 'start', sortable: false, value: 'connectInfo'},
+        {text: this.$t('components.peers_information.port'), align: 'start', sortable: false, value: 'port'},
+        {text: this.$t('components.peers_information.progress'), align: 'start', sortable: false, value: 'progress'},
+        {text: this.$t('components.peers_information.upload_download_speed'), align: 'start', sortable: false, value: 'rateToClient'},
         // {text: '上传速度', align: 'center', sortable: false, value: 'rateToPeer', width: 120},
       ]
     }

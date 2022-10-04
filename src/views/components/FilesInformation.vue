@@ -2,21 +2,21 @@
   <div>
     <v-btn-toggle class="ma-1" v-model="filesButtonAction">
       <v-btn text color="primary" @click="getFiles"><font-awesome-icon :icon="['fa', 'redo']"/></v-btn>
-      <v-btn :disabled="filesSelected.length <= 0" text @click="setFilesWantedAndUnwanted('files-wanted')">下载已选择的文件</v-btn>
-      <v-btn :disabled="filesSelected.length <= 0" text @click="setFilesWantedAndUnwanted('files-unwanted')">忽略已选择的文件</v-btn>
+      <v-btn :disabled="filesSelected.length <= 0" text @click="setFilesWantedAndUnwanted('files-wanted')" v-text="$t('components.files_information.download_selected_files')"></v-btn>
+      <v-btn :disabled="filesSelected.length <= 0" text @click="setFilesWantedAndUnwanted('files-unwanted')" v-text="$t('components.files_information.ignore_selected_files')"></v-btn>
       <v-menu offset-y transition="slide-x-transition">
         <template v-slot:activator="{ on, attrs }">
-          <v-btn :disabled="filesSelected.length <= 0" text v-bind="attrs" v-on="on">设置优先级别</v-btn>
+          <v-btn :disabled="filesSelected.length <= 0" text v-bind="attrs" v-on="on" v-text="$t('components.files_information.set_priority')"></v-btn>
         </template>
         <v-list>
           <v-list-item @click="setFilesPriority('priority-high')">
-            <v-list-item-title>高</v-list-item-title>
+            <v-list-item-title v-text="$t('components.files_information.priority_high')"></v-list-item-title>
           </v-list-item>
           <v-list-item @click="setFilesPriority('priority-normal')">
-            <v-list-item-title>正常</v-list-item-title>
+            <v-list-item-title v-text="$t('components.files_information.priority_normal')"></v-list-item-title>
           </v-list-item>
           <v-list-item @click="setFilesPriority('priority-low')">
-            <v-list-item-title>低</v-list-item-title>
+            <v-list-item-title v-text="$t('components.files_information.priority_low')"></v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
@@ -42,19 +42,19 @@
             <div class="d-flex flex-column">
               <div class="d-flex justify-space-between">
                 <span v-if="item.priority === -1">
-                  <font-awesome-icon title="优先级别: 低" style="color: #ff5252" :icon="['fa', 'battery-quarter']"/>
+                  <font-awesome-icon :title="$t('components.files_information.priority') + $t('components.files_information.priority_high')" style="color: #ff5252" :icon="['fa', 'battery-quarter']"/>
                 </span>
                 <span v-if="item.priority === 0">
-                  <font-awesome-icon title="优先级别: 正常" style="color: #03A9F4" :icon="['fa', 'battery-half']"/>
+                  <font-awesome-icon :title="$t('components.files_information.priority') + $t('components.files_information.priority_normal')" style="color: #03A9F4" :icon="['fa', 'battery-half']"/>
                 </span>
                 <span v-if="item.priority === 1">
-                  <font-awesome-icon title="优先级别: 高" class="yes-color" :icon="['fa', 'battery-full']"/>
+                  <font-awesome-icon :title="$t('components.files_information.priority') + $t('components.files_information.priority_low')" class="yes-color" :icon="['fa', 'battery-full']"/>
                 </span>
                 <span>
                   <small>{{ item.bytesCompleted | unitFormat }} / {{ item.length | unitFormat }}</small>
                 </span>
                 <span>
-                  <font-awesome-icon :title="item.wanted? '是': '否'" :class="item.wanted? 'yes-color': 'no-color'" :icon="['fa', 'cloud-download-alt']"/>
+                  <font-awesome-icon :title="item.wanted? $t('yes'): $t('no')" :class="item.wanted? 'yes-color': 'no-color'" :icon="['fa', 'cloud-download-alt']"/>
                 </span>
               </div>
             </div>

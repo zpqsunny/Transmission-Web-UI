@@ -7,10 +7,10 @@
             <v-row justify="center" align="center">
               <v-col xl="3" lg="4" md="5" sm="8" xs="12">
                 <v-text-field v-model="api.url" label="Transmission RPC" outlined></v-text-field>
-                <v-checkbox v-model="api.auth" label="身份验证"></v-checkbox>
-                <v-text-field :disabled="!api.auth" v-model="api.username" label="用户名" outlined></v-text-field>
-                <v-text-field type="password" :disabled="!api.auth" v-model="api.password" label="密码" outlined></v-text-field>
-                <v-btn color="primary" block @click="login">登 录</v-btn>
+                <v-checkbox v-model="api.auth" :label="$t('login.auth')"></v-checkbox>
+                <v-text-field :disabled="!api.auth" v-model="api.username" :label="$t('login.username')" outlined></v-text-field>
+                <v-text-field type="password" :disabled="!api.auth" v-model="api.password" :label="$t('login.password')" outlined></v-text-field>
+                <v-btn color="primary" block @click="login" v-text="$t('login.login')"></v-btn>
               </v-col>
             </v-row>
           </v-form>

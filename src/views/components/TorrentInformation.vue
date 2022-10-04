@@ -4,58 +4,58 @@
       <template v-slot:default>
         <thead>
         <tr>
-          <th colspan="4" class="text-center"><v-btn text color="primary" @click="getTorrentBaseInfo">基本信息</v-btn></th>
+          <th colspan="4" class="text-center"><v-btn text color="primary" @click="getTorrentBaseInfo" v-text="$t('components.torrent_information.base_info')"></v-btn></th>
         </tr>
         </thead>
         <tbody>
         <tr>
-          <td class="text-no-wrap">名称</td>
+          <td class="text-no-wrap" v-text="$t('components.torrent_information.name')"></td>
           <td colspan="3">{{ baseInfo.name }}</td>
         </tr>
         <tr>
-          <td class="text-no-wrap">保存目录</td>
+          <td class="text-no-wrap" v-text="$t('components.torrent_information.download_dir')"></td>
           <td colspan="3">{{ baseInfo.downloadDir }}</td>
         </tr>
         <tr>
-          <td class="text-no-wrap">哈希值</td>
+          <td class="text-no-wrap" v-text="$t('components.torrent_information.hash_string')"></td>
           <td colspan="3">{{ baseInfo.hashString }}</td>
         </tr>
         <tr>
-          <td class="text-no-wrap">大小</td>
+          <td class="text-no-wrap" v-text="$t('components.torrent_information.total_size')"></td>
           <td>{{ baseInfo.totalSize | unitFormat }}</td>
-          <td class="text-no-wrap">添加时间</td>
+          <td class="text-no-wrap" v-text="$t('components.torrent_information.added_date')"></td>
           <td>{{ baseInfo.addedDate | timestampFormat}}</td>
         </tr>
         <tr>
-          <td class="text-no-wrap">剩余</td>
+          <td class="text-no-wrap" v-text="$t('components.torrent_information.left_until_done')"></td>
           <td>{{ baseInfo.leftUntilDone | unitFormat}}</td>
-          <td class="text-no-wrap">已完成</td>
+          <td class="text-no-wrap" v-text="$t('components.torrent_information.downloaded_ever')"></td>
           <td>{{ baseInfo.downloadedEver | unitFormat}}</td>
         </tr>
         <tr>
-          <td class="text-no-wrap">下载速度</td>
-          <td>{{ baseInfo.rateDownload | unitFormat}}</td>
-          <td class="text-no-wrap">上传速度</td>
-          <td>{{ baseInfo.rateUpload | unitFormat}}</td>
+          <td class="text-no-wrap" v-text="$t('components.torrent_information.rate_download')"></td>
+          <td>{{ baseInfo.rateDownload | unitFormat }}</td>
+          <td class="text-no-wrap" v-text="$t('components.torrent_information.rate_upload')"></td>
+          <td>{{ baseInfo.rateUpload | unitFormat }}</td>
         </tr>
         <tr>
-          <td class="text-no-wrap">创建者</td>
+          <td class="text-no-wrap" v-text="$t('components.torrent_information.creator')"></td>
           <td>{{ baseInfo.creator }}</td>
-          <td class="text-no-wrap">创建时间</td>
-          <td>{{ baseInfo.dateCreated | timestampFormat}}</td>
+          <td class="text-no-wrap" v-text="$t('components.torrent_information.date_created')"></td>
+          <td>{{ baseInfo.dateCreated | timestampFormat }}</td>
         </tr>
         <tr>
-          <td class="text-no-wrap">描述</td>
+          <td class="text-no-wrap" v-text="$t('components.torrent_information.comment')"></td>
           <td colspan="3">{{ baseInfo.comment }}</td>
         </tr>
         <tr>
-          <td class="text-no-wrap">是否私有</td>
-          <td>{{ baseInfo.isPrivate ? '是' : '否' }}</td>
+          <td class="text-no-wrap" v-text="$t('components.torrent_information.is_private')"></td>
+          <td>{{ baseInfo.isPrivate ? $t('yes') : $t('no') }}</td>
           <td></td>
           <td></td>
         </tr>
         <tr>
-          <td class="text-no-wrap">磁链接地址</td>
+          <td class="text-no-wrap" v-text="$t('components.torrent_information.magnet_link')"></td>
           <td colspan="3">
             <v-textarea rows="3" readonly style="word-break: break-all;" :value="baseInfo.magnetLink"></v-textarea>
           </td>

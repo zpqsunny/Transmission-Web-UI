@@ -46,3 +46,6 @@
 .v-application--is-ltr .v-treeview-node__prepend {
     margin-right: 0 !important;
 }
+.v-btn,.v-tab {
+    text-transform: none !important;
+}

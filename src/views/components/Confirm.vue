@@ -6,8 +6,8 @@
         <v-card-text>{{ text }}</v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="darken-1" text @click="cancel">取消</v-btn>
-          <v-btn color="primary darken-1" text @click="ok">确定</v-btn>
+          <v-btn color="darken-1" text @click="cancel" v-text="$t('cancel')"></v-btn>
+          <v-btn color="primary darken-1" text @click="ok" v-text="$t('sure')"></v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

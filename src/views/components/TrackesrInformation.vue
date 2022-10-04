@@ -2,11 +2,11 @@
   <div>
     <v-btn-toggle class="ma-1" v-model="trackerButtonAction">
       <v-btn text color="primary" @click="getTrackers"><font-awesome-icon :icon="['fa', 'redo']"/></v-btn>
-      <v-btn style="text-transform: none" text @click="addTrackersAction">添加新的Tracker</v-btn>
-      <v-btn :disabled="trackerSelected.length <= 0" style="text-transform: none" text @click="removeTracker">删除已选中的Tracker</v-btn>
+      <v-btn text @click="addTrackersAction" v-text="$t('components.trackers_information.add_new_trackers')"></v-btn>
+      <v-btn :disabled="trackerSelected.length <= 0" text @click="removeTracker" v-text="$t('components.trackers_information.remove_selected_trackers')"></v-btn>
     </v-btn-toggle>
     <v-data-table v-model="trackerSelected" dense :headers="trackerHeaders" :items="trackersInfo" item-key="id"
-                  show-select no-data-text="暂无内容" no-results-text="未找到匹配项" @contextmenu:row="showMenu"
+                  show-select :no-data-text="$t('no_data_text')" :no-results-text="$t('no_results_text')" @contextmenu:row="showMenu"
                   :items-per-page="$store.state.itemsPerPage" @update:items-per-page="e => $store.commit('updateItemsPerPage', e)">
       <template v-slot:item.lastAnnounceSucceeded="{ item }">
         <font-awesome-icon :style="{color: item.lastAnnounceSucceeded ? '#4CAF50': '#909399' }" :icon="['fa', 'check-circle']"/>
@@ -23,7 +23,7 @@
     </v-dialog>
     <v-dialog v-if="replaceTrackerDialog" v-model="replaceTrackerDialog" width="30%">
       <v-card>
-        <v-card-title class="justify-center"><strong>Tracker替换</strong></v-card-title>
+        <v-card-title class="justify-center"><strong v-text="$t('components.trackers_information.replace_tracker')"></strong></v-card-title>
         <v-container>
           <v-row>
             <v-col cols="12">
@@ -35,8 +35,8 @@
         </v-container>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="replaceTrackerAction">确 定</v-btn>
-          <v-btn color="second" text @click="replaceTrackerDialog = false">关 闭</v-btn>
+          <v-btn color="primary" text @click="replaceTrackerAction" v-text="$t('sure')"></v-btn>
+          <v-btn color="second" text @click="replaceTrackerDialog = false" v-text="$t('close')"></v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -44,7 +44,7 @@
       <v-list>
         <v-list-item @click="showReplaceDialog">
           <v-list-item-icon><font-awesome-icon size="xl" :icon="['fa', 'edit']"/></v-list-item-icon>
-          <v-list-item-content><v-list-item-title>Tracker 替换</v-list-item-title></v-list-item-content>
+          <v-list-item-content><v-list-item-title v-text="$t('components.trackers_information.replace_tracker')"></v-list-item-title></v-list-item-content>
         </v-list-item>
       </v-list>
     </v-menu>
@@ -82,14 +82,14 @@ export default {
         announce: ''
       },
       trackerHeaders: [
-        {text: '服务器', align: 'start', sortable: false, value: 'announce', width: 150},
-        {text: '状态', align: 'center', sortable: false, value: 'lastAnnounceSucceeded', width: 80},
-        {text: '信息', align: 'start', sortable: false, value: 'lastAnnounceResult'},
-        {text: '下载数', align: 'center', sortable: true, value: 'downloadCount', width: 90},
-        {text: '吸血数', align: 'center', sortable: true, value: 'leecherCount', width: 90},
-        {text: '种子数', align: 'center', sortable: true, value: 'seederCount', width: 90},
-        {text: '更新时间', align: 'center', sortable: false, value: 'lastScrapeTime', width: 180},
-        {text: '下次更新时间', align: 'center', sortable: false, value: 'nextAnnounceTime', width: 180},
+        {text: this.$t('components.trackers_information.announce'), align: 'start', sortable: false, value: 'announce', width: 150},
+        {text: this.$t('components.trackers_information.status'), align: 'center', sortable: false, value: 'lastAnnounceSucceeded', width: 80},
+        {text: this.$t('components.trackers_information.info'), align: 'start', sortable: false, value: 'lastAnnounceResult'},
+        {text: this.$t('components.trackers_information.download_count'), align: 'center', sortable: true, value: 'downloadCount', width: 90},
+        {text: this.$t('components.trackers_information.leecher_count'), align: 'center', sortable: true, value: 'leecherCount', width: 90},
+        {text: this.$t('components.trackers_information.seeder_count'), align: 'center', sortable: true, value: 'seederCount', width: 90},
+        {text: this.$t('components.trackers_information.last_scrape_time'), align: 'center', sortable: false, value: 'lastScrapeTime', width: 180},
+        {text: this.$t('components.trackers_information.next_announce_time'), align: 'center', sortable: false, value: 'nextAnnounceTime', width: 180},
       ],
       trackerSelected: [],
     }

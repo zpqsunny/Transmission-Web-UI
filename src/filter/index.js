@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import i18n from "@/language";
 
 Vue.filter('amountFormat', function (amount) {
 
@@ -78,10 +79,10 @@ Vue.filter('timeInterval', function (value) {
     hours = Math.floor((value % 86400) / 3600),
     minutes = Math.floor((value % 3600) / 60),
     seconds = Math.floor(value % 60),
-    d = days + ' ' + '天',
-    h = hours + ' ' + '时',
-    m = minutes + ' ' + '分',
-    s = seconds + ' ' + '秒';
+    d = days + ' ' + i18n.t('days'),
+    h = hours + ' ' + i18n.t('hours'),
+    m = minutes + ' ' + i18n.t('minutes'),
+    s = seconds + ' ' + i18n.t('seconds');
 
   if (days) {
     if (days >= 4 || !hours) {
@@ -115,9 +116,9 @@ Vue.filter('timeFormatText', function (value) {
     timestamp = Number.parseInt(value.toString().substr(0, 10))
   }
   let diff = now - timestamp
-  let postfix = diff > 0 ? '前' : '后'
+  let postfix = diff > 0 ? i18n.t('ago') : i18n.t('later')
   diff = Math.abs(diff)
-  let arrDay = ['年', '个月', '星期', '天', '小时', '分钟', '秒']
+  let arrDay = [ i18n.t('years'), i18n.t('months'), i18n.t('weeks'), i18n.t('days'), i18n.t('hours'), i18n.t('minutes'), i18n.t('seconds')]
   let arrSecond = [31536000, 2592000, 6404800, 86400, 3600, 60, 1]
   for (let i = 0; i < 7; i++) {
     let inm = Math.floor(diff / arrSecond[i])

@@ -2,7 +2,7 @@
   <div>
     <v-card>
       <v-card-title class="text-h5 grey lighten-2 justify-center">
-        <strong>添加种子</strong>
+        <strong v-text="$t('components.add_torrent.add_torrent')"></strong>
       </v-card-title>
       <v-card-text>
         <v-container fluid>
@@ -14,15 +14,15 @@
                     <font-awesome-icon size="2x" :icon="['far', 'folder']"/>
                   </template>
                   <template v-slot:label>
-                    保存的位置
-                    <span v-if="pathSizeByte > 0"> | <strong>{{ pathSizeByte | unitFormat }}</strong> 可用</span>
+                    {{ $t('components.add_torrent.save_path') }}
+                    <span v-if="pathSizeByte > 0"> | <strong>{{ pathSizeByte | unitFormat }}</strong> {{ $t('components.add_torrent.can_used') }}</span>
                   </template>
                   <template v-slot:append>
                     <v-btn icon color="#212121" @click="freeSpace"><font-awesome-icon :icon="['fa', 'sync-alt']"/></v-btn>
                   </template>
                 </v-text-field>
-                <v-file-input label="种子文件" accept="application/x-bittorrent,.torrent" @focus="freeSpace" placeholder="*.torrent" @change="fileChange"></v-file-input>
-                <v-checkbox v-model="autoStart" label="自动开始"></v-checkbox>
+                <v-file-input :label="$t('components.add_torrent.torrent_file')" accept="application/x-bittorrent,.torrent" @focus="freeSpace" placeholder="*.torrent" @change="fileChange"></v-file-input>
+                <v-checkbox v-model="autoStart" :label="$t('components.add_torrent.auto_start')"></v-checkbox>
               </v-form>
             </v-col>
           </v-row>
@@ -31,8 +31,8 @@
       <v-divider></v-divider>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="primary" text @click="addTorrentAction">确 定</v-btn>
-        <v-btn color="second" text @click="$emit('cancel')">关 闭</v-btn>
+        <v-btn color="primary" text @click="addTorrentAction" v-text="$t('sure')"></v-btn>
+        <v-btn color="second" text @click="$emit('cancel')" v-text="$t('close')"></v-btn>
       </v-card-actions>
     </v-card>
   </div>

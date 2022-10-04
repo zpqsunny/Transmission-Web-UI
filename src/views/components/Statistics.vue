@@ -52,7 +52,7 @@ export default {
           formatter: (params) => {
             let upload = params[0].value
             let download = params[1].value
-            return upload[0] + '<br/>上传速度: ' + this.format(upload[1]) + '<br/>下载速度: ' + this.format(download[1])
+            return upload[0] + '<br/>'+ this.$t('components.statistics.upload_speed') + this.format(upload[1]) + '<br/>'+ this.$t('components.statistics.download_speed') + this.format(download[1])
           },
           axisPointer: {
             animation: false
@@ -61,13 +61,13 @@ export default {
         legend: {
           data: [
             {
-              name: '上传速度',
+              name: this.$t('components.statistics.upload_speed'),
               textStyle: {
                 color: '#67C23A'
               }
             },
             {
-              name: '下载速度',
+              name: this.$t('components.statistics.download_speed'),
               textStyle: {
                 color: '#409EFF'
               }
@@ -98,7 +98,7 @@ export default {
         },
         series: [
           {
-            name: '上传速度',
+            name: this.$t('components.statistics.upload_speed'),
             type: 'line',
             showSymbol: false,
             lineStyle: {
@@ -119,7 +119,7 @@ export default {
             data: [],
           },
           {
-            name: '下载速度',
+            name: this.$t('components.statistics.download_speed'),
             type: 'line',
             showSymbol: false,
             lineStyle: {

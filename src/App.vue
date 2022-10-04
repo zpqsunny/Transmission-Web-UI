@@ -18,8 +18,14 @@
 
       }
     },
+    mounted() {
+      this.configLanguage()
+    },
     methods: {
-
+      configLanguage() {
+        const lan = localStorage.getItem('lan')
+        console.log(lan)
+      }
     }
   }
 </script>

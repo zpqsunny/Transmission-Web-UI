@@ -33,26 +33,26 @@
           <font-awesome-icon size="2x" :icon="$store.state.sessionInfo['alt-speed-enabled'] ? ['fa', 'running'] : ['fa', 'paper-plane']"/>
         </v-btn>
         <v-divider style="margin: 0 2px" vertical/>
-        <v-btn text small @click="torrentAction('torrent-start')" title="重新开始已选择的种子" :disabled="!selectedTorrents.length > 0">
+        <v-btn text small @click="torrentAction('torrent-start')" :title="$t('home.torrent_start')" :disabled="!selectedTorrents.length > 0">
           <font-awesome-icon size="2x" :icon="['fa','play']"/>
         </v-btn>
-        <v-btn text small @click="torrentAction('torrent-stop')" title="暂停已选择的种子" :disabled="!selectedTorrents.length > 0">
+        <v-btn text small @click="torrentAction('torrent-stop')" :title="$t('home.torrent_stop')" :disabled="!selectedTorrents.length > 0">
           <font-awesome-icon size="2x" :icon="['fa','pause']"/>
         </v-btn>
-        <v-btn text small @click="torrentAction('torrent-verify')" title="重新校验已选择的种子" :disabled="!selectedTorrents.length > 0">
+        <v-btn text small @click="torrentAction('torrent-verify')" :title="$t('home.torrent_verify')" :disabled="!selectedTorrents.length > 0">
           <font-awesome-icon size="2x" :icon="['fa','database']"/>
         </v-btn>
-        <v-btn text small @click="deleteTorrentDialog = true" title="删除种子" :disabled="!selectedTorrents.length > 0">
+        <v-btn text small @click="deleteTorrentDialog = true" :title="$t('home.torrent_remove')" :disabled="!selectedTorrents.length > 0">
           <font-awesome-icon size="2x" :icon="['fa','trash-alt']"/>
         </v-btn>
-        <v-btn text small @click="torrentAction('torrent-reannounce')" title="获取更多Peer" :disabled="!selectedTorrents.length > 0">
+        <v-btn text small @click="torrentAction('torrent-reannounce')" :title="$t('home.torrent_reannounce')" :disabled="!selectedTorrents.length > 0">
           <font-awesome-icon size="2x" :icon="['fa','broadcast-tower']"/>
         </v-btn>
-        <v-btn text small @click="showTorrentSetLocationDialog" title="移动数据目录" :disabled="!selectedTorrents.length > 0">
+        <v-btn text small @click="showTorrentSetLocationDialog" :title="$t('home.set_new_location')" :disabled="!selectedTorrents.length > 0">
           <font-awesome-icon size="2x" :icon="['fa', 'folder']" />
         </v-btn>
         <v-divider style="margin: 0 2px" vertical/>
-        <v-btn text small @click="sessionSetDialog = true" title="设置">
+        <v-btn text small @click="sessionSetDialog = true" :title="$t('home.set')">
           <font-awesome-icon size="2x" :icon="['fa','cog']"/>
         </v-btn>
         <v-divider style="margin: 0 2px" vertical/>
@@ -66,24 +66,30 @@
             <v-list-item-group>
               <v-list-item @click="torrentAction('queue-move-top')">
                 <v-list-item-icon><font-awesome-icon size="xl" :icon="['fa','angle-double-up']"/></v-list-item-icon>
-                <v-list-item-content><v-list-item-title>移到顶部</v-list-item-title></v-list-item-content>
+                <v-list-item-content><v-list-item-title v-text="$t('home.queue_move_top')"></v-list-item-title></v-list-item-content>
               </v-list-item>
               <v-list-item @click="torrentAction('queue-move-up')">
                 <v-list-item-icon><font-awesome-icon size="xl" :icon="['fa','angle-up']"/></v-list-item-icon>
-                <v-list-item-content><v-list-item-title>上移</v-list-item-title></v-list-item-content>
+                <v-list-item-content><v-list-item-title v-text="$t('home.queue_move_up')"></v-list-item-title></v-list-item-content>
               </v-list-item>
               <v-list-item @click="torrentAction('queue-move-down')">
                 <v-list-item-icon><font-awesome-icon size="xl" :icon="['fa','angle-down']"/></v-list-item-icon>
-                <v-list-item-content><v-list-item-title>下移</v-list-item-title></v-list-item-content>
+                <v-list-item-content><v-list-item-title v-text="$t('home.queue_move_down')"></v-list-item-title></v-list-item-content>
               </v-list-item>
               <v-list-item @click="torrentAction('queue-move-bottom')">
                 <v-list-item-icon><font-awesome-icon size="xl" :icon="['fa','angle-double-down']"/></v-list-item-icon>
-                <v-list-item-content><v-list-item-title>移到底部</v-list-item-title></v-list-item-content>
+                <v-list-item-content><v-list-item-title v-text="$t('home.queue_move_bottom')"></v-list-item-title></v-list-item-content>
               </v-list-item>
             </v-list-item-group>
           </v-list>
         </v-menu>
         <v-spacer></v-spacer>
+        <v-btn text small @click="$i18n.locale = 'en'">
+          <font-awesome-icon size="2x" :icon="['fa', 'thumbs-up']"/>
+        </v-btn>
+        <v-btn text small @click="$i18n.locale = 'zh-CN'">
+          <font-awesome-icon size="2x" :icon="['fa', 'thumbs-up']"/>
+        </v-btn>
         <v-btn text small @click="helpMeDialog = true">
           <font-awesome-icon size="2x" :icon="['fa', 'thumbs-up']"/>
         </v-btn>
@@ -105,42 +111,42 @@
             <v-list-item-group v-model="filterItem" color="primary">
               <v-list-item @click="search = 'all'">
                 <v-list-item-icon><font-awesome-icon size="2x" :icon="['fa','folder']"/></v-list-item-icon>
-                <v-list-item-title>全部</v-list-item-title>
+                <v-list-item-title v-text="$t('home.all')"></v-list-item-title>
                 <v-list-item-action>
                   <v-list-item-action-text>{{ torrentTotal }}</v-list-item-action-text>
                 </v-list-item-action>
               </v-list-item>
               <v-list-item @click="search = '0'">
                 <v-list-item-icon><font-awesome-icon size="2x" :icon="['fa','pause']"/></v-list-item-icon>
-                <v-list-item-title>暂停</v-list-item-title>
+                <v-list-item-title v-text="$t('home.pause')"></v-list-item-title>
                 <v-list-item-action>
                   <v-list-item-action-text>{{ torrentPause }}</v-list-item-action-text>
                 </v-list-item-action>
               </v-list-item>
               <v-list-item @click="search = '2'">
                 <v-list-item-icon><font-awesome-icon size="2x" :icon="['fa','database']"/></v-list-item-icon>
-                <v-list-item-title>校验中</v-list-item-title>
+                <v-list-item-title v-text="$t('home.checking')"></v-list-item-title>
                 <v-list-item-action>
                   <v-list-item-action-text>{{ torrentDatabase }}</v-list-item-action-text>
                 </v-list-item-action>
               </v-list-item>
               <v-list-item @click="search = '3'">
                 <v-list-item-icon><font-awesome-icon size="2x" :icon="['fa','clock']"/></v-list-item-icon>
-                <v-list-item-title>待下载</v-list-item-title>
+                <v-list-item-title v-text="$t('home.waiting_download')"></v-list-item-title>
                 <v-list-item-action>
                   <v-list-item-action-text>{{ torrentWaitDownload }}</v-list-item-action-text>
                 </v-list-item-action>
               </v-list-item>
               <v-list-item @click="search = '4'">
                 <v-list-item-icon><font-awesome-icon size="2x" :icon="['fas','download']"/></v-list-item-icon>
-                <v-list-item-title>下载中</v-list-item-title>
+                <v-list-item-title v-text="$t('home.downloading')"></v-list-item-title>
                 <v-list-item-action>
                   <v-list-item-action-text>{{ torrentDownloading }}</v-list-item-action-text>
                 </v-list-item-action>
               </v-list-item>
               <v-list-item @click="search = '6'">
                 <v-list-item-icon><font-awesome-icon size="2x" :icon="['fas','upload']"/></v-list-item-icon>
-                <v-list-item-title>做种中</v-list-item-title>
+                <v-list-item-title v-text="$t('home.uploading')"></v-list-item-title>
                 <v-list-item-action>
                   <v-list-item-action-text>{{ torrentUploading }}</v-list-item-action-text>
                 </v-list-item-action>
@@ -176,42 +182,34 @@
       <!--  删除种子对话框  -->
       <v-dialog v-model="deleteTorrentDialog" width="30%" persistent>
         <v-card>
-          <v-card-title class="justify-center">删除种子确认</v-card-title>
+          <v-card-title class="justify-center" v-text="$t('home.confirm_remove_torrent')">=</v-card-title>
           <v-card-text>
-            确定要删除已选择的种子吗?
-            <v-checkbox v-model="deleteLocalData" label="同时删除数据"></v-checkbox>
+            {{ $t('home.are_you_sure_remove_selected_torrent') }}
+            <v-checkbox v-model="deleteLocalData" :label="$t('home.remove_with_data')"></v-checkbox>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" text @click="torrentActionDelete">
-              确 定
-            </v-btn>
-            <v-btn color="second" text @click="deleteTorrentDialog = false, deleteLocalData = false">
-              取 消
-            </v-btn>
+            <v-btn color="primary" text @click="torrentActionDelete" v-text="$t('sure')"></v-btn>
+            <v-btn color="second" text @click="deleteTorrentDialog = false, deleteLocalData = false" v-text="$t('cancel')"></v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
       <!--  移动种子对话框  -->
       <v-dialog v-model="torrentSetLocationDialog" width="30%" persistent>
         <v-card>
-          <v-card-title class="text-h5 grey lighten-2 justify-center">设置位置</v-card-title>
+          <v-card-title class="text-h5 grey lighten-2 justify-center" v-text="$t('home.set_location')"></v-card-title>
           <v-container fluid>
             <v-row>
               <v-col cols="12">
-                <v-text-field label="新的位置" outlined v-model="setLocation.location" autocomplete="off"></v-text-field>
-                <v-checkbox label="同时移动数据（如果不钩选，则从新目录下查找文件）" v-model="setLocation.move"></v-checkbox>
+                <v-text-field :label="$t('home.new_location')" outlined v-model="setLocation.location" autocomplete="off"></v-text-field>
+                <v-checkbox :label="$t('with_move_data')" v-model="setLocation.move"></v-checkbox>
               </v-col>
             </v-row>
           </v-container>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" text @click="torrentSetLocation">
-              确 定
-            </v-btn>
-            <v-btn color="second" text @click="torrentSetLocationDialog = false">
-              取 消
-            </v-btn>
+            <v-btn color="primary" text @click="torrentSetLocation" v-text="$t('sure')"></v-btn>
+            <v-btn color="second" text @click="torrentSetLocationDialog = false" v-text="$t('cancel')"></v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -220,15 +218,14 @@
         <v-card>
           <v-container>
             <div class="d-flex justify-space-around">
+              paypal: zpqsunny@gmail.com
               <img alt="捐助我" :src="require('@/assets/alipay.jpg')" height="400px"/>
               <img alt="捐助我" :src="require('@/assets/weixin.jpg')" height="400px"/>
             </div>
           </v-container>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="second" text @click="helpMeDialog = false">
-              关 闭
-            </v-btn>
+            <v-btn color="second" text @click="helpMeDialog = false" v-text="$t('close')"></v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>

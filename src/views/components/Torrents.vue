@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-data-table v-model="selectedTorrents" no-data-text="暂无内容" no-results-text="未找到匹配项"
+    <v-data-table v-model="selectedTorrents" :no-data-text="$t('no_data_text')" :no-results-text="$t('no_results_text')"
                   :headers="headers" :items="$store.state.torrents" item-key="id" show-select show-expand fixed-header
                   :items-per-page="-1" @contextmenu:row="showMenu" hide-default-footer :search="searchStatus" :custom-filter="filterOnlyStatus">
       <template v-slot:item.data-table-expand="{isExpanded, expand}">
@@ -32,18 +32,18 @@
         </span>
       </template>
       <template v-slot:item.status="{ item }">
-        <div v-if="item.status === 0"><v-chip label outlined>已暂停</v-chip></div>
-        <div v-if="item.status === 1"><v-chip label outlined color="orange">待校验</v-chip></div>
-        <div v-if="item.status === 2"><v-chip label outlined color="orange">校验中</v-chip></div>
-        <div v-if="item.status === 3"><v-chip label outlined color="secondary">待下载</v-chip></div>
-        <div v-if="item.status === 4"><v-chip label outlined color="primary">下载中</v-chip></div>
-        <div v-if="item.status === 5"><v-chip label outlined color="green">待做种</v-chip></div>
-        <div v-if="item.status === 6"><v-chip label outlined color="green">做种中</v-chip></div>
+        <div v-if="item.status === 0"><v-chip label outlined v-text="$t('components.torrents.parse')"></v-chip></div>
+        <div v-if="item.status === 1"><v-chip label outlined v-text="$t('components.torrents.waiting_check')" color="orange"></v-chip></div>
+        <div v-if="item.status === 2"><v-chip label outlined v-text="$t('components.torrents.checking')" color="orange"></v-chip></div>
+        <div v-if="item.status === 3"><v-chip label outlined v-text="$t('components.torrents.waiting_download')" color="secondary"></v-chip></div>
+        <div v-if="item.status === 4"><v-chip label outlined v-text="$t('components.torrents.downloading')" color="primary"></v-chip></div>
+        <div v-if="item.status === 5"><v-chip label outlined v-text="$t('components.torrents.wait_upload')" color="green"></v-chip></div>
+        <div v-if="item.status === 6"><v-chip label outlined v-text="$t('components.torrents.uploading')" color="green"></v-chip></div>
       </template>
       <template v-slot:item.totalSize="{ item }">
         <v-progress-linear v-if="item.metadataPercentComplete < 1" color="purple lighten-1" height="20" rounded striped :value="(item.metadataPercentComplete * 100).toFixed(2)">
           <template v-slot:default="{ value }">
-            <strong title="正在检索元数据">{{ value }}%</strong>
+            <strong :title="$t('components.torrents.retrieving_metadata')">{{ value }}%</strong>
           </template>
         </v-progress-linear>
         <span v-if="item.totalSize > 0">
@@ -76,7 +76,7 @@
             </div>
           </v-col>
           <v-col align-self="center">
-            <small v-if="item.eta > 0" class="text-no-wrap down-color">剩余 {{ item.eta | timeInterval }}</small>
+            <small v-if="item.eta > 0" class="text-no-wrap down-color">{{ $t('components.torrents.remaining') }} {{ item.eta | timeInterval }}</small>
           </v-col>
         </v-row>
       </template>
@@ -99,32 +99,28 @@
       <v-list>
         <v-list-item @click="showTorrentRenamePath">
           <v-list-item-icon><font-awesome-icon size="xl" :icon="['fa', 'save']"/></v-list-item-icon>
-          <v-list-item-content><v-list-item-title>重命名</v-list-item-title></v-list-item-content>
+          <v-list-item-content><v-list-item-title v-text="$t('components.torrents.rename')"></v-list-item-title></v-list-item-content>
         </v-list-item>
         <v-list-item @click="copyDownloadDir">
           <v-list-item-icon><font-awesome-icon size="xl" :icon="['fa', 'copy']"/></v-list-item-icon>
-          <v-list-item-content><v-list-item-title>路径复制</v-list-item-title></v-list-item-content>
+          <v-list-item-content><v-list-item-title v-text="$t('components.torrents.copy_path')"></v-list-item-title></v-list-item-content>
         </v-list-item>
       </v-list>
     </v-menu>
     <v-dialog v-model="torrentRenamePathDialog" width="30%">
       <v-card>
-        <v-card-title class="text-h5 grey lighten-2 justify-center">重命名</v-card-title>
+        <v-card-title class="text-h5 grey lighten-2 justify-center" v-text="$t('components.torrents.rename')"></v-card-title>
         <v-container>
           <v-row>
             <v-col cols="12">
-              <v-text-field label="名称" v-model="renamePath.name"></v-text-field>
+              <v-text-field :label="$t('components.torrents.name')" v-model="renamePath.name"></v-text-field>
             </v-col>
           </v-row>
         </v-container>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="torrentRenamePath">
-            确 定
-          </v-btn>
-          <v-btn color="second" text @click="torrentRenamePathDialog = false">
-            取 消
-          </v-btn>
+          <v-btn color="primary" text @click="torrentRenamePath" v-text="$t('sure')"></v-btn>
+          <v-btn color="second" text @click="torrentRenamePathDialog = false" v-text="$t('cancel')"></v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -161,27 +157,27 @@ export default {
       },
       selectedTorrents: [],
       headers: [
-        {text: '序号', align: 'center', sortable: true, value: 'queuePosition', width: 60, class: 'torrent-list', cellClass: 'torrent-list'},
+        {text: this.$t('components.torrents.queue_position'), align: 'center', sortable: true, value: 'queuePosition', width: 60, class: 'torrent-list', cellClass: 'torrent-list'},
         // {text: 'id', align: 'start', sortable: false, value: 'id', width: 50},
-        {text: '名称', align: 'start', sortable: false, value: 'name', width: 300, class: 'torrent-list', cellClass: 'torrent-list'},
-        {text: '状态', align: 'center', sortable: false, value: 'status', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
+        {text: this.$t('components.torrents.name'), align: 'start', sortable: false, value: 'name', width: 300, class: 'torrent-list', cellClass: 'torrent-list'},
+        {text: this.$t('components.torrents.status'), align: 'center', sortable: false, value: 'status', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
         // {text: 'hashString', align: 'start', sortable: false, value: 'hashString'},
-        {text: '总大小', align: 'right', sortable: true, value: 'totalSize', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
-        {text: '进度', align: 'center', sortable: true, value: 'percentDone', width: 100, class: 'torrent-list', cellClass: 'torrent-list'},
-        {text: '添加时间', align: 'center', sortable: true, value: 'addedDate', width: 120, class: 'torrent-list', cellClass: 'torrent-list'},
+        {text: this.$t('components.torrents.total_size'), align: 'right', sortable: true, value: 'totalSize', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
+        {text: this.$t('components.torrents.percent_done'), align: 'center', sortable: true, value: 'percentDone', width: 100, class: 'torrent-list', cellClass: 'torrent-list'},
+        {text: this.$t('components.torrents.added_date'), align: 'center', sortable: true, value: 'addedDate', width: 120, class: 'torrent-list', cellClass: 'torrent-list'},
         // {text: 'trackerStats', align: 'start', sortable: false, value: 'trackerStats', width: 200},
         // {text: 'leftUntilDone', align: 'start', sortable: false, value: 'leftUntilDone', width: 200},
-        {text: '上传/下载速度', align: 'start', sortable: false, value: 'rateDownload', width: 250, class: 'torrent-list', cellClass: 'torrent-list'},
+        {text: this.$t('components.torrents.upload_download_speed'), align: 'start', sortable: false, value: 'rateDownload', width: 250, class: 'torrent-list', cellClass: 'torrent-list'},
         // {text: '上传速度', align: 'start', sortable: false, value: 'rateUpload', width: 150},
         // {text: 'recheckProgress', align: 'start', sortable: false, value: 'recheckProgress', width: 200},
         // {text: 'peersGettingFromUs', align: 'start', sortable: false, value: 'peersGettingFromUs', width: 200},
         // {text: 'peersSendingToUs', align: 'start', sortable: false, value: 'peersSendingToUs', width: 200},
-        {text: '分享率', align: 'center', sortable: true, value: 'uploadRatio', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
-        {text: '已上传/下载', align: 'left', sortable: false, value: 'uploadedEver', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
+        {text: this.$t('components.torrents.upload_ratio'), align: 'center', sortable: true, value: 'uploadRatio', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
+        {text: this.$t('components.torrents.ready_upload_download'), align: 'left', sortable: false, value: 'uploadedEver', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
         // {text: '已完成', align: 'center', sortable: false, value: 'downloadedEver', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
         // {text: '保存目录', align: 'start', sortable: false, value: 'downloadDir', width: 200},
-        {text: '完成时间', align: 'center', sortable: true, value: 'doneDate', width: 120, class: 'torrent-list', cellClass: 'torrent-list'},
-        {text: '最后活动于', align: 'center', sortable: true, value: 'activityDate', width: 120, class: 'torrent-list', cellClass: 'torrent-list'},
+        {text: this.$t('components.torrents.done_date'), align: 'center', sortable: true, value: 'doneDate', width: 120, class: 'torrent-list', cellClass: 'torrent-list'},
+        {text: this.$t('components.torrents.activity_date'), align: 'center', sortable: true, value: 'activityDate', width: 120, class: 'torrent-list', cellClass: 'torrent-list'},
       ],
       torrentsList: []
     }

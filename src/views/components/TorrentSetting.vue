@@ -4,13 +4,13 @@
       <v-container fluid>
         <v-row>
           <v-col cols="3">
-            <v-text-field type="number" label="当种子的分享率达到这个数时，自动停止做种: " v-model="setInfo.seedRatioLimit" :min="1"></v-text-field>
+            <v-text-field type="number" :label="$t('components.torrent_setting.when')" v-model="setInfo.seedRatioLimit" :min="1"></v-text-field>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="2">
-            <v-btn text color="secondary" @click="getSettings">刷 新</v-btn>
-            <v-btn text color="primary" @click="setSettings">保 存</v-btn>
+            <v-btn text color="secondary" @click="getSettings" v-text="$t('flush')"></v-btn>
+            <v-btn text color="primary" @click="setSettings" v-text="$t('save')"></v-btn>
           </v-col>
         </v-row>
       </v-container>

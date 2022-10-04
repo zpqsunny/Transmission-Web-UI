@@ -3,27 +3,27 @@
     <!--  设置对话框    -->
       <v-card>
         <v-card-title class="headline grey lighten-2 justify-center">
-          <strong>设置</strong>
+          <strong v-text="$t('components.system_setting.setting')"></strong>
         </v-card-title>
         <v-card-text>
           <v-tabs v-model="setTab">
-            <v-tab>速度</v-tab>
-            <v-tab>下载</v-tab>
-            <v-tab>做种</v-tab>
-            <v-tab>隐私</v-tab>
-            <v-tab>网络</v-tab>
-            <v-tab>其他</v-tab>
+            <v-tab v-text="$t('components.system_setting.speed')"></v-tab>
+            <v-tab v-text="$t('components.system_setting.bandwidth')"></v-tab>
+            <v-tab v-text="$t('components.system_setting.upload')"></v-tab>
+            <v-tab v-text="$t('components.system_setting.privacy')"></v-tab>
+            <v-tab v-text="$t('components.system_setting.network')"></v-tab>
+            <v-tab v-text="$t('components.system_setting.other')"></v-tab>
           </v-tabs>
           <v-tabs-items v-model="setTab">
             <v-tab-item>
               <v-card>
-                <v-card-title>速度限制</v-card-title>
+                <v-card-title v-text="$t('components.system_setting.global_bandwidth_limits')"></v-card-title>
                 <v-container>
                   <v-row>
-                    <v-col cols="2">
-                      <v-checkbox v-model="$store.state.sessionInfo['speed-limit-up-enabled']" label="上传"></v-checkbox>
+                    <v-col cols="5">
+                      <v-checkbox v-model="$store.state.sessionInfo['speed-limit-up-enabled']" :label="$t('components.system_setting.upload_rate')"></v-checkbox>
                     </v-col>
-                    <v-col cols="10">
+                    <v-col cols="7">
                       <v-text-field outlined type="number" v-model.number="$store.state.sessionInfo['speed-limit-up']" :disabled="!$store.state.sessionInfo['speed-limit-up-enabled']">
                         <template v-slot:append>
                           kB/s
@@ -32,10 +32,10 @@
                     </v-col>
                   </v-row>
                   <v-row>
-                    <v-col cols="2">
-                      <v-checkbox v-model="$store.state.sessionInfo['speed-limit-down-enabled']" label="下载"></v-checkbox>
+                    <v-col cols="5">
+                      <v-checkbox v-model="$store.state.sessionInfo['speed-limit-down-enabled']" :label="$t('components.system_setting.download_rate')"></v-checkbox>
                     </v-col>
-                    <v-col cols="10">
+                    <v-col cols="7">
                       <v-text-field outlined type="number" v-model.number="$store.state.sessionInfo['speed-limit-down']" :disabled="!$store.state.sessionInfo['speed-limit-down-enabled']">
                         <template v-slot:append>
                           kB/s
@@ -46,12 +46,14 @@
                 </v-container>
               </v-card>
               <v-card>
-                <v-card-title><font-awesome-icon :icon="['fa', 'running']" />备用速度限制</v-card-title>
-                <v-card-subtitle>手动或者定时覆盖普通速度限制</v-card-subtitle>
+                <v-card-title><font-awesome-icon :icon="['fa', 'running']" />
+                  {{ $t('components.system_setting.speed_limit_mode') }}
+                </v-card-title>
+                <v-card-subtitle v-text="$t('components.system_setting.when_enabled_speed_limit_overwrite_the_global_bandwidth_limits')"></v-card-subtitle>
                 <v-container>
                   <v-row>
                     <v-col cols="12">
-                      <v-text-field outlined type="number" v-model.number="$store.state.sessionInfo['alt-speed-up']" label="上传">
+                      <v-text-field outlined type="number" v-model.number="$store.state.sessionInfo['alt-speed-up']" :label="$t('components.system_setting.upload_rate')">
                         <template v-slot:append>
                           kB/s
                         </template>
@@ -60,7 +62,7 @@
                   </v-row>
                   <v-row>
                     <v-col cols="12">
-                      <v-text-field outlined type="number" v-model.number="$store.state.sessionInfo['alt-speed-down']" label="下载">
+                      <v-text-field outlined type="number" v-model.number="$store.state.sessionInfo['alt-speed-down']" :label="$t('components.system_setting.download_rate')">
                         <template v-slot:append>
                           kB/s
                         </template>
@@ -68,23 +70,23 @@
                     </v-col>
                   </v-row>
                   <v-row>
-                    <v-col cols="2">
-                      <v-checkbox label="定时" v-model="$store.state.sessionInfo['alt-speed-time-enabled']"></v-checkbox>
+                    <v-col cols="4">
+                      <v-checkbox :label="$t('components.system_setting.schedule_speed_limit')" v-model="$store.state.sessionInfo['alt-speed-time-enabled']"></v-checkbox>
                     </v-col>
-                    <v-col cols="5">
+                    <v-col cols="4">
                       <v-menu ref="timeBegin" v-model="timeBeginMenu" :close-on-content-click="false" :nudge-right="40" :return-value.sync="timeBegin"
                               transition="scale-transition" offset-y max-width="300px" min-width="300px">
                         <template v-slot:activator="{ on, attrs }">
-                          <v-text-field :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="timeBegin" label="开始时间" prepend-icon="mdi-clock-time-four-outline" readonly v-bind="attrs" v-on="on"></v-text-field>
+                          <v-text-field :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="timeBegin" :label="$t('components.system_setting.time_begin')" prepend-icon="mdi-clock-time-four-outline" readonly v-bind="attrs" v-on="on"></v-text-field>
                         </template>
                         <v-time-picker v-if="timeBeginMenu" v-model="timeBegin" full-width @click:minute="$refs['timeBegin'].save(timeBegin)"></v-time-picker>
                       </v-menu>
                     </v-col>
-                    <v-col cols="5">
+                    <v-col cols="4">
                       <v-menu ref="timeEnd" v-model="timeEndMenu" :close-on-content-click="false" :nudge-right="40" :return-value.sync="timeEnd"
                               transition="scale-transition" offset-y max-width="300px" min-width="300px">
                         <template v-slot:activator="{ on, attrs }">
-                          <v-text-field :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="timeEnd" label="结束时间" prepend-icon="mdi-clock-time-four-outline" readonly v-bind="attrs" v-on="on"></v-text-field>
+                          <v-text-field :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="timeEnd" :label="$t('components.system_setting.time_end')" prepend-icon="mdi-clock-time-four-outline" readonly v-bind="attrs" v-on="on"></v-text-field>
                         </template>
                         <v-time-picker v-if="timeEndMenu" v-model="timeEnd" full-width @click:minute="$refs['timeEnd'].save(timeEnd)"></v-time-picker>
                       </v-menu>
@@ -93,13 +95,13 @@
                   <v-row>
                     <v-col cols="12">
                       <div class="d-flex justify-space-between">
-                        <v-checkbox label="星期日" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="sunday"></v-checkbox>
-                        <v-checkbox label="星期一" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="monday"></v-checkbox>
-                        <v-checkbox label="星期二" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="tuesday"></v-checkbox>
-                        <v-checkbox label="星期三" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="wednesday"></v-checkbox>
-                        <v-checkbox label="星期四" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="thursday"></v-checkbox>
-                        <v-checkbox label="星期五" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="friday"></v-checkbox>
-                        <v-checkbox label="星期六" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="saturday"></v-checkbox>
+                        <v-checkbox :label="$t('components.system_setting.sun')" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="sunday"></v-checkbox>
+                        <v-checkbox :label="$t('components.system_setting.mon')" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="monday"></v-checkbox>
+                        <v-checkbox :label="$t('components.system_setting.tue')" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="tuesday"></v-checkbox>
+                        <v-checkbox :label="$t('components.system_setting.wed')" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="wednesday"></v-checkbox>
+                        <v-checkbox :label="$t('components.system_setting.thur')" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="thursday"></v-checkbox>
+                        <v-checkbox :label="$t('components.system_setting.fri')" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="friday"></v-checkbox>
+                        <v-checkbox :label="$t('components.system_setting.sat')" :disabled="!$store.state.sessionInfo['alt-speed-time-enabled']" v-model="saturday"></v-checkbox>
                       </div>
                     </v-col>
                   </v-row>
@@ -108,23 +110,23 @@
             </v-tab-item>
             <v-tab-item>
               <v-card>
-                <v-card-title>添加</v-card-title>
+                <v-card-title v-text="$t('components.system_setting.adding')"></v-card-title>
                 <v-container>
                   <v-row>
                     <v-col cols="12">
-                      <v-checkbox label="添加 Torrent 后开始" v-model.number="$store.state.sessionInfo['start-added-torrents']"></v-checkbox>
+                      <v-checkbox :label="$t('components.system_setting.start_transfers_when_added')" v-model.number="$store.state.sessionInfo['start-added-torrents']"></v-checkbox>
                     </v-col>
                   </v-row>
                   <v-row>
                     <v-col cols="12">
-                      <v-checkbox label="将 .torrent 文件移至回收站" v-model.number="$store.state.sessionInfo['trash-original-torrent-files']"></v-checkbox>
+                      <v-checkbox :label="$t('components.system_setting.trash_original_torrent_files')" v-model.number="$store.state.sessionInfo['trash-original-torrent-files']"></v-checkbox>
                     </v-col>
                   </v-row>
                   <v-row>
                     <v-col cols="12">
-                      <v-text-field outlined v-model="downloadDir" label="保存的位置">
+                      <v-text-field outlined v-model="downloadDir" :label="$t('components.system_setting.default_location')">
                         <template v-slot:append v-if="pathSizeByte > 0">
-                          {{ pathSizeByte | unitFormat }} 可用
+                          {{ pathSizeByte | unitFormat }} {{ $t('components.system_setting.available') }}
                         </template>
                       </v-text-field>
                     </v-col>
@@ -132,11 +134,11 @@
                 </v-container>
               </v-card>
               <v-card>
-                <v-card-title>下载队列</v-card-title>
+                <v-card-title v-text="$t('components.system_setting.queues')"></v-card-title>
                 <v-container>
                   <v-row>
                     <v-col cols="6">
-                      <v-checkbox v-model="$store.state.sessionInfo['download-queue-enabled']" label="最大活动下载数"></v-checkbox>
+                      <v-checkbox v-model="$store.state.sessionInfo['download-queue-enabled']" :label="$t('components.system_setting.download_with_maximum_of')"></v-checkbox>
                     </v-col>
                     <v-col cols="6">
                       <v-text-field outlined type="number" v-model.number="$store.state.sessionInfo['download-queue-size']" :disabled="!$store.state.sessionInfo['download-queue-enabled']"></v-text-field>
@@ -144,12 +146,12 @@
                   </v-row>
                   <v-row>
                     <v-col cols="6">
-                      <v-checkbox v-model="$store.state.sessionInfo['queue-stalled-enabled']" label="下载是属于非活动的如果停止分享数据在"></v-checkbox>
+                      <v-checkbox v-model="$store.state.sessionInfo['queue-stalled-enabled']" :label="$t('components.system_setting.transfer_is_stalled_when_inactive_for')"></v-checkbox>
                     </v-col>
                     <v-col cols="6">
                       <v-text-field outlined type="number" v-model.number="$store.state.sessionInfo['queue-stalled-minutes']" :disabled="!$store.state.sessionInfo['queue-stalled-enabled']">
                         <template v-slot:append>
-                          分钟之前
+                          {{ $t('minutes') }}
                         </template>
                       </v-text-field>
                     </v-col>
@@ -161,24 +163,24 @@
                 <v-container>
                   <v-row>
                     <v-col cols="12">
-                      <v-checkbox v-model="$store.state.sessionInfo['rename-partial-files']" label="在未完成文件附加“.part”扩展名"></v-checkbox>
+                      <v-checkbox v-model="$store.state.sessionInfo['rename-partial-files']" :label="$t('components.system_setting.append_part_to_incomplete_files')"></v-checkbox>
                     </v-col>
                   </v-row>
                   <v-row>
-                    <v-col cols="3">
-                      <v-checkbox v-model="$store.state.sessionInfo['incomplete-dir-enabled']" label="保存未完成文件到"></v-checkbox>
+                    <v-col cols="5">
+                      <v-checkbox v-model="$store.state.sessionInfo['incomplete-dir-enabled']" :label="$t('components.system_setting.keep_incomplete_files_in')"></v-checkbox>
                     </v-col>
-                    <v-col cols="9">
+                    <v-col cols="7">
                       <v-text-field label="" outlined v-model="$store.state.sessionInfo['incomplete-dir']"></v-text-field>
                     </v-col>
                   </v-row>
                   <v-row>
-                    <v-col cols="4">
-                      <v-checkbox v-model="$store.state.sessionInfo['script-torrent-done-enabled']" label="当 Torrent 完成时调用脚本：" ></v-checkbox>
+                    <v-col cols="5">
+                      <v-checkbox v-model="$store.state.sessionInfo['script-torrent-done-enabled']" :label="$t('components.system_setting.when_download_completes')" ></v-checkbox>
                     </v-col>
-                    <v-col cols="8">
+                    <v-col cols="7">
                       <v-text-field outlined v-model="$store.state.sessionInfo['script-torrent-done-filename']" :disabled="!$store.state.sessionInfo['script-torrent-done-enabled']">
-                        <template v-slot:prepend-inner>
+                        <template v-slot:append>
                           <a href="https://github.com/ronggang/transmission-web-control/wiki/About-script-torrent-done-filename" target="_blank">Wiki</a>
                         </template>
                       </v-text-field>
@@ -189,24 +191,24 @@
             </v-tab-item>
             <v-tab-item>
               <v-card>
-                <v-card-title>限制</v-card-title>
+                <v-card-title v-text="$t('components.system_setting.limit')"></v-card-title>
                 <v-container>
                   <v-row>
-                    <v-col cols="4">
-                      <v-checkbox v-model="$store.state.sessionInfo['seedRatioLimited']" label="停止做种当分享率达到"></v-checkbox>
+                    <v-col cols="6">
+                      <v-checkbox v-model="$store.state.sessionInfo['seedRatioLimited']" :label="$t('components.system_setting.stop_seeding_at_ratio')"></v-checkbox>
                     </v-col>
-                    <v-col cols="8">
+                    <v-col cols="6">
                       <v-text-field outlined type="number" v-model.number="$store.state.sessionInfo['seedRatioLimit']" :disabled="!$store.state.sessionInfo['seedRatioLimited']"></v-text-field>
                     </v-col>
                   </v-row>
                   <v-row>
-                    <v-col cols="4">
-                      <v-checkbox v-model="$store.state.sessionInfo['idle-seeding-limit-enabled']" label="停止做种当空闲达到"></v-checkbox>
+                    <v-col cols="6">
+                      <v-checkbox v-model="$store.state.sessionInfo['idle-seeding-limit-enabled']" :label="$t('components.system_setting.stop_seeding_when_inactive_for')"></v-checkbox>
                     </v-col>
-                    <v-col cols="8">
+                    <v-col cols="6">
                       <v-text-field outlined type="number" v-model.number="$store.state.sessionInfo['idle-seeding-limit']" :disabled="!$store.state.sessionInfo['idle-seeding-limit-enabled']">
                         <template v-slot:append>
-                          分钟
+                          {{ $t('minutes') }}
                         </template>
                       </v-text-field>
                     </v-col>
@@ -216,32 +218,32 @@
             </v-tab-item>
             <v-tab-item>
               <v-card>
-                <v-card-title>加密</v-card-title>
+                <v-card-title v-text="$t('components.system_setting.encryption')"></v-card-title>
                 <v-container>
                   <v-row>
                     <v-col cols="12">
-                      <v-select :items="[{text:'要求加密',value:'required'},{text:'优先加密',value:'preferred'},{text:'允许加密',value:'tolerate'}]"
-                                label="加密模式" outlined v-model="$store.state.sessionInfo['encryption']">
+                      <v-select :items="[{text: $t('components.system_setting.required'), value:'required'},{text:$t('components.system_setting.preferred'), value:'preferred'},{text:$t('components.system_setting.tolerate'),value:'tolerate'}]"
+                                outlined v-model="$store.state.sessionInfo['encryption']">
                       </v-select>
                     </v-col>
                   </v-row>
                 </v-container>
               </v-card>
               <v-card>
-                <v-card-title>黑名单</v-card-title>
+                <v-card-title v-text="$t('components.system_setting.block_list')"></v-card-title>
                 <v-container>
                   <v-row>
-                    <v-col cols="3">
-                      <v-checkbox v-model="$store.state.sessionInfo['blocklist-enabled']" label="启用黑名单"></v-checkbox>
+                    <v-col cols="5">
+                      <v-checkbox v-model="$store.state.sessionInfo['blocklist-enabled']" :label="$t('components.system_setting.prevent_peers_in_block_list_from_connecting')"></v-checkbox>
                     </v-col>
-                    <v-col cols="9">
+                    <v-col cols="7">
                       <v-text-field outlined v-model="$store.state.sessionInfo['blocklist-url']" :disabled="!$store.state.sessionInfo['blocklist-enabled']"></v-text-field>
                     </v-col>
                   </v-row>
                   <v-row justify="center">
                     <v-col cols="12">
                       <span>黑名单包含 {{ blockListSize }} 条规则
-                        <v-btn color="secondary" :disabled="!$store.state.sessionInfo['blocklist-enabled']" @click="updateBlockList">更新</v-btn>
+                        <v-btn color="secondary" :disabled="!$store.state.sessionInfo['blocklist-enabled']" @click="updateBlockList" v-text="$t('components.system_setting.update')"></v-btn>
                       </span>
                     </v-col>
                   </v-row>
@@ -250,14 +252,14 @@
             </v-tab-item>
             <v-tab-item>
               <v-card>
-                <v-card-title>入站的用户</v-card-title>
+                <v-card-title v-text="$t('components.system_setting.peer_communication')"></v-card-title>
                 <v-container>
                   <v-row>
                     <v-col cols="4">
-                      <v-checkbox v-model="$store.state.sessionInfo['peer-port-random-on-start']" label="每次启动时随机选择端口"></v-checkbox>
+                      <v-checkbox v-model="$store.state.sessionInfo['peer-port-random-on-start']" :label="$t('components.system_setting.randomize_port_on_launch')"></v-checkbox>
                     </v-col>
                     <v-col cols="6">
-                      <v-text-field outlined type="number" label="入站连接的端口" v-model.number="$store.state.sessionInfo['peer-port']" :disabled="$store.state.sessionInfo['peer-port-random-on-start']">
+                      <v-text-field outlined type="number" :label="$t('components.system_setting.peer_listening_port')" v-model.number="$store.state.sessionInfo['peer-port']" :disabled="$store.state.sessionInfo['peer-port-random-on-start']">
                         <template v-slot:append>
                           {{ portIsOpen }}
                         </template>
@@ -269,7 +271,7 @@
                   </v-row>
                   <v-row>
                     <v-col cols="12">
-                      <v-checkbox v-model="$store.state.sessionInfo['port-forwarding-enabled']" label="启用端口转发"></v-checkbox>
+                      <v-checkbox v-model="$store.state.sessionInfo['port-forwarding-enabled']" :label="$t('components.system_setting.automatically_map_port')"></v-checkbox>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -279,29 +281,29 @@
                 <v-container>
                   <v-row>
                     <v-col cols="6">
-                      <v-text-field outlined label="全体最大用户数量" type="number" v-model.number="$store.state.sessionInfo['peer-limit-global']"></v-text-field>
+                      <v-text-field outlined :label="$t('components.system_setting.global_maximum_connections')" type="number" v-model.number="$store.state.sessionInfo['peer-limit-global']"></v-text-field>
                     </v-col>
                     <v-col cols="6">
-                      <v-text-field outlined label="每个 Torrent 的最大用户数量" type="number" v-model.number="$store.state.sessionInfo['peer-limit-per-torrent']"></v-text-field>
+                      <v-text-field outlined :label="$t('components.system_setting.maximum_connections_for_new_transfers')" type="number" v-model.number="$store.state.sessionInfo['peer-limit-per-torrent']"></v-text-field>
                     </v-col>
                   </v-row>
                 </v-container>
               </v-card>
               <v-card>
-                <v-card-title>选项</v-card-title>
+                <v-card-title v-text="$t('components.system_setting.connections')"></v-card-title>
                 <v-container>
                   <v-row>
                     <v-col cols="6">
-                      <v-checkbox v-model="$store.state.sessionInfo['utp-enabled']" label="为用户连接启用 µTP"></v-checkbox>
+                      <v-checkbox v-model="$store.state.sessionInfo['utp-enabled']" :label="$t('components.system_setting.enable_micro_transport_protocol')"></v-checkbox>
                     </v-col>
                     <v-col cols="6">
-                      <v-checkbox v-model="$store.state.sessionInfo['pex-enabled']" label="使用 PEX 以寻找更多用户"></v-checkbox>
+                      <v-checkbox v-model="$store.state.sessionInfo['pex-enabled']" :label="$t('components.system_setting.use_peer_exchange_pex_for_public_torrents')"></v-checkbox>
                     </v-col>
                     <v-col cols="6">
-                      <v-checkbox v-model="$store.state.sessionInfo['dht-enabled']" label="使用 DHT 以寻找更多用户"></v-checkbox>
+                      <v-checkbox v-model="$store.state.sessionInfo['dht-enabled']" :label="$t('components.system_setting.use_distributed_hash_table_dht_for_public_torrents')"></v-checkbox>
                     </v-col>
                     <v-col cols="6">
-                      <v-checkbox v-model="$store.state.sessionInfo['lpd-enabled']" label="使用本地用户发现已寻找更多用户"></v-checkbox>
+                      <v-checkbox v-model="$store.state.sessionInfo['lpd-enabled']" :label="$t('components.system_setting.use_local_peer_discovery_for_public_torrents')"></v-checkbox>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -328,12 +330,8 @@
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="updated">
-            保 存
-          </v-btn>
-          <v-btn color="second" text @click="$emit('closed')">
-            关 闭
-          </v-btn>
+          <v-btn color="primary" text @click="updated" v-text="$t('save')"></v-btn>
+          <v-btn color="second" text @click="$emit('closed')" v-text="$t('close')"></v-btn>
         </v-card-actions>
       </v-card>
   </div>

@@ -1,11 +1,11 @@
 <template>
   <div class="border-style">
     <v-tabs v-model="tab">
-      <v-tab>常规</v-tab>
-      <v-tab style="text-transform: none">Tracker 服务器</v-tab>
-      <v-tab>文件</v-tab>
-      <v-tab>用户</v-tab>
-      <v-tab>设置</v-tab>
+      <v-tab v-text="$t('information.info')" style="text-transform: none"></v-tab>
+      <v-tab v-text="$t('information.trackers')" style="text-transform: none"></v-tab>
+      <v-tab v-text="$t('information.files')" style="text-transform: none"></v-tab>
+      <v-tab v-text="$t('information.peers')" style="text-transform: none"></v-tab>
+      <v-tab v-text="$t('information.settings')" style="text-transform: none"></v-tab>
     </v-tabs>
     <v-tabs-items v-model="tab">
       <v-tab-item>
