@@ -25,8 +25,14 @@
       configLanguage() {
         const i18n = localStorage.getItem('i18n')
         if (i18n !== undefined) {
+          document.documentElement.lang = i18n
           this.$i18n.locale = i18n
         }
+      }
+    },
+    watch: {
+      '$i18n.locale': function (val, oldVal) {
+        document.documentElement.lang = val
       }
     }
   }

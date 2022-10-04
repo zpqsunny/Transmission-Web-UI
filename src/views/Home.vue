@@ -179,7 +179,7 @@
       <!--  删除种子对话框  -->
       <v-dialog v-model="deleteTorrentDialog" width="30%" persistent>
         <v-card>
-          <v-card-title class="justify-center" v-text="$t('home.confirm_remove_torrent')">=</v-card-title>
+          <v-card-title class="justify-center" v-text="$t('home.confirm_remove_torrent')"></v-card-title>
           <v-card-text>
             {{ $t('home.are_you_sure_remove_selected_torrent') }}
             <v-checkbox v-model="deleteLocalData" :label="$t('home.remove_with_data')"></v-checkbox>

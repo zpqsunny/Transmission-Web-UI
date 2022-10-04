@@ -450,5 +450,6 @@ const i18n = new VueI18n({
   locale: 'en',
   messages: messages
 })
+document.documentElement.lang = 'en'
 
 export default i18n

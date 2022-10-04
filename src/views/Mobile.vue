@@ -26,54 +26,54 @@
       <v-list dense nav>
         <v-list-item-group v-model="filterItem" color="primary">
           <v-list-item @click="torrentStatusUpdate(-1)">
-            <v-list-item-avatar>
+            <v-list-item-icon>
               <font-awesome-icon size="2x" :icon="['fa','folder']"/>
-            </v-list-item-avatar>
+            </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title v-text="$t('home.all')"></v-list-item-title>
             </v-list-item-content>
             <v-list-item-action>{{ torrentTotal }}</v-list-item-action>
           </v-list-item>
           <v-list-item @click="torrentStatusUpdate(0)">
-            <v-list-item-avatar>
+            <v-list-item-icon>
               <font-awesome-icon size="2x" :icon="['fa','pause']"/>
-            </v-list-item-avatar>
+            </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title v-text="$t('home.pause')"></v-list-item-title>
             </v-list-item-content>
             <v-list-item-action>{{ torrentPause }}</v-list-item-action>
           </v-list-item>
           <v-list-item @click="torrentStatusUpdate(2)">
-            <v-list-item-avatar>
+            <v-list-item-icon>
               <font-awesome-icon size="2x" :icon="['fa','database']"/>
-            </v-list-item-avatar>
+            </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title v-text="$t('home.checking')"></v-list-item-title>
             </v-list-item-content>
             <v-list-item-action>{{ torrentDatabase }}</v-list-item-action>
           </v-list-item>
           <v-list-item @click="torrentStatusUpdate(3)">
-            <v-list-item-avatar>
+            <v-list-item-icon>
               <font-awesome-icon size="2x" :icon="['fa','clock']"/>
-            </v-list-item-avatar>
+            </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title v-text="$t('home.waiting_download')"></v-list-item-title>
             </v-list-item-content>
             <v-list-item-action>{{ torrentWaitDownload }}</v-list-item-action>
           </v-list-item>
           <v-list-item @click="torrentStatusUpdate(4)">
-            <v-list-item-avatar>
-              <font-awesome-icon size="2x" :icon="['fa','cloud-download-alt']"/>
-            </v-list-item-avatar>
+            <v-list-item-icon>
+              <font-awesome-icon size="2x" :icon="['fas','download']"/>
+            </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title v-text="$t('home.downloading')"></v-list-item-title>
             </v-list-item-content>
             <v-list-item-action>{{ torrentDownloading }}</v-list-item-action>
           </v-list-item>
           <v-list-item @click="torrentStatusUpdate(6)">
-            <v-list-item-avatar>
-              <font-awesome-icon size="2x" :icon="['fa','cloud-upload-alt']"/>
-            </v-list-item-avatar>
+            <v-list-item-icon>
+              <font-awesome-icon size="2x" :icon="['fas','upload']"/>
+            </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title v-text="$t('home.uploading')"></v-list-item-title>
             </v-list-item-content>
@@ -131,7 +131,7 @@
                       <template v-if="item.metadataPercentComplete === 1">
                         <span>{{ item.downloadedEver | unitFormat }} / {{ item.totalSize | unitFormat }}</span>
                       </template>
-                      <span v-if="item.eta > 0" class="text-no-wrap down-color"> 剩余 {{ item.eta | timeInterval }}</span>
+                      <span v-if="item.eta > 0" class="text-no-wrap down-color">{{ $t('components.torrents.remaining') }} {{ item.eta | timeInterval }}</span>
                     </v-list-item-subtitle>
                   </v-list-item-content>
                 </template>
@@ -144,10 +144,10 @@
     <!--  删除种子对话框  -->
     <v-dialog v-model="deleteTorrentDialog" width="80%" persistent>
       <v-card>
-        <v-card-title class="justify-center">删除种子确认</v-card-title>
+        <v-card-title class="justify-center" v-text="$t('home.confirm_remove_torrent')"></v-card-title>
         <v-card-text>
-          确定要删除已选择的种子吗?
-          <v-checkbox v-model="deleteLocalData" label="同时删除数据"></v-checkbox>
+          {{ $t('home.are_you_sure_remove_selected_torrent') }}
+          <v-checkbox v-model="deleteLocalData" :label="$t('home.remove_with_data')"></v-checkbox>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
