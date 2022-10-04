@@ -113,12 +113,10 @@
                 <v-card-title v-text="$t('components.system_setting.adding')"></v-card-title>
                 <v-container>
                   <v-row>
-                    <v-col cols="12">
+                    <v-col cols="6">
                       <v-checkbox :label="$t('components.system_setting.start_transfers_when_added')" v-model.number="$store.state.sessionInfo['start-added-torrents']"></v-checkbox>
                     </v-col>
-                  </v-row>
-                  <v-row>
-                    <v-col cols="12">
+                    <v-col cols="6">
                       <v-checkbox :label="$t('components.system_setting.trash_original_torrent_files')" v-model.number="$store.state.sessionInfo['trash-original-torrent-files']"></v-checkbox>
                     </v-col>
                   </v-row>
@@ -159,7 +157,7 @@
                 </v-container>
               </v-card>
               <v-card>
-                <v-card-title>未完成</v-card-title>
+                <v-card-title v-text="$t('components.system_setting.part')"></v-card-title>
                 <v-container>
                   <v-row>
                     <v-col cols="12">
@@ -242,7 +240,7 @@
                   </v-row>
                   <v-row justify="center">
                     <v-col cols="12">
-                      <span>黑名单包含 {{ blockListSize }} 条规则
+                      <span>{{ $t('components.system_setting.block_list_total_rules', [blockListSize])}}
                         <v-btn color="secondary" :disabled="!$store.state.sessionInfo['blocklist-enabled']" @click="updateBlockList" v-text="$t('components.system_setting.update')"></v-btn>
                       </span>
                     </v-col>
