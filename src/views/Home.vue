@@ -84,11 +84,8 @@
           </v-list>
         </v-menu>
         <v-spacer></v-spacer>
-        <v-btn text small @click="$i18n.locale = 'en'">
-          <font-awesome-icon size="2x" :icon="['fa', 'thumbs-up']"/>
-        </v-btn>
-        <v-btn text small @click="$i18n.locale = 'zh-CN'">
-          <font-awesome-icon size="2x" :icon="['fa', 'thumbs-up']"/>
+        <v-btn text small @click="changeLanguage">
+          <font-awesome-icon size="2x" :icon="['fa', 'language']"/>
         </v-btn>
         <v-btn text small @click="helpMeDialog = true">
           <font-awesome-icon size="2x" :icon="['fa', 'thumbs-up']"/>
@@ -202,7 +199,7 @@
             <v-row>
               <v-col cols="12">
                 <v-text-field :label="$t('home.new_location')" outlined v-model="setLocation.location" autocomplete="off"></v-text-field>
-                <v-checkbox :label="$t('with_move_data')" v-model="setLocation.move"></v-checkbox>
+                <v-checkbox :label="$t('home.with_move_data')" v-model="setLocation.move"></v-checkbox>
               </v-col>
             </v-row>
           </v-container>
@@ -216,13 +213,7 @@
       <!--   捐款   -->
       <v-dialog v-model="helpMeDialog" width="30%">
         <v-card>
-          <v-container>
-            <div class="d-flex justify-space-around">
-              paypal: zpqsunny@gmail.com
-              <img alt="捐助我" :src="require('@/assets/alipay.jpg')" height="400px"/>
-              <img alt="捐助我" :src="require('@/assets/weixin.jpg')" height="400px"/>
-            </div>
-          </v-container>
+          <Coffee></Coffee>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="second" text @click="helpMeDialog = false" v-text="$t('close')"></v-btn>
@@ -240,6 +231,7 @@ import Information from '@/views/Information'
 import Torrents from '@/views/components/Torrents'
 import AddTorrentFromUrl from '@/views/components/AddTorrentFromUrl'
 import AddTorrentFromFile from '@/views/components/AddTorrentFromFile'
+import Coffee from '@/views/components/Coffee'
 import Bottom from '@/views/Bottom'
 
 export default {
@@ -251,6 +243,7 @@ export default {
     Torrents,
     AddTorrentFromUrl,
     AddTorrentFromFile,
+    Coffee,
     Bottom,
   },
   computed: {
@@ -374,6 +367,15 @@ export default {
     },
     goEmail() {
       window.location.href = 'mailto:torrentweb@gmail.com'
+    },
+    changeLanguage() {
+      if (this.$i18n.locale === 'en') {
+        this.$i18n.locale = 'zh-CN'
+        localStorage.setItem('i18n','zh-CN')
+      } else {
+        this.$i18n.locale = 'en'
+        localStorage.setItem('i18n','en')
+      }
     },
     logout() {
       localStorage.removeItem('url')

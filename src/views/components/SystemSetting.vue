@@ -277,7 +277,7 @@
                 </v-container>
               </v-card>
               <v-card>
-                <v-card-title>用户限制</v-card-title>
+                <v-card-title v-text="$t('components.system_setting.connections')"></v-card-title>
                 <v-container>
                   <v-row>
                     <v-col cols="6">
@@ -287,11 +287,6 @@
                       <v-text-field outlined :label="$t('components.system_setting.maximum_connections_for_new_transfers')" type="number" v-model.number="$store.state.sessionInfo['peer-limit-per-torrent']"></v-text-field>
                     </v-col>
                   </v-row>
-                </v-container>
-              </v-card>
-              <v-card>
-                <v-card-title v-text="$t('components.system_setting.connections')"></v-card-title>
-                <v-container>
                   <v-row>
                     <v-col cols="6">
                       <v-checkbox v-model="$store.state.sessionInfo['utp-enabled']" :label="$t('components.system_setting.enable_micro_transport_protocol')"></v-checkbox>

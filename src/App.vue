@@ -18,13 +18,15 @@
 
       }
     },
-    mounted() {
+    created() {
       this.configLanguage()
     },
     methods: {
       configLanguage() {
-        const lan = localStorage.getItem('lan')
-        console.log(lan)
+        const i18n = localStorage.getItem('i18n')
+        if (i18n !== undefined) {
+          this.$i18n.locale = i18n
+        }
       }
     }
   }
