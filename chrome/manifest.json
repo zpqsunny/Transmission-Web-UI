@@ -28,7 +28,6 @@
   "permissions": [
     "contextMenus",
     "background",
-    "storage",
     "activeTab"
   ]
 }
