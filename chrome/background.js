@@ -24,7 +24,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     extensionId: chrome.runtime.id,
     message: {url: url},
   });
-  console.log('sendMessage ok');
+  console.log('send message ok');
 })
 // action onClicked
 chrome.action.onClicked.addListener((tab) => {
