@@ -24,10 +24,24 @@
     methods: {
       configLanguage() {
         const i18n = localStorage.getItem('i18n')
-        if (i18n !== undefined) {
+        if (i18n !== null) {
           document.documentElement.lang = i18n
           this.$i18n.locale = i18n
+          return
         }
+        let locale
+        switch (navigator.language) {
+          case 'zh-CN':
+          case 'zh-TW':
+            locale = 'zh-CN'
+            break
+          default:
+            locale = 'en'
+            break;
+        }
+        document.documentElement.lang = locale
+        this.$i18n.locale = locale
+        localStorage.setItem('i18n', locale)
       }
     },
     watch: {
