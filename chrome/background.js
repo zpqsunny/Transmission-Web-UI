@@ -1,14 +1,15 @@
+// runtime installed
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     id: 'transmissionFastDownload',
-    title: '磁力链接快捷下载',
+    title: chrome.i18n.getMessage('context_menus_title'),
     contexts: ['selection', 'link'],
   }, () => {
     console.log('contextMenus created')
   })
   console.log('onInstalled')
 })
-
+// contextMenus onClicked
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId !== 'transmissionFastDownload') {
     return
@@ -20,7 +21,27 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
   })
   console.log('sendMessage ok')
 })
-
+let tId = -1
+// action onClicked
 chrome.action.onClicked.addListener((tab) => {
-  chrome.tabs.create({url: chrome.runtime.getURL('index.html')});
-});
+  if (tId < 0) {
+    chrome.tabs.create({url: chrome.runtime.getURL('index.html')})
+      .then(t => {
+        console.log('tab created')
+        tId = t.id
+      })
+    return
+  }
+  chrome.tabs.get(tId).then(t => {
+    if (!t.active) {
+      chrome.tabs.update(tId, {active: true})
+    }
+  })
+})
+// tabs onRemoved
+chrome.tabs.onRemoved.addListener((tabId, detachInfo) => {
+  if (tabId === tId) {
+    console.log('tab removed')
+    tId = -1
+  }
+})

@@ -9,6 +9,7 @@
     },
     "default_title": "Transmission Web UI"
   },
+  "default_locale": "en",
   "icons": {
     "16": "images/download16.png",
     "48": "images/download48.png",
@@ -26,6 +27,8 @@
   ],
   "permissions": [
     "contextMenus",
-    "background"
+    "background",
+    "storage",
+    "activeTab"
   ]
 }
