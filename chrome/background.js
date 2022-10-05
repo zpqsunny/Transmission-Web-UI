@@ -6,7 +6,7 @@ chrome.runtime.onInstalled.addListener(() => {
     contexts: ['selection', 'link'],
   }, () => {
     console.log('contextMenus created');
-  })
+  });
   console.log('onInstalled');
 })
 let tId = -1
@@ -16,7 +16,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     return;
   }
   if (tId < 0) {
-    console.log('not open tab')
+    console.log('not open tab, so do not send message');
     return;
   }
   let url = info.linkUrl || info.selectionText
@@ -33,7 +33,7 @@ chrome.action.onClicked.addListener((tab) => {
       .then(t => {
         console.log('tab created');
         tId = t.id;
-      })
+      });
     return;
   }
   chrome.tabs.get(tId).then(t => {
