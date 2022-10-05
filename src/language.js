@@ -454,6 +454,23 @@ const i18n = new VueI18n({
   locale: 'en',
   messages: messages
 })
-document.documentElement.lang = 'en'
+let lang = localStorage.getItem('i18n')
+if (lang !== null) {
+  document.documentElement.lang = lang
+  i18n.locale = lang
+} else {
+  switch (navigator.language) {
+    case 'zh-CN':
+    case 'zh-TW':
+      lang = 'zh-CN'
+      break
+    default:
+      lang = 'en'
+      break;
+  }
+  document.documentElement.lang = lang
+  i18n.locale = lang
+  localStorage.setItem('i18n', lang)
+}
 
 export default i18n
