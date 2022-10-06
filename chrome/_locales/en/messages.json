@@ -1,5 +1,9 @@
 {
-  "context_menus_title": {
+  "appName": {
+    "message": "Transmission Web UI",
+    "description": "app name"
+  },
+  "contextMenusTitle": {
     "message": "Magnet link fast download",
     "description": ""
   }

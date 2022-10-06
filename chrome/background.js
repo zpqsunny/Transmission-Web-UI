@@ -2,7 +2,7 @@
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     id: 'transmissionFastDownload',
-    title: chrome.i18n.getMessage('context_menus_title'),
+    title: chrome.i18n.getMessage('contextMenusTitle'),
     contexts: ['selection', 'link'],
   }, () => {
     console.log('contextMenus created');
