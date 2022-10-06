@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "Transmission Web UI",
+    "description": "應用程式"
+  },
+  "contextMenusTitle": {
+    "message": "磁力鏈接快捷下載",
+    "description": "右鍵快捷下載描述"
+  }
+}
