@@ -15,10 +15,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId !== 'transmissionFastDownload') {
     return;
   }
-  if (tId < 0) {
-    console.log('not open tab, so do not send message');
-    return;
-  }
+
   let url = info.linkUrl || info.selectionText
   chrome.runtime.sendMessage({
     extensionId: chrome.runtime.id,
