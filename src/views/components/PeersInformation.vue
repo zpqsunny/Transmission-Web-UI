@@ -86,11 +86,20 @@ export default {
         {text: this.$t('components.peers_information.progress'), align: 'start', sortable: false, value: 'progress'},
         {text: this.$t('components.peers_information.upload_download_speed'), align: 'start', sortable: false, value: 'rateToClient'},
         // {text: '上传速度', align: 'center', sortable: false, value: 'rateToPeer', width: 120},
-      ]
+      ],
+      timeId: null
     }
   },
   mounted() {
     this.getPeers()
+    this.timeId = setInterval(() => {
+      this.getPeers()
+    },3000)
+  },
+  beforeDestroy() {
+    if (this.timeId != null) {
+      clearInterval(this.timeId)
+    }
   },
   methods: {
     getPeers() {

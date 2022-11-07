@@ -6,7 +6,7 @@
           <v-form>
             <v-row justify="center" align="center">
               <v-col xl="3" lg="4" md="5" sm="8" xs="12">
-                <v-text-field v-model="api.url" label="Transmission RPC" outlined></v-text-field>
+                <v-text-field v-model="api.url" label="Transmission RPC" outlined placeholder="http://127.0.0.1:9091/transmission/rpc"></v-text-field>
                 <v-checkbox v-model="api.auth" :label="$t('login.auth')"></v-checkbox>
                 <v-text-field :disabled="!api.auth" v-model="api.username" :label="$t('login.username')" outlined></v-text-field>
                 <v-text-field type="password" :disabled="!api.auth" v-model="api.password" :label="$t('login.password')" outlined></v-text-field>
@@ -32,7 +32,7 @@ export default {
   data: () => {
     return {
       api: {
-        url: 'http://127.0.0.1:9091/transmission/rpc',
+        url: '',
         auth: false,
         username: '',
         password: ''
@@ -42,6 +42,12 @@ export default {
         title: '',
         text: ''
       },
+    }
+  },
+  mounted() {
+    let url = localStorage.getItem('url')
+    if (url !== null) {
+      this.api.url = url
     }
   },
   methods: {

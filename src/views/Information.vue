@@ -1,11 +1,11 @@
 <template>
   <div class="border-style">
     <v-tabs v-model="tab">
-      <v-tab v-text="$t('information.info')" style="text-transform: none"></v-tab>
-      <v-tab v-text="$t('information.trackers')" style="text-transform: none"></v-tab>
-      <v-tab v-text="$t('information.files')" style="text-transform: none"></v-tab>
-      <v-tab v-text="$t('information.peers')" style="text-transform: none"></v-tab>
-      <v-tab v-text="$t('information.settings')" style="text-transform: none"></v-tab>
+      <v-tab v-text="$t('information.info')"></v-tab>
+      <v-tab v-text="$t('information.trackers')" ></v-tab>
+      <v-tab v-text="$t('information.files')"></v-tab>
+      <v-tab v-text="$t('information.peers')"></v-tab>
+      <v-tab v-text="$t('information.settings')"></v-tab>
     </v-tabs>
     <v-tabs-items v-model="tab">
       <v-tab-item>
@@ -22,7 +22,7 @@
       </v-tab-item>
       <v-tab-item>
 <!--   用户    -->
-        <PeersInformation :id="id"></PeersInformation>
+        <PeersInformation v-if="tab === 3" :id="id"></PeersInformation>
       </v-tab-item>
       <v-tab-item>
 <!--        设置-->

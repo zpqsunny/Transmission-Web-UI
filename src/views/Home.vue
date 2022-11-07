@@ -378,7 +378,6 @@ export default {
       }
     },
     logout() {
-      localStorage.removeItem('url')
       localStorage.removeItem('auth')
       localStorage.removeItem('username')
       localStorage.removeItem('password')
