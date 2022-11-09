@@ -2,7 +2,12 @@
   <div>
     <v-data-table v-model="selectedTorrents" :no-data-text="$t('no_data_text')" :no-results-text="$t('no_results_text')"
                   :headers="headers" :items="$store.state.torrents" item-key="id" show-select show-expand fixed-header
-                  :items-per-page="-1" @contextmenu:row="showMenu" hide-default-footer :search="searchStatus" :custom-filter="filterOnlyStatus">
+                  :items-per-page="-1" @contextmenu:row="showMenu" hide-default-footer :search="searchText" :custom-filter="filterOnlyStatus">
+      <template v-slot:header.name="{ item }">
+        <div style="max-height: 48px">
+          <v-text-field v-model="searchText" :label="$t('components.torrents.name')"></v-text-field>
+        </div>
+      </template>
       <template v-slot:item.data-table-expand="{isExpanded, expand}">
         <v-btn icon v-if="!isExpanded" @click="expand(true)">
           <font-awesome-icon :icon="['fa', 'caret-right']" size="2x" />
@@ -156,7 +161,8 @@ export default {
         name: ''
       },
       selectedTorrents: [],
-      torrentsList: []
+      torrentsList: [],
+      searchText: ''
     }
   },
   computed: {
@@ -230,10 +236,13 @@ export default {
       this.$store.commit('showMessage', {type: 'success', title: '复制成功'})
     },
     filterOnlyStatus(value, search, item) {
-      if (search === 'all') {
+      if (search.trim() !== '' && item.name.indexOf(search.trim()) < 0) {
+        return false
+      }
+      if (this.searchStatus === 'all') {
         return true
       }
-      return item.status.toString() === search
+      return item.status.toString() === this.searchStatus
     }
   },
   watch: {
