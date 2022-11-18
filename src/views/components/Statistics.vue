@@ -2,14 +2,10 @@
   <div>
     <div class="d-flex justify-start align-center" style="height: 30px">
       <div class="text-center w-50">
-        <template v-if="sessionStatistics.uploadSpeed > 0">
-          <small class="up-color"><font-awesome-icon class="up-color" :icon="['fa', 'sort-up']"/>&nbsp;<b>{{ sessionStatistics.uploadSpeed | unitFormat }} /s</b></small>
-        </template>
+        <small class="up-color"><font-awesome-icon class="up-color" :icon="['fa', 'sort-up']"/>&nbsp;<b>{{ sessionStatistics.uploadSpeed | unitFormat }} /s</b></small>
       </div>
       <div class="text-center w-50">
-        <template v-if="sessionStatistics.downloadSpeed > 0">
-          <small class="down-color"><font-awesome-icon class="down-color" :icon="['fa', 'sort-down']"/>&nbsp;<b>{{ sessionStatistics.downloadSpeed | unitFormat }} /s</b></small>
-        </template>
+        <small class="down-color"><font-awesome-icon class="down-color" :icon="['fa', 'sort-down']"/>&nbsp;<b>{{ sessionStatistics.downloadSpeed | unitFormat }} /s</b></small>
       </div>
     </div>
     <div style="height: 300px" ref="chart"></div>
