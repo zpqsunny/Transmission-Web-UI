@@ -180,6 +180,7 @@ export default {
             this.chart.series[1].data.shift()
           }
           this.myChart.setOption(this.chart)
+          this.setTitle(this.sessionStatistics.uploadSpeed, this.sessionStatistics.downloadSpeed)
         })
     },
     format(value) {
@@ -208,6 +209,10 @@ export default {
         return v[0] + '.' + v[1].substring(0, 2) + unit
       }
       return a + unit
+    },
+
+    setTitle(upload, download) {
+      document.title = `🔺 ${upload}\u00a0\u00a0🔻 ${download}`
     }
   }
 }
