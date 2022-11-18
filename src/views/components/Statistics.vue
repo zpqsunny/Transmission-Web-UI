@@ -180,7 +180,7 @@ export default {
             this.chart.series[1].data.shift()
           }
           this.myChart.setOption(this.chart)
-          this.setTitle(this.sessionStatistics.uploadSpeed, this.sessionStatistics.downloadSpeed)
+          this.setTitle(this.format(this.sessionStatistics.uploadSpeed), this.format(this.sessionStatistics.downloadSpeed))
         })
     },
     format(value) {
