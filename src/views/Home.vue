@@ -106,42 +106,42 @@
         <v-navigation-drawer :value="navigation" app width="320">
           <v-list dense>
             <v-list-item-group v-model="filterItem" color="primary">
-              <v-list-item @click="search = 'all'">
+              <v-list-item @click="search = -1">
                 <v-list-item-icon><font-awesome-icon size="2x" :icon="['fa','folder']"/></v-list-item-icon>
                 <v-list-item-title v-text="$t('home.all')"></v-list-item-title>
                 <v-list-item-action>
                   <v-list-item-action-text>{{ torrentTotal }}</v-list-item-action-text>
                 </v-list-item-action>
               </v-list-item>
-              <v-list-item @click="search = '0'">
+              <v-list-item @click="search = 0">
                 <v-list-item-icon><font-awesome-icon size="2x" :icon="['fa','pause']"/></v-list-item-icon>
                 <v-list-item-title v-text="$t('home.pause')"></v-list-item-title>
                 <v-list-item-action>
                   <v-list-item-action-text>{{ torrentPause }}</v-list-item-action-text>
                 </v-list-item-action>
               </v-list-item>
-              <v-list-item @click="search = '2'">
+              <v-list-item @click="search = 2">
                 <v-list-item-icon><font-awesome-icon size="2x" :icon="['fa','database']"/></v-list-item-icon>
                 <v-list-item-title v-text="$t('home.checking')"></v-list-item-title>
                 <v-list-item-action>
                   <v-list-item-action-text>{{ torrentDatabase }}</v-list-item-action-text>
                 </v-list-item-action>
               </v-list-item>
-              <v-list-item @click="search = '3'">
+              <v-list-item @click="search = 3">
                 <v-list-item-icon><font-awesome-icon size="2x" :icon="['fa','clock']"/></v-list-item-icon>
                 <v-list-item-title v-text="$t('home.waiting_download')"></v-list-item-title>
                 <v-list-item-action>
                   <v-list-item-action-text>{{ torrentWaitDownload }}</v-list-item-action-text>
                 </v-list-item-action>
               </v-list-item>
-              <v-list-item @click="search = '4'">
+              <v-list-item @click="search = 4">
                 <v-list-item-icon><font-awesome-icon size="2x" :icon="['fas','download']"/></v-list-item-icon>
                 <v-list-item-title v-text="$t('home.downloading')"></v-list-item-title>
                 <v-list-item-action>
                   <v-list-item-action-text>{{ torrentDownloading }}</v-list-item-action-text>
                 </v-list-item-action>
               </v-list-item>
-              <v-list-item @click="search = '6'">
+              <v-list-item @click="search = 6">
                 <v-list-item-icon><font-awesome-icon size="2x" :icon="['fas','upload']"/></v-list-item-icon>
                 <v-list-item-title v-text="$t('home.uploading')"></v-list-item-title>
                 <v-list-item-action>
@@ -268,7 +268,7 @@ export default {
   },
   data() {
     return {
-      search: 'all',
+      search: -1,
       navigation: false,
       filterItem: 0,
       intervalId: null,

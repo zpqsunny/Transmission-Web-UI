@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-data-table v-model="selectedTorrents" :no-data-text="$t('no_data_text')" :no-results-text="$t('no_results_text')"
-                  :headers="headers" :items="$store.state.torrents" item-key="id" show-select show-expand fixed-header
+                  :headers="headers" :items="torrentsData" item-key="id" show-select show-expand fixed-header
                   :items-per-page="-1" @contextmenu:row="showMenu" hide-default-footer :search="searchText" :custom-filter="filterOnlyStatus">
       <template v-slot:header.name="{ item }">
         <div style="max-height: 48px">
@@ -142,8 +142,8 @@ export default {
   },
   props: {
     searchStatus: {
-      type: String,
-      default: 'all'
+      type: Number,
+      default: -1
     }
   },
   data() {
@@ -190,6 +190,12 @@ export default {
         {text: this.$t('components.torrents.done_date'), align: 'center', sortable: true, value: 'doneDate', width: 120, class: 'torrent-list', cellClass: 'torrent-list'},
         {text: this.$t('components.torrents.activity_date'), align: 'center', sortable: true, value: 'activityDate', width: 120, class: 'torrent-list', cellClass: 'torrent-list'},
       ]
+    },
+    torrentsData() {
+      if (this.searchStatus === -1) {
+        return this.$store.state.torrents
+      }
+      return this.$store.state.torrents.filter(v => v.status === this.searchStatus)
     }
   },
   methods: {
@@ -236,13 +242,7 @@ export default {
       this.$store.commit('showMessage', {type: 'success', title: '复制成功'})
     },
     filterOnlyStatus(value, search, item) {
-      if (search.trim() !== '' && item.name.indexOf(search.trim()) < 0) {
-        return false
-      }
-      if (this.searchStatus === 'all') {
-        return true
-      }
-      return item.status.toString() === this.searchStatus
+      return !(search.trim() !== '' && item.name.indexOf(search.trim()) < 0);
     }
   },
   watch: {
