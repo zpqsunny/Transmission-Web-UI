@@ -5,6 +5,7 @@
 [![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/zpqsunny/Transmission-Web-UI/vue)]()
 [![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/zpqsunny/Transmission-Web-UI/vuetify)]()
 [![#](https://img.shields.io/badge/transmission-version%3E%3D2.4-success)]()
+![visitors](https://visitor-badge.glitch.me/badge?page_id=zpqsunny.Transmission-Web-UI&left_color=green&right_color=red)
 
 ### 介绍
 本项目是基于 Transmission RPC 接口
