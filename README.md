@@ -75,3 +75,8 @@ PayPal: zpqsunny#gmail.com
 <img src="https://raw.githubusercontent.com/zpqsunny/Transmission-Web-UI/main/src/assets/alipay.jpg" height="450"><img src="https://raw.githubusercontent.com/zpqsunny/Transmission-Web-UI/main/src/assets/weixin.jpg" height="450">
 
 **感谢!**
+
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/zpqsunny/Transmission-Web-UI.svg)](https://starchart.cc/zpqsunny/Transmission-Web-UI)
+
