@@ -461,7 +461,8 @@ if (lang !== null) {
 } else {
   switch (navigator.language) {
     case 'zh-CN':
-    case 'zh_CN-TW':
+    case 'zh-TW':
+    case 'zh-HK':
       lang = 'zh-CN'
       break
     default:

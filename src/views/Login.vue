@@ -1,6 +1,12 @@
 <template>
   <div>
     <v-app>
+      <v-system-bar height="40%" app>
+        <v-spacer></v-spacer>
+        <v-btn text small @click="changeLanguage">
+          <font-awesome-icon size="2x" :icon="['fa', 'language']"/>
+        </v-btn>
+      </v-system-bar>
       <v-main>
         <v-container fluid style="margin-top: 100px">
           <v-form>
@@ -97,7 +103,16 @@ export default {
       localStorage.removeItem('auth')
       localStorage.removeItem('username')
       localStorage.removeItem('password')
-    }
+    },
+    changeLanguage() {
+      if (this.$i18n.locale === 'en') {
+        this.$i18n.locale = 'zh-CN'
+        localStorage.setItem('i18n','zh-CN')
+      } else {
+        this.$i18n.locale = 'en'
+        localStorage.setItem('i18n','en')
+      }
+    },
   }
 }
 </script>
