@@ -101,21 +101,21 @@ export default {
                 .then(r => {
                   if (r.match(/^[0-9a-f]{40}$/i)) {
                     this.addForm.filename = 'magnet:?xt=urn:btih:' + r
-                    this.$store.commit('showMessage', {type: 'success', title: '已从剪贴板获取磁力链接'})
+                    this.$store.commit('showMessage', {type: 'success', title: this.$t('components.add_torrent.magnetic_link_obtained_from_clipboard')})
                     return
                   }
                   if (r.match(/^magnet:\?xt=urn:btih:[0-9a-f]{40}.?/i)) {
                     this.addForm.filename = r
-                    this.$store.commit('showMessage', {type: 'success', title: '已从剪贴板获取磁力链接'})
+                    this.$store.commit('showMessage', {type: 'success', title: this.$t('components.add_torrent.magnetic_link_obtained_from_clipboard')})
                   }
                 })
                 .catch(reason => {
                   console.log(reason)
-                  this.$store.commit('showMessage', {type: 'warning', title: '粘贴板权限被拒绝,建议开启粘贴板'})
+                  this.$store.commit('showMessage', {type: 'warning', title: this.$t('components.add_torrent.permission_for_pasteboard_is_denied_it_is_recommended_to_open_pasteboard')})
                 })
             break;
           case 'denied':
-            this.$store.commit('showMessage', {type: 'warning', title: '粘贴板权限被拒绝,建议开启粘贴板'})
+            this.$store.commit('showMessage', {type: 'warning', title: this.$t('components.add_torrent.permission_for_pasteboard_is_denied_it_is_recommended_to_open_pasteboard')})
             break;
           default:
             break;

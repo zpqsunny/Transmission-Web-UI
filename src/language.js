@@ -30,7 +30,9 @@ const messages = {
         'save_path': 'Save Location',
         'torrent_file': 'Torrent File',
         'magnet_url': 'Magnet Url',
-        'start_when_added': 'Start when added'
+        'start_when_added': 'Start when added',
+        'magnetic_link_obtained_from_clipboard': 'Magnetic link obtained from clipboard',
+        'permission_for_pasteboard_is_denied_it_is_recommended_to_open_pasteboard': 'Permission for pasteboard is denied. It is recommended to open pasteboard',
       },
       add_trackers: {
         'add_trackers': 'Add Trackers',
@@ -252,7 +254,9 @@ const messages = {
         'save_path': '保存的位置',
         'torrent_file': '种子文件',
         'magnet_url': '种子地址',
-        'start_when_added': '自动开始'
+        'start_when_added': '自动开始',
+        'magnetic_link_obtained_from_clipboard': '已从剪贴板获取磁力链接',
+        'permission_for_pasteboard_is_denied_it_is_recommended_to_open_pasteboard': '粘贴板权限被拒绝,建议开启粘贴板',
       },
       add_trackers: {
         'add_trackers': '添加Trackers',
