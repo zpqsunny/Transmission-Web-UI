@@ -178,7 +178,7 @@ export default {
         {text: this.$t('components.torrents.added_date'), align: 'center', sortable: true, value: 'addedDate', width: 120, class: 'torrent-list', cellClass: 'torrent-list'},
         // {text: 'trackerStats', align: 'start', sortable: false, value: 'trackerStats', width: 200},
         // {text: 'leftUntilDone', align: 'start', sortable: false, value: 'leftUntilDone', width: 200},
-        {text: this.$t('components.torrents.upload_download_speed'), align: 'start', sortable: false, value: 'rateDownload', width: 250, class: 'torrent-list', cellClass: 'torrent-list'},
+        {text: this.$t('components.torrents.upload_download_speed'), align: 'start', sortable: false, value: 'rateDownload',  class: 'torrent-list', cellClass: 'torrent-list'},
         // {text: '上传速度', align: 'start', sortable: false, value: 'rateUpload', width: 150},
         // {text: 'recheckProgress', align: 'start', sortable: false, value: 'recheckProgress', width: 200},
         // {text: 'peersGettingFromUs', align: 'start', sortable: false, value: 'peersGettingFromUs', width: 200},
