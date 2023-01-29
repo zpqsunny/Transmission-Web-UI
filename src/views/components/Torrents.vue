@@ -175,7 +175,7 @@ export default {
         // {text: 'hashString', align: 'start', sortable: false, value: 'hashString'},
         {text: this.$t('components.torrents.total_size'), align: 'right', sortable: true, value: 'totalSize', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
         {text: this.$t('components.torrents.percent_done'), align: 'center', sortable: true, value: 'percentDone', width: 100, class: 'torrent-list', cellClass: 'torrent-list'},
-        {text: this.$t('components.torrents.added_date'), align: 'center', sortable: true, value: 'addedDate', width: 120, class: 'torrent-list', cellClass: 'torrent-list'},
+        {text: this.$t('components.torrents.added_date'), align: 'center', sortable: true, value: 'addedDate', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
         // {text: 'trackerStats', align: 'start', sortable: false, value: 'trackerStats', width: 200},
         // {text: 'leftUntilDone', align: 'start', sortable: false, value: 'leftUntilDone', width: 200},
         {text: this.$t('components.torrents.upload_download_speed'), align: 'start', sortable: false, value: 'rateDownload',  class: 'torrent-list', cellClass: 'torrent-list'},
@@ -187,8 +187,8 @@ export default {
         {text: this.$t('components.torrents.ready_upload_download'), align: 'left', sortable: false, value: 'uploadedEver', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
         // {text: '已完成', align: 'center', sortable: false, value: 'downloadedEver', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
         // {text: '保存目录', align: 'start', sortable: false, value: 'downloadDir', width: 200},
-        {text: this.$t('components.torrents.done_date'), align: 'center', sortable: true, value: 'doneDate', width: 120, class: 'torrent-list', cellClass: 'torrent-list'},
-        {text: this.$t('components.torrents.activity_date'), align: 'center', sortable: true, value: 'activityDate', width: 120, class: 'torrent-list', cellClass: 'torrent-list'},
+        {text: this.$t('components.torrents.done_date'), align: 'center', sortable: true, value: 'doneDate', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
+        {text: this.$t('components.torrents.activity_date'), align: 'center', sortable: true, value: 'activityDate', width: 90, class: 'torrent-list', cellClass: 'torrent-list'},
       ]
     },
     torrentsData() {
