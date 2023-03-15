@@ -385,7 +385,7 @@ export default {
     },
     chromeEnv() {
       try {
-        chrome.runtime.onMessage.addListener(((message, sender, sendResponse) => {
+        chrome.runtime.onMessage.addListener((async (message, sender, sendResponse) => {
           let downloadLink = message.message.url
           if (downloadLink.match(/^[0-9a-f]{40}$/i)) {
             downloadLink = 'magnet:?xt=urn:btih:' + downloadLink
@@ -393,25 +393,35 @@ export default {
             console.warn(downloadLink + 'is not magnet url')
             return
           }
-          this.$axios.post('', {
+          const downloadDirResponse = await this.$axios.post('', {
             method: 'session-get',
             arguments: {
               fields: ['download-dir']
             }
-          }).then(r => {
-            if (r.data.result === 'success') {
-              let downloadDir = r.data.arguments['download-dir']
-              this.$axios.post('', {
-                method: 'torrent-add',
-                arguments: {
-                  'download-dir': downloadDir,
-                  filename: downloadLink,
-                  paused: false,
-                }
-              }).then(r => {
-                console.log('torrent-add: ' + r.data.result)
-              })
+          })
+          if (downloadDirResponse.data.result !== 'success') {
+            console.error('downloadDir request fail')
+            return
+          }
+          let downloadDir = downloadDirResponse.data.arguments['download-dir']
+          const torrentAddResponse = await this.$axios.post('', {
+            method: 'torrent-add',
+            arguments: {
+              'download-dir': downloadDir,
+              filename: downloadLink,
+              paused: false,
             }
+          })
+          console.log('torrent-add: ' + torrentAddResponse.data.result)
+          if (torrentAddResponse.data.result !== 'success') {
+            console.error('torrentAdd request fail')
+          }
+          chrome.notifications.clear('magnet-message')
+          chrome.notifications.create('magnet-message', {
+            type: "basic",
+            iconUrl: "/images/download16.png",
+            title: this.$t('components.torrents.downloading'),
+            message: downloadLink,
           })
         }))
       } catch (e) {

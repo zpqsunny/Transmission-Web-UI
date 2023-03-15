@@ -28,6 +28,7 @@
   "permissions": [
     "contextMenus",
     "background",
-    "activeTab"
+    "activeTab",
+    "notifications"
   ]
 }
