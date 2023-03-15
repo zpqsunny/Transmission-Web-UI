@@ -6,10 +6,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-22.04
-    strategy:
-      matrix:
-        node-version: [ 16.16.0 ]
     steps:
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.16.0'
       - uses: actions/checkout@main
       - name: install dependencies
         run: npm install
