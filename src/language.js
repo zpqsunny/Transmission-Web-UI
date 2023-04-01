@@ -227,6 +227,7 @@ const messages = {
       password: 'Password',
       login: 'Login'
     },
+    torrent_dorayaki: 'It is a torrent search tool that can search the metadata information of seeds in DHT network'
   },
   'zh-CN': {
     sure: '确 定',
@@ -451,6 +452,7 @@ const messages = {
       password: '密码',
       login: '登 录'
     },
+    torrent_dorayaki: '是一款用于torrent搜索工具可以搜索DHT网络中种子的元数据信息'
   }
 }
 

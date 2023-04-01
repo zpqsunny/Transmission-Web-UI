@@ -84,6 +84,9 @@
           </v-list>
         </v-menu>
         <v-spacer></v-spacer>
+        <v-btn text small @click="showTorrentDorayakiDialog">
+          <font-awesome-icon size="2x" :icon="['fa', 'search']"/>
+        </v-btn>
         <v-btn text small @click="changeLanguage">
           <font-awesome-icon size="2x" :icon="['fa', 'language']"/>
         </v-btn>
@@ -220,6 +223,15 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
+      <v-dialog v-model="torrentDorayakiDialog" width="30%">
+        <v-card>
+          <TorrentDorayaki></TorrentDorayaki>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="second" text @click="torrentDorayakiDialog = false" v-text="$t('close')"></v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </v-app>
   </div>
 </template>
@@ -233,6 +245,7 @@ import AddTorrentFromUrl from '@/views/components/AddTorrentFromUrl'
 import AddTorrentFromFile from '@/views/components/AddTorrentFromFile'
 import Coffee from '@/views/components/Coffee'
 import Bottom from '@/views/Bottom'
+import TorrentDorayaki from '@/views/components/TorrentDorayaki'
 
 export default {
   name: 'Home',
@@ -245,6 +258,7 @@ export default {
     AddTorrentFromFile,
     Coffee,
     Bottom,
+    TorrentDorayaki,
   },
   computed: {
     torrentTotal: function () {
@@ -284,7 +298,8 @@ export default {
         location: '',
         move: false,
       },
-      helpMeDialog: false
+      helpMeDialog: false,
+      torrentDorayakiDialog: false,
     }
   },
   mounted() {
@@ -367,6 +382,9 @@ export default {
     },
     goEmail() {
       window.location.href = 'mailto:torrentweb@gmail.com'
+    },
+    showTorrentDorayakiDialog() {
+      this.torrentDorayakiDialog = true
     },
     changeLanguage() {
       if (this.$i18n.locale === 'en') {
