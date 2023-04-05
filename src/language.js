@@ -126,6 +126,10 @@ const messages = {
         'use_peer_exchange_pex_for_public_torrents': 'Use peer exchange (PEX) for public torrents',
         'use_distributed_hash_table_dht_for_public_torrents': 'Use distributed hash table (DHT) for public torrents',
         'use_local_peer_discovery_for_public_torrents': 'Use local peer discovery for public torrents',
+        'default_public_trackers': 'Default Public Trackers',
+        'default_public_trackers_info': 'Trackers to use on all public torrents.\n' +
+          'To add a backup URL, add it on the next line after a primary URL.\n' +
+          'To add a new primary URL, add it after a blank line.',
       },
       torrent_information: {
         'base_info': 'Information',
@@ -351,6 +355,10 @@ const messages = {
         'use_peer_exchange_pex_for_public_torrents': '使用 PEX 以寻找更多用户',
         'use_distributed_hash_table_dht_for_public_torrents': '使用 DHT 以寻找更多用户',
         'use_local_peer_discovery_for_public_torrents': '使用本地用户发现已寻找更多用户',
+        'default_public_trackers': '默认公共Trackers',
+        'default_public_trackers_info': 'Trackers 用于所有公共种子的.\n' +
+          '要添加备用 URL，请将其添加到主URL之后的下一行.\n' +
+          '要添加新的主 URL，请将其添加到空行之后.',
       },
       torrent_information: {
         'base_info': '基本信息',

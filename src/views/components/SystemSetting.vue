@@ -300,6 +300,12 @@
                   </v-row>
                 </v-container>
               </v-card>
+              <v-card>
+                <v-card-title v-text="$t('components.system_setting.default_public_trackers')">
+                </v-card-title>
+                <v-textarea v-model="$store.state.sessionInfo['default-trackers']" :placeholder="$t('components.system_setting.default_public_trackers_info')">
+                </v-textarea>
+              </v-card>
             </v-tab-item>
             <v-tab-item>
               <v-card>

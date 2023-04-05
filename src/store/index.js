@@ -30,6 +30,7 @@ export default new Vuex.Store({
       "blocklist-url": "http://www.example.com/blocklist",
       "cache-size-mb": 4,
       "config-dir": "",
+      "default-trackers": '',
       "dht-enabled": true,
       "download-dir": "",
       "download-queue-enabled": false,
@@ -106,7 +107,7 @@ export default new Vuex.Store({
               'rpc-version-minimum', 'script-torrent-done-filename', 'script-torrent-done-enabled', 'seedRatioLimit',
               'seedRatioLimited', 'seed-queue-size', 'seed-queue-enabled', 'speed-limit-down', 'speed-limit-down-enabled',
               'speed-limit-up', 'speed-limit-up-enabled', 'start-added-torrents', 'trash-original-torrent-files', 'units',
-              'utp-enabled', 'version','download-dir-free-space'
+              'utp-enabled', 'version', 'download-dir-free-space', 'default-trackers'
             ]
           }
         }).then(r => {
