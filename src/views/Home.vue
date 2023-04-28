@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-app style="height: 100vh">
-      <v-system-bar height="40%" app>
+    <v-app style="min-height: 100vh">
+      <v-system-bar height="40%" app dark>
         <v-btn text small @click="navigation = !navigation">
           <font-awesome-icon size="2x" :icon="['fa','bars']"/>
         </v-btn>
@@ -106,8 +106,8 @@
         </v-btn>
       </v-system-bar>
       <v-main>
-        <v-navigation-drawer :value="navigation" app width="320">
-          <v-list dense>
+        <v-navigation-drawer :value="navigation" app dark width="320">
+          <v-list dense dark>
             <v-list-item-group v-model="filterItem" color="primary">
               <v-list-item @click="search = -1">
                 <v-list-item-icon><font-awesome-icon size="2x" :icon="['fa','folder']"/></v-list-item-icon>
@@ -156,7 +156,7 @@
           <v-divider/>
           <Statistics></Statistics>
         </v-navigation-drawer>
-        <v-container fluid>
+        <v-container fluid style="padding: 0">
           <v-row>
             <v-col cols="12">
               <Torrents ref="torrents" :selected-torrents.sync="selectedTorrents" :search-status="search"></Torrents>
