@@ -30,7 +30,7 @@
           <td class="text-no-wrap" v-text="$t('components.torrent_information.left_until_done')"></td>
           <td>{{ baseInfo.leftUntilDone | unitFormat}}</td>
           <td class="text-no-wrap" v-text="$t('components.torrent_information.downloaded_ever')"></td>
-          <td>{{ baseInfo.downloadedEver | unitFormat}}</td>
+          <td>{{ (baseInfo.totalSize - baseInfo.leftUntilDone) | unitFormat}}</td>
         </tr>
         <tr>
           <td class="text-no-wrap" v-text="$t('components.torrent_information.rate_download')"></td>

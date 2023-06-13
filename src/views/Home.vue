@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app style="min-height: 100vh">
-      <v-system-bar height="40%" app dark>
+      <v-system-bar height="40%" app>
         <v-btn text small @click="navigation = !navigation">
           <font-awesome-icon size="2x" :icon="['fa','bars']"/>
         </v-btn>

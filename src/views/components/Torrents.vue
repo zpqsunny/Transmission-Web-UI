@@ -86,11 +86,11 @@
         </v-row>
       </template>
       <template v-slot:item.uploadedEver="{ item }">
-        <div v-if="item.uploadedEver > 0">
+        <div>
           <small><font-awesome-icon class="up-color" :icon="['fa', 'sort-up']"/> {{ item.uploadedEver | unitFormat }}</small>
         </div>
-        <div v-if="item.downloadedEver > 0">
-          <small><font-awesome-icon class="down-color" :icon="['fa', 'sort-down']"/> {{ item.downloadedEver | unitFormat }}</small>
+        <div>
+          <small><font-awesome-icon class="down-color" :icon="['fa', 'sort-down']"/> {{ (item.totalSize - item.leftUntilDone) | unitFormat }}</small>
         </div>
       </template>
       <template v-slot:item.doneDate="{ item }">
