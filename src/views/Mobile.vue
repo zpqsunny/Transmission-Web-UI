@@ -4,6 +4,25 @@
       <v-btn text small @click.stop="filterMenu = !filterMenu">
         <font-awesome-icon size="2x" :icon="['fa', 'filter']"/>
       </v-btn>
+      <v-menu offset-y transition="scroll-x-transition">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn text small v-bind="attrs" v-on="on">
+            <font-awesome-icon size="2x" :icon="['fa','plus']"/>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item-group>
+            <v-list-item @click="addTorrentFromUrlDialog = true">
+              <v-list-item-icon><font-awesome-icon size="xl" :icon="['fa','magnet']"/></v-list-item-icon>
+              <v-list-item-content><v-list-item-title v-text="$t('home.open_torrent_address')"></v-list-item-title></v-list-item-content>
+            </v-list-item>
+            <v-list-item @click="addTorrentFromFileDialog = true">
+              <v-list-item-icon><font-awesome-icon size="xl" :icon="['fa','paperclip']"/></v-list-item-icon>
+              <v-list-item-content><v-list-item-title v-text="$t('home.open_torrent_file')"></v-list-item-title></v-list-item-content>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
+      </v-menu>
       <v-btn text small @click.stop="torrentAction('torrent-start')" :title="$t('home.torrent_start')" :disabled="!selectedTorrents.length > 0">
         <font-awesome-icon size="2x" :icon="['fa', 'play']"/>
       </v-btn>
@@ -141,6 +160,14 @@
         </v-list>
       </v-container>
     </v-main>
+    <!--  新增URL对话框  -->
+    <v-dialog v-if="addTorrentFromUrlDialog" v-model="addTorrentFromUrlDialog" width="80%" persistent>
+      <AddTorrentFromUrl v-if="addTorrentFromUrlDialog" @success="torrentActionAddSuccess" @cancel="addTorrentFromUrlDialog = false"/>
+    </v-dialog>
+    <!--  新增文件上传对话框  -->
+    <v-dialog v-if="addTorrentFromFileDialog" v-model="addTorrentFromFileDialog" width="80%" persistent>
+      <AddTorrentFromFile v-if="addTorrentFromFileDialog" @success="torrentActionAddSuccess" @cancel="addTorrentFromFileDialog = false"/>
+    </v-dialog>
     <!--  删除种子对话框  -->
     <v-dialog v-model="deleteTorrentDialog" width="80%" persistent>
       <v-card>
@@ -160,13 +187,19 @@
 </template>
 
 <script>
+import AddTorrentFromFile from "@/views/components/AddTorrentFromFile.vue";
+import AddTorrentFromUrl from "@/views/components/AddTorrentFromUrl.vue";
+
 export default {
   name: 'Mobile',
+  components: {AddTorrentFromUrl, AddTorrentFromFile},
   data() {
     return {
       filterMenu: false,
       deleteTorrentDialog: false,
       deleteLocalData: false,
+      addTorrentFromUrlDialog: false,
+      addTorrentFromFileDialog: false,
       filterItem: 0,
       torrentStatus: -1,
       intervalId: null,
@@ -223,6 +256,11 @@ export default {
     torrentStatusUpdate(status) {
       this.torrentStatus = status
       this.filterMenu = false;
+    },
+    torrentActionAddSuccess() {
+      this.addTorrentFromUrlDialog = false
+      this.addTorrentFromFileDialog = false
+      this.$store.commit('getTorrents')
     },
     changeLanguage() {
       if (this.$i18n.locale === 'en') {
