@@ -72,7 +72,8 @@ unzip release-v2.1.9.zip
 
 PayPal: zpqsunny#gmail.com
 
-<img src="https://raw.githubusercontent.com/zpqsunny/Transmission-Web-UI/main/src/assets/alipay.jpg" height="450"><img src="https://raw.githubusercontent.com/zpqsunny/Transmission-Web-UI/main/src/assets/weixin.jpg" height="450">
+[<img src="https://raw.githubusercontent.com/zpqsunny/Transmission-Web-UI/main/src/assets/alipay.jpg" height="450">]()
+[<img src="https://raw.githubusercontent.com/zpqsunny/Transmission-Web-UI/main/src/assets/weixin.jpg" height="450">]()
 
 **感谢!**
 
