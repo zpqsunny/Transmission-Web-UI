@@ -68,14 +68,15 @@ unzip release-v2.1.9.zip
 
 如配置正确下次打开默认自动进入种子管理界面
 
+## 感谢
+
 如果您觉得这项目不错或对您有帮助请支持我
 
 PayPal: zpqsunny#gmail.com
 
-[<img src="https://raw.githubusercontent.com/zpqsunny/Transmission-Web-UI/main/src/assets/alipay.jpg" height="450">]()
-[<img src="https://raw.githubusercontent.com/zpqsunny/Transmission-Web-UI/main/src/assets/weixin.jpg" height="450">]()
+[<img src="https://raw.githubusercontent.com/zpqsunny/Transmission-Web-UI/main/src/assets/alipay.jpg" height="450">](#感谢)
+[<img src="https://raw.githubusercontent.com/zpqsunny/Transmission-Web-UI/main/src/assets/weixin.jpg" height="450">](#感谢)
 
-**感谢!**
 
 ## Stargazers over time
 
