@@ -80,3 +80,10 @@ PayPal: zpqsunny#gmail.com
 
 [![Stargazers over time](https://starchart.cc/zpqsunny/Transmission-Web-UI.svg)](https://starchart.cc/zpqsunny/Transmission-Web-UI)
 
+## 鸣谢
+
+特别感谢 JetBrains 为开源项目(Open Source Projects)提供免费的 **WebStorm** 等 IDE 的授权
+
+[<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/WebStorm.svg" alt="WebStorm logo.">](https://www.jetbrains.com/?from=zpqsunny)
+
+
