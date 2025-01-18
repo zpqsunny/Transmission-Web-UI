@@ -77,7 +77,12 @@ export default {
         fromTracker: 0,
       },
       peersInfo: [],
-      peersHeaders: [
+      timeId: null
+    }
+  },
+  computed: {
+    peersHeaders: function () {
+      return [
         {text: this.$t('components.peers_information.ip_address'), align: 'start', sortable: false, value: 'address'},
         {text: this.$t('components.peers_information.client_name'), align: 'start', sortable: false, value: 'clientName'},
         {text: this.$t('components.peers_information.flag'), align: 'start', sortable: false, value: 'flagStr'},
@@ -86,8 +91,7 @@ export default {
         {text: this.$t('components.peers_information.progress'), align: 'start', sortable: false, value: 'progress'},
         {text: this.$t('components.peers_information.upload_download_speed'), align: 'start', sortable: false, value: 'rateToClient'},
         // {text: '上传速度', align: 'center', sortable: false, value: 'rateToPeer', width: 120},
-      ],
-      timeId: null
+      ];
     }
   },
   mounted() {

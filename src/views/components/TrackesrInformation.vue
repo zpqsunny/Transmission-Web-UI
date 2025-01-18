@@ -81,7 +81,12 @@ export default {
         id: 0,
         announce: ''
       },
-      trackerHeaders: [
+      trackerSelected: [],
+    }
+  },
+  computed: {
+    trackerHeaders: function () {
+      return [
         {text: this.$t('components.trackers_information.announce'), align: 'start', sortable: false, value: 'announce', width: 150},
         {text: this.$t('components.trackers_information.status'), align: 'center', sortable: false, value: 'lastAnnounceSucceeded', width: 80},
         {text: this.$t('components.trackers_information.info'), align: 'start', sortable: false, value: 'lastAnnounceResult'},
@@ -90,8 +95,7 @@ export default {
         {text: this.$t('components.trackers_information.seeder_count'), align: 'center', sortable: true, value: 'seederCount', width: 90},
         {text: this.$t('components.trackers_information.last_scrape_time'), align: 'center', sortable: false, value: 'lastScrapeTime', width: 180},
         {text: this.$t('components.trackers_information.next_announce_time'), align: 'center', sortable: false, value: 'nextAnnounceTime', width: 180},
-      ],
-      trackerSelected: [],
+      ];
     }
   },
   mounted() {
