@@ -68,15 +68,22 @@ unzip release-v2.1.9.zip
 
 如配置正确下次打开默认自动进入种子管理界面
 
+## 感谢
+
 如果您觉得这项目不错或对您有帮助请支持我
 
 PayPal: zpqsunny#gmail.com
 
-<img src="https://raw.githubusercontent.com/zpqsunny/Transmission-Web-UI/main/src/assets/alipay.jpg" height="450"><img src="https://raw.githubusercontent.com/zpqsunny/Transmission-Web-UI/main/src/assets/weixin.jpg" height="450">
+[<img src="https://raw.githubusercontent.com/zpqsunny/Transmission-Web-UI/main/src/assets/alipay.jpg" height="450">](#感谢)
+[<img src="https://raw.githubusercontent.com/zpqsunny/Transmission-Web-UI/main/src/assets/weixin.jpg" height="450">](#感谢)
 
-**感谢!**
 
 ## Stargazers over time
 
 [![Stargazers over time](https://starchart.cc/zpqsunny/Transmission-Web-UI.svg)](https://starchart.cc/zpqsunny/Transmission-Web-UI)
 
+## 鸣谢
+
+特别感谢 JetBrains 为开源项目(Open Source Projects)提供免费的 **WebStorm** 等 IDE 的授权
+
+![WebStorm logo](https://resources.jetbrains.com/storage/products/company/brand/logos/WebStorm.svg)
